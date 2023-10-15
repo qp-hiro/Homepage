@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - Hirosuke Asahi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .card {
+            cursor: pointer;
+            position: relative;
+        }
+        .card img {
+            object-fit: cover;
+            width: 100%;
+        }
+        .card-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .col-md-3 {
+            padding: 0; /* Remove padding to make the panels closer */
+        }
+        .card {
+            height: 100%; /* Make the card fill the container */
+        }
+        .container-fluid {
+            padding: 0 15%; /* Added padding to give margin from the page width */
+        }
+        .home-icon {
+            position: absolute;
+            top: 5%;
+            right: 2.5%;
+            z-index: 1000;
+        }
+        .home-icon img {
+            width: 50px; /* Adjust the size as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="homepage.html" class="home-icon">
+        <img src="home-icon.png" alt="Home"> <!-- Replace with your home icon URL -->
+    </a>
+
+    <h1 class="text-center my-5">Works</h1>
+
+    <div class="container-fluid"> <!-- Changed to container-fluid -->
+        <div class="row" id="works-container">
+            <!-- Works will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const works = [
+            { title: 'The Legend of Holy Sword<br>-Proof of Concentration-', imagePath: 'work1/sword jk.png', detailsPath: 'work1/work1-details.html' },
+            { title: 'Work 2<br>-Description-', imagePath: 'work2/comming-soon.png', detailsPath: 'work2/work2-details.html' },
+            { title: 'Work 3<br>-Description-', imagePath: 'work3/comming-soon.png', detailsPath: 'work3/work3-details.html' },
+            { title: 'Work 4<br>-Description-', imagePath: 'work4/comming-soon.png', detailsPath: 'work4/work4-details.html' },
+            { title: 'Work 5<br>-Description-', imagePath: 'work5/comming-soon.png', detailsPath: 'work5/work5-details.html' },
+            { title: 'Work 6<br>-Description-', imagePath: 'work6/comming-soon.png', detailsPath: 'work6/work6-details.html' },
+            { title: 'Work 7<br>-Description-', imagePath: 'work7/comming-soon.png', detailsPath: 'work7/work7-details.html' }, // Added new work
+            { title: 'Work 8<br>-Description-', imagePath: 'work8/comming-soon.png', detailsPath: 'work8/work8-details.html' }  // Added new work
+        ];
+
+        const worksContainer = document.getElementById('works-container');
+
+        works.forEach(work => {
+            const col = document.createElement('div');
+            col.className = 'col-md-3 mb-4'; 
+
+            const card = document.createElement('div');
+            card.className = 'card text-dark h-100'; 
+            card.onclick = () => window.location.href = work.detailsPath;
+
+            const img = document.createElement('img');
+            img.src = work.imagePath;
+            img.alt = work.title;
+            img.className = 'card-img-top';
+            img.onload = () => {
+                img.style.height = img.width + 'px'; 
+            };
+
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            title.innerHTML = work.title;
+
+            card.appendChild(img);
+            card.appendChild(title);
+            col.appendChild(card);
+            worksContainer.appendChild(col);
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

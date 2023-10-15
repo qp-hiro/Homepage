@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Hirosuke Asahi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: black; /* Set background color to black */
+            color: white; /* Set text color to white */
+        }
+        .category {
+            font-weight: bold;
+        }
+        .photo {
+            position: absolute;
+            top: 15%;
+            right: 15%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+        }
+        h1 {
+            font-size: 60px; /* Increase the font size */
+        }
+        h2 {
+            margin-top: 50px; /* Increase space between sections */
+        }
+        .home-icon {
+            position: absolute;
+            top: 5%;
+            right: 2.5%;
+            z-index: 1000;
+        }
+        .home-icon img {
+            width: 50px; /* Adjust the size as needed */
+        }
+    </style>
+</head>
+<body>
+    <a href="homepage.html" class="home-icon">
+        <img src="home-icon.png" alt="Home"> <!-- Replace with your home icon URL -->
+    </a>
+
+    <div class="photo">
+        <img src="me.jpg" alt="Hirosuke Asahi"> <!-- Replace with your photo URL -->
+    </div>
+
+    <h1 class="text-center my-5">Profile</h1>
+
+    <div class="container">
+        <!-- Experience -->
+        <h2>Education</h2>
+        <p>2020年6月 - Web Developer at XYZ Corp</p>
+        <p>2019年4月 - Intern at ABC Inc</p>
+        <!-- Add more as needed -->
+
+        <!-- Skills -->
+        <h2>Skills</h2>
+        <div class="category">Advanced:</div>
+        <p>Python, JavaScript, HTML/CSS</p>
+        <div class="category">Intermediate:</div>
+        <p>Java, SQL, PHP</p>
+        <div class="category">Beginner:</div>
+        <p>C++, Ruby, Swift</p>
+
+        <!-- Research Achievements -->
+        <h2>Research Achievements</h2>
+        <ul>
+            <li>Published a paper in XYZ Journal</li>
+            <li>Presented at ABC Conference</li>
+            <!-- Add more as needed -->
+        </ul>
+
+        <!-- Awards -->
+        <h2>Awards</h2>
+        <ul>
+            <li>2021 - Best Paper Award at XYZ Conference</li>
+            <li>2020 - ABC Scholarship</li>
+            <!-- Add more as needed -->
+        </ul>
+
+        <!-- Others -->
+        <h2>Others</h2>
+        <ul>
+            <li>2022 - Featured in Tech Magazine</li>
+            <li>2021 - Completed Advanced Programming Course</li>
+            <li>2020 - Secured competitive research grant</li>
+            <!-- Add more as needed -->
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

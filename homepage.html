@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QP Asahi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+        .video-background {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+        .video-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .video-background video.show {
+            opacity: 1;
+        }
+        .content {
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            padding: 30px;
+        }
+        .content h2, .content p.label {
+            font-size: 30px;
+            display: inline;
+        }
+        .content p {
+            display: inline;
+        }
+        body {
+            font-family: 'Amatic SC', cursive;
+            line-height: 1.6;
+        }
+        a {
+            color: white;
+        }
+        .navbar {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            font-size: 100px;
+        }
+        .navbar a {
+            margin: 0 200px;
+        }
+        h1 {
+            position: absolute;
+            top: -10%;
+            width: 100%;
+            text-align: center;
+            font-size: 120px;
+            z-index: 2;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 30px 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px; /* Adjusted padding */
+            text-align: center;
+            font-size: 40px; /* Increased font size */
+        }
+
+        .sidebar ul li a {
+            color: white;
+            display: block;
+        }
+
+        .sidebar ul ul {
+            display: none;
+        }
+
+        .sidebar ul ul li {
+            font-size: 20px; /* 文字サイズを半分に */
+            padding: 5px; /* パディングを半分に */
+        }
+
+        .sidebar ul li.active ul {
+            display: block;
+        }
+
+        .menu-btn {
+            position: fixed;
+            left: 15px;
+            top: 15px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-btn i {
+            color: white;
+            font-size: 24px;
+        }
+        #instagram-icon, #facebook-icon, #youtube-icon {
+            position: absolute;
+            bottom: 90%;
+            transform: translateX(-50%);
+        }
+
+        #instagram-icon {
+            left: 40%;
+        }
+
+        #facebook-icon {
+            left: 50%;
+        }
+
+        #youtube-icon {
+            left: 60%;
+        }
+
+        #instagram-icon img, #facebook-icon img, #youtube-icon img {
+            width: 50px; /* アイコンのサイズを小さく */
+            display: block;
+        }
+
+        .content {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            padding: 30px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="navbar">
+        <a href="works.html" id="works-link">Works</a> <a href="profile.html">Profile</a>
+    </div>
+        
+    <div class="sidebar">
+        <ul>
+            <li><a href="javascript:void(0)" class="work-btn">Works</a>
+                <ul>
+                    <li><a href="work1/work1-details.html">The Legend of Holy Sword<br>-Proof of Concentration-</a></li>
+                    <li><a href="work2/work2-details.html">Work2</a></li>
+                    <li><a href="work3/work3-details.html">Work3</a></li>
+                    <li><a href="work4/work4-details.html">Work4</a></li>
+                    <li><a href="work5/work5-details.html">Work5</a></li>
+                    <li><a href="work6/work6-details.html">Work6</a></li>
+                    <li><a href="work7/work7-details.html">Work7</a></li>
+                    <li><a href="work8/work8-details.html">Work8</a></li>
+                </ul>
+            </li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>
+    </div>
+        
+    
+    <div class="video-background">
+        <h1>Hirosuke Asahi</h1>
+    
+        <video id="video1" autoplay loop muted class="show">
+            <source src="jellyfish.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video id="video2" autoplay loop muted>
+            <source src="birds.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video id="video3" autoplay loop muted>
+            <source src="stars.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    
+        <div class="content">
+            <section>
+                <a href="https://www.instagram.com/hiro.asahi.22/" target="_blank" id="instagram-icon">
+                    <img src="instagram-icon.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.facebook.com/hiro.asahi.37/" target="_blank" id="facebook-icon">
+                    <img src="facebook-icon.png" alt="Facebook Icon">
+                </a>
+                <a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" id="youtube-icon">
+                    <img src="youtube-icon.png" alt="YouTube Icon">
+                </a>
+                <p class="label">Affiliation：</p><p>The University of Tokyo IST </p><br>
+                <p class="label">Research：</p><p>Information somatics, Locomotion system </p><br>
+                <p class="label">Email：</p><p><a href="mailto: hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> </p><br>
+            </section>
+        </div>
+    </div>
+    
+    <script>
+        const videos = document.querySelectorAll('.video-background video');
+        let currentVideo = 0;
+    
+        setInterval(() => {
+            videos[currentVideo].classList.remove('show');
+            currentVideo = (currentVideo + 1) % videos.length;
+            videos[currentVideo].classList.add('show');
+        }, 7000);
+    
+        const menuBtn = document.querySelector('.menu-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const workBtn = document.querySelector('.work-btn');
+    
+        menuBtn.addEventListener('click', () => {
+            const left = sidebar.style.left === '-250px' || sidebar.style.left === '' ? '0px' : '-250px';
+            sidebar.style.left = left;
+        });
+    
+        workBtn.addEventListener('click', () => {
+            workBtn.parentElement.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.style.left === '0px') {
+                sidebar.style.left = '-250px';
+            }
+        });
+    </script>
+    
+
+
+</body>
+</html>
