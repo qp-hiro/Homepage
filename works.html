@@ -64,9 +64,9 @@
 
     <script>
         const works = [
-            { title: 'The Legend of Holy Sword<br>-Proof of Concentration-', imagePath: 'work1/sword jk.png', detailsPath: 'work1/work1-details.html' },
-            { title: 'Work 2<br>-Description-', imagePath: 'work2/comming-soon.png', detailsPath: 'work2/work2-details.html' },
-            { title: 'Work 3<br>-Description-', imagePath: 'work3/comming-soon.png', detailsPath: 'work3/work3-details.html' },
+            { title: 'The Legend of Holy Sword', subtitle: '- Proof of Concentration -', imagePath: 'work1/横長宣材.png', detailsPath: 'work1/work1-details.html', fontSize: '14px'},
+            { title: 'ForceField', subtitle: '-Visualizing Intermaterial Interaction-', imagePath: 'work2/Poster.png', detailsPath: 'work2/work2-details.html', fontSize: '14px'},
+            { title: 'Universal Locomotion Interface', subtitle: '-Transformation to universal creatures-', imagePath: 'work3/提案手法.png', detailsPath: 'work3/work3-details.html', fontSize: '14px'},
             { title: 'Work 4<br>-Description-', imagePath: 'work4/comming-soon.png', detailsPath: 'work4/work4-details.html' },
             { title: 'Work 5<br>-Description-', imagePath: 'work5/comming-soon.png', detailsPath: 'work5/work5-details.html' },
             { title: 'Work 6<br>-Description-', imagePath: 'work6/comming-soon.png', detailsPath: 'work6/work6-details.html' },
@@ -77,29 +77,39 @@
         const worksContainer = document.getElementById('works-container');
 
         works.forEach(work => {
-            const col = document.createElement('div');
-            col.className = 'col-md-3 mb-4'; 
+        const col = document.createElement('div');
+        col.className = 'col-md-3 mb-4'; 
 
-            const card = document.createElement('div');
-            card.className = 'card text-dark h-100'; 
-            card.onclick = () => window.location.href = work.detailsPath;
+        const card = document.createElement('div');
+        card.className = 'card text-dark h-100'; 
+        card.onclick = () => window.location.href = work.detailsPath;
 
-            const img = document.createElement('img');
-            img.src = work.imagePath;
-            img.alt = work.title;
-            img.className = 'card-img-top';
-            img.onload = () => {
-                img.style.height = img.width + 'px'; 
-            };
+        const img = document.createElement('img');
+        img.src = work.imagePath;
+        img.alt = work.title;
+        img.className = 'card-img-top';
+        img.onload = () => {
+            img.style.height = img.width + 'px'; 
+        };
 
-            const title = document.createElement('div');
-            title.className = 'card-title';
-            title.innerHTML = work.title;
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'card-title';
 
-            card.appendChild(img);
-            card.appendChild(title);
-            col.appendChild(card);
-            worksContainer.appendChild(col);
+        const title = document.createElement('div');
+        title.innerHTML = work.title;
+        // Optionally, set a default font size for title if needed
+        title.style.fontSize = '18px';
+
+        const subtitle = document.createElement('div');
+        subtitle.innerHTML = work.subtitle || ''; // Fallback for works without a subtitle
+        subtitle.style.fontSize = work.fontSize; // Set font size only for subtitle
+
+        titleDiv.appendChild(title);
+        titleDiv.appendChild(subtitle);
+        card.appendChild(img);
+        card.appendChild(titleDiv);
+        col.appendChild(card);
+        worksContainer.appendChild(col);
         });
     </script>
 
