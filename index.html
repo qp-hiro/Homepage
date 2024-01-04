@@ -162,6 +162,51 @@
             padding: 30px;
             width: auto;
         }
+        /* 右側の枠とトリガーバーのコンテナ */
+        .right-panel-container {
+            position: fixed;
+            top: 0;
+            right: 0; /* トリガーバーが常に見えるように */
+            height: 100%;
+            width: 25%; /* 枠の幅 */
+            transition: transform 0.5s ease; /* スムーズな動き */
+            transform: translateX(100%); /* 最初は右側に隠れている */
+            z-index: 500;
+        }
+
+        /* トリガーバーのスタイル */
+        .trigger-bar {
+            position: absolute;
+            top: 50%;
+            left: -50px; /* コンテナから左に配置 */
+            width: 50px; /* トリガーバーの幅 */
+            height: 100px; /* トリガーバーの高さ */
+            background: rgba(128, 128, 128, 0.7); /* 色 */
+            transform: translateY(-50%); /* 中央に配置するための調整 */
+            cursor: pointer; /* ホバー時にカーソル変更 */
+        }
+
+        /* 隠れていた枠のスタイル */
+        .right-panel {
+            position: absolute;
+            top: 0;
+            left: 0; /* コンテナの左端に配置 */
+            width: 100%; /* 枠の幅（コンテナの幅） */
+            height: 100%; /* 枠の高さ */
+            background: rgba(128, 128, 128, 0.7); /* 色 */
+        }
+
+        /* コンテナにマウスがホバーされた時の動作 */
+        .right-panel-container:hover {
+            transform: translateX(0); /* トリガーバーと枠を表示 */
+        }
+
+        /* 右側の枠内のコンテンツのスタイル */
+        .right-panel-content {
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -191,7 +236,17 @@
             <li><a href="profile.html">Profile</a></li>
         </ul>
     </div>
-        
+
+    <!-- トリガーバーと右側の枠のコンテナ -->
+    <div class="right-panel-container">
+        <div class="trigger-bar"></div>
+        <div class="right-panel">
+            <div class="right-panel-content">
+                <!-- コンテンツを追加 -->
+                <p>Recent News</p>
+            </div>
+        </div>
+    </div>
     
     <div class="video-background">
         <h1>Hirosuke Asahi</h1>
