@@ -28,6 +28,33 @@
             overflow: hidden;
             margin-right: 20px;
         }
+        .profile-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left; /* Align text to the left */
+            position: absolute; /* Position relative to the nearest positioned ancestor */
+            top: 75%; /* Adjust to align with the bottom of the photo */
+            right: 2.5%; /* Adjust to align with the left edge of the photo */
+            width: 400px; /* Same as the photo width */
+        }
+
+        .profile-links li {
+            margin-bottom: 10px;
+        }
+        .profile-links li::before {
+            content: "- "; /* Adds a hyphen followed by a space before each list item */
+            color: goldenrod; /* Optional: set the color of the hyphen */
+        }
+
+        .profile-links a {
+            color: goldenrod;
+            text-decoration: none;
+        }
+        .profile-links a:hover {
+            text-decoration: underline;
+        }
+
         .profile-content {
             flex-grow: 1;
             /* Add other styles as needed */
@@ -59,6 +86,64 @@
             margin-top: 1px; /* pの上のマージンを縮小 */
             margin-bottom: 5px; /* pの下のマージンを縮小 */
         }
+        .research-notation {
+            font-size: 0.9em; /* Smaller font size */
+            color: #ccc; /* Lighter text color */
+            margin-top: 5px; /* Adjust space above the annotation */
+            margin-bottom: 20px; /* Adjust space below the annotation */
+        }
+        .year-heading {
+            font-size: 1.5em; /* Smaller font size */
+            margin-top: 20px; /* Space above the heading */
+        }
+        .links-list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 0px;
+        }
+        /* 段落とリンクリスト間のマージンを調整 */
+        .research-notation,
+        .links-list {
+            margin-top: -5px; /* 上のマージンを小さくする */
+            margin-bottom: 15px; /* 下のマージンを小さくする */
+        }
+
+        .links-list li {
+            display: inline; /* Display links in a line */
+            margin-right: 10px; /* Space between links */
+        }
+
+        .links-list a {
+            color: #4a90e2; /* Example link color */
+            text-decoration: none;
+        }
+
+        .links-list a:hover {
+            text-decoration: underline;
+        }
+        .read-more-toggle {
+            color: gray; /* Sets the color to gray */
+            text-decoration: none; /* Optional: removes the underline */
+            display: block; /* リンクをブロック要素にする */
+            margin-bottom: 5px; /* 下のマージンを増やす */
+        }
+
+        .read-more-toggle:hover {
+            text-decoration: underline; /* Optional: adds underline on hover */
+        }
+        #more-content {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        #more-content p {
+            margin-bottom: -17.5px; /* 段落の下のマージンを減らす */
+        }
+        #more-content .links-list {
+            margin-top: 15px; /* リンクリストの上のマージンを減らす */
+        }
+        .achievement-tag {
+            margin-right: 5px; /* タグとテキストの間隔 */
+        }
     </style>
 </head>
 <body>
@@ -70,6 +155,10 @@
         <div class="photo">
             <img src="me.jpg" alt="Hirosuke Asahi">
         </div>
+        <ul class="profile-links">
+            <li><a href="https://scholar.google.co.jp/citations?hl=en&view_op=list_works&gmla=AH70aAUFPd_Vbc4xbX53jCMun2w13aHMWqomk1NQY4ABLzIAVX-tnBi1icyT_eqba9KKs-WCMl0L-3jzBJC-eA&user=fKayinYAAAAJ" target="_blank">Google Scholar</a></li>
+            <li><a href="CV_template.pdf" target="_blank">Curriculum Vitae</a></li>
+        </ul>
     
         <div class="profile-content">
             <h1 class="text-center">Profile</h1>
@@ -92,19 +181,86 @@
                 <div class="category">Beginner:</div>
                 <p>Blender, Houdini</p>
 
+                <!-- Research Interest -->
+                <h2>Research Interest</h2>
+                <p>My interest is in Human-Computer Interaction, Virtual Reality, Augmented Reality, Computer Graphics, Computer Vision, Machine Learning</p>
+
                 <!-- Research Achievements -->
                 <h2>Research Achievements</h2>
-                <p>1. &nbsp; Research Internship, The University of Tokyo</p>
-                <p>2. &nbsp; Research Internship, The University of Tokyo</p>
+                <p class="research-notation">J = Journal / C = Conference / W = Workshop / Po = Poster / DC = Domestic Conference (国内学会) / DJ = Domestic Journal (国内論文誌)</p>
+                
+                <h3 class="year-heading">2024</h3>
+                <p><span class="achievement-tag">[C.3]</span>Locomotion Interface
+                    <br><u>Hirosuke Asahi</u>, Masahiko Inami
+                    <br>SIGGRAPH 2024 Immersive Pavillion (SI '24), Sydney, Australia, 2023.11.
+                </p>
+                <ul class="links-list">
+                    <li><a href="your-DOI-link" target="_blank">[DOI]</a></li>
+                    <li><a href="your-youtube-link" target="_blank">[YouTube]</a></li>
+                </ul>
+
+                <p><span class="achievement-tag">[C.2]</span>The Legend of Holy Sword -Proof of Concentration-
+                    <br><u>Hirosuke Asahi</u>, Ryoma Sonoyama, Chihiro Shoda, Nanami Kotani
+                    <br>SIGGRAPH 2024 Immersive Pavillion (SI '24), Sydney, Australia, 2023.11.
+                </p>
+                <ul class="links-list">
+                    <li><a href="your-DOI-link" target="_blank">[DOI]</a></li>
+                    <li><a href="your-youtube-link" target="_blank">[YouTube]</a></li>
+                </ul>
+
+                <p><span class="achievement-tag">[DC.3]</span>腹腔鏡下手術縫合手技における針把持姿勢と持針器軌道の最適化及び手技者との比較検証
+                    <br>内池智哉, <u>旭博佑</u>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子
+                    <br>2024年度精密工学会春季大会学術講演会, 東京, 日本, 2024.03.
+                </p>
+                <ul class="links-list">
+                    <li><a href="your-DOI-link" target="_blank">[PDF]</a></li>
+                </ul>
+
+                <!-- トグルリンク -->
+                <a href="#" onclick="toggleContent(event)" class="read-more-toggle">>>>Read more</a>
+
+                <!-- Hidden content -->
+                <div id="more-content" style="display: none;">
+                    <h3 class="year-heading">2023</h3>
+                    <p><span class="achievement-tag">[C.1]</span>ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing
+                        <br>Takatoshi Yoshida, Takafumi Watanabe, <u>Hirosuke Asahi</u>, Kashun Rin, Haruki Kozuka, Masaharu Hirose, Masahiko Inami
+                        <br>SIGGRAPH Asia 2023 Emerging Technologies (SA '23), Sydney, Australia, 2023.11.
+                    </p>
+                    <ul class="links-list">
+                        <li><a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank">[DOI]</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank">[YouTube]</a></li>
+                    </ul>
+
+                    <p><span class="achievement-tag">[DC.2]</span>聖剣を継ぐ者　- 集中の証明 -
+                        <br>園山遼馬, <u>旭博佑</u>, 正田千宙, 小谷七海
+                        <br>第28回バーチャルリアリティ学会大会, 東京, 日本, 2023.09.
+                    </p>
+                    <ul class="links-list">
+                        <li><a href="https://conference.vrsj.org/ac2023/program/doc/IVRC-03.pdf" target="_blank">[DOI]</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=iUkLfrCzRpg" target="_blank">[YouTube]</a></li>
+                    </ul>
+
+                    <p><span class="achievement-tag">[DC.1]</span>腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証
+                        <br><u>旭博佑</u>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子
+                        <br>第32回　ライフサポート学会フロンティア講演会, 東京, 日本, 2023.03.
+                    </p>
+                    <ul class="links-list">
+                        <li><a href="Files_for_profile/ライフサポート抄録_旭博佑.pdf" target="_blank">[PDF]</a></li>
+                        <li><a href="Files_for_profile/Life_Support_Hirosuke_Asahi_0314.pptx" target="_blank">[PowerPoint]</a></li>
+                    </ul>
+                </div>
 
                 <!-- Awards -->
                 <h2>Awards</h2>
-                <p>2023 &nbsp; Best Paper Award, XYZ Conference</p>
-                <p>2022 &nbsp; Best Paper Award, XYZ Conference</p>
+                <p>2023 &nbsp; VoxelKei july award, IVRC2023</p>
+                <p>2023 &nbsp; NTV imaginarium july award</p>
+                <p>2023 &nbsp; comming soon</p>
 
                 <!-- Others -->
                 <h2>Others</h2>
-                <p>Driver's license: Japanese ordinary license</p>
+                <p>Driver's license: Manual car license</p>
+                <p>Trap hunting license</p>
+                <p>Net hunting license</p>
             </div>
         </div>
     </div>
@@ -112,5 +268,16 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleContent(event) {
+            event.preventDefault(); // リンクのデフォルト動作を阻止
+            var content = document.getElementById("more-content");
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // コンテンツを表示
+            } else {
+                content.style.display = "none"; // コンテンツを非表示
+            }
+        }
+    </script>
 </body>
 </html>
