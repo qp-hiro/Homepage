@@ -8,113 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        /* 基本スタイル */
         body, html {
             margin: 0;
             height: 100%;
-        }
-        .video-background {
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-        .video-background video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .video-background video.show {
-            opacity: 1;
-        }
-        .content {
-            position: absolute;
-            bottom: 0%;
-            width: 100%;
-            z-index: 1;
-            color: white;
-            text-align: center;
-            font-size: 40px;
-            padding: 30px;
-        }
-        .content h2, .content p.label {
-            font-size: 30px;
-            display: inline;
-        }
-        .content p {
-            display: inline;
-        }
-        body {
             font-family: 'Amatic SC', cursive;
             line-height: 1.6;
         }
+
         a {
             color: white;
         }
-        .navbar {
-            position: absolute;
-            top: 30%;
-            width: 100%;
-            text-align: center;
-            z-index: 2;
-            font-size: 100px;
-        }
-        .navbar a {
-            margin: 0 200px;
-        }
-        h1 {
-            position: absolute;
-            top: -10%;
-            width: 100%;
-            text-align: center;
-            font-size: 120px;
-            z-index: 2;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            padding: 30px 0;
-            transition: left 0.3s ease;
-            z-index: 1000;
-        }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 15px; /* Adjusted padding */
-            text-align: center;
-            font-size: 40px; /* Increased font size */
-        }
-
-        .sidebar ul li a {
-            color: white;
-            display: block;
-        }
-
-        .sidebar ul ul {
-            display: none;
-        }
-
-        .sidebar ul ul li {
-            font-size: 20px; /* 文字サイズを半分に */
-            padding: 5px; /* パディングを半分に */
-        }
-
-        .sidebar ul li.active ul {
-            display: block;
-        }
-
+        /* メニューボタンのスタイル */
         .menu-btn {
             position: fixed;
             left: 15px;
@@ -127,6 +33,154 @@
             color: white;
             font-size: 24px;
         }
+
+        /* サイドバーのスタイル */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            display: block;
+        }
+
+        .sidebar ul ul {
+            display: none;
+        }
+
+        .sidebar ul ul li {
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .sidebar ul li.active ul {
+            display: block;
+        }
+
+        /* 中央の灰色の枠のスタイル */
+        .center-panel {
+            font-family: Arial, sans-serif;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 30%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            overflow-y: auto;
+            display: flex; /* フレックスボックスを使用 */
+            flex-direction: column; /* 要素を縦方向に配置 */
+            align-items: center; /* 中央に要素を寄せる */
+        }
+
+        .center-panel h2 {
+            margin-top: -5px;
+            margin-bottom: 10px; /* タイトル下のマージンを調整 */
+            font-size: 36px;
+            text-align: center; /* タイトルを中央揃えに */
+        }
+
+        .center-panel .news-item {
+            display: flex; /* フレックスボックスを使用 */
+            justify-content: center; /* 要素を中央揃えに */
+            width: 100%; /* 幅を100%に設定 */
+            margin-bottom: 10px; /* 各アイテムの間隔 */
+        }
+
+        .center-panel .news-date {
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 20px;
+            white-space: nowrap; /* 日付を改行させない */
+        }
+        .video-background h1 {
+            position: absolute;
+            top: 1.5%; /* 垂直中央 */
+            left: 50%; /* 水平中央 */
+            transform: translate(-50%, -50%); /* 位置を中央に調整 */
+            font-size: 120px; /* フォントサイズを大きく */
+            color: white; /* テキストの色を白に */
+            z-index: 2; /* 背景画像より前面に */
+        }
+
+        /* ビデオバックグラウンドとコンテンツスタイル */
+        .video-background .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(2px);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .video-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8); /* 黒い半透明のオーバーレイ */
+            z-index: -1; /* 背景画像の直前に配置 */
+        }
+
+        .video-background .background-image.show {
+            opacity: 0.4;
+        }
+
+        .content {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            color: white;
+            text-align: center;
+            font-size: 40px;
+            padding: 30px;
+            width: auto;
+        }
+
+        .content h2, .content p.label {
+            color: white;
+            font-size: 40px;
+            display: inline;
+            font-weight: bold;
+        }
+
+        .content p {
+            color: white;
+            font-size: 30px;
+            display: inline;
+            font-weight: bold;
+        }
+
+        /* ソーシャルメディアアイコンスタイル */
         #instagram-icon, #facebook-icon, #youtube-icon {
             position: absolute;
             bottom: 90%;
@@ -146,67 +200,45 @@
         }
 
         #instagram-icon img, #facebook-icon img, #youtube-icon img {
-            width: 50px; /* アイコンのサイズを小さく */
+            width: 50px;
             display: block;
         }
-
-        .content {
-            position: absolute;
-            bottom: 0%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            color: white;
-            text-align: center;
-            font-size: 40px;
-            padding: 30px;
-            width: auto;
-        }
-        /* 右側の枠とトリガーバーのコンテナ */
-        .right-panel-container {
+        /* .right-panel-container {
             position: fixed;
             top: 0;
-            right: 0; /* トリガーバーが常に見えるように */
+            right: 0;
             height: 100%;
-            width: 25%; /* 枠の幅 */
-            transition: transform 0.5s ease; /* スムーズな動き */
-            transform: translateX(100%); /* 最初は右側に隠れている */
+            width: 25%;
+            transition: transform 0.5s ease;
+            transform: translateX(100%);
             z-index: 500;
         }
-
-        /* トリガーバーのスタイル */
         .trigger-bar {
             position: absolute;
             top: 50%;
-            left: -50px; /* コンテナから左に配置 */
-            width: 50px; /* トリガーバーの幅 */
-            height: 100px; /* トリガーバーの高さ */
-            background: rgba(128, 128, 128, 0.7); /* 色 */
-            transform: translateY(-50%); /* 中央に配置するための調整 */
-            cursor: pointer; /* ホバー時にカーソル変更 */
+            left: -50px;
+            width: 50px;
+            height: 100px;
+            background: rgba(128, 128, 128, 0.7);
+            transform: translateY(-50%);
+            cursor: pointer;
         }
-
-        /* 隠れていた枠のスタイル */
         .right-panel {
             position: absolute;
             top: 0;
-            left: 0; /* コンテナの左端に配置 */
-            width: 100%; /* 枠の幅（コンテナの幅） */
-            height: 100%; /* 枠の高さ */
-            background: rgba(128, 128, 128, 0.7); /* 色 */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(128, 128, 128, 0.7);
         }
-
-        /* コンテナにマウスがホバーされた時の動作 */
         .right-panel-container:hover {
-            transform: translateX(0); /* トリガーバーと枠を表示 */
+            transform: translateX(0);
         }
-
-        /* 右側の枠内のコンテンツのスタイル */
         .right-panel-content {
             color: white;
             padding: 20px;
             box-sizing: border-box;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -215,17 +247,17 @@
         <i class="fas fa-bars"></i>
     </div>
 
-    <div class="navbar">
+    <!-- <div class="navbar">
         <a href="works.html" id="works-link">Works</a> <a href="profile.html">Profile</a>
-    </div>
+    </div> -->
         
     <div class="sidebar">
         <ul>
             <li><a href="javascript:void(0)" class="work-btn">Works</a>
                 <ul>
-                    <li><a href="work1/work1-details.html">The Legend of Holy Sword<br>-Proof of Concentration-</a></li>
-                    <li><a href="work2/work2-details.html">Work2</a></li>
-                    <li><a href="work3/work3-details.html">Work3</a></li>
+                    <li><a href="work1/work1-details.html">The Legend of Holy Sword</a></li>
+                    <li><a href="work2/work2-details.html">ForceField</a></li>
+                    <li><a href="work3/work3-details.html">Locomotion Interface</a></li>
                     <li><a href="work4/work4-details.html">Work4</a></li>
                     <li><a href="work5/work5-details.html">Work5</a></li>
                     <li><a href="work6/work6-details.html">Work6</a></li>
@@ -237,32 +269,43 @@
         </ul>
     </div>
 
+    <!-- 中央の灰色の枠 -->
+    <div class="center-panel">
+        <h2>News</h2>
+        <div class="news-item">
+            <span class="news-date">2023/12/01:</span>
+            <span><a href="https://www.ntv.co.jp/imaginarium/award/">日テレイマジナリウム審査員奨励賞受賞 @Work1</a></span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">2023/12/15:</span>
+            <span><a href="https://dl.acm.org/doi/10.1145/3610541.3614587">Siggraph Asia 2023 デモ展示 @Work2</a></span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">2023/11/21:</span>
+            <span><a href="https://ivrc.net/2023/release3/">IVRC 2023 VoxelKei賞受賞 @Work1</a></span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">2023/09/15:</span>
+            <span><a href="https://ivrc.net/2023/release2/">IVRC 2023 LeapStage進出 @Work1</a></span>
+        </div>
+    </div>
+
     <!-- トリガーバーと右側の枠のコンテナ -->
-    <div class="right-panel-container">
+    <!--<div class="right-panel-container">
         <div class="trigger-bar"></div>
         <div class="right-panel">
             <div class="right-panel-content">
-                <!-- コンテンツを追加 -->
                 <p>Recent News</p>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <div class="video-background">
         <h1>Hirosuke Asahi</h1>
     
-        <video id="video1" autoplay loop muted class="show">
-            <source src="jellyfish.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video id="video2" autoplay loop muted>
-            <source src="birds.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video id="video3" autoplay loop muted>
-            <source src="stars.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <img id="image1" src="work1/横長宣材.png" class="background-image show" alt="Image 1">
+        <img id="image2" src="work2/Poster.png" class="background-image" alt="Image 2">
+        <img id="image3" src="work3/提案手法.png" class="background-image" alt="Image 3">
     
         <div class="content">
             <section>
@@ -283,15 +326,17 @@
     </div>
     
     <script>
-        const videos = document.querySelectorAll('.video-background video');
-        let currentVideo = 0;
-    
+        // ビデオのスクリプト
+        const images = document.querySelectorAll('.video-background .background-image');
+        let currentImage = 0;
+
         setInterval(() => {
-            videos[currentVideo].classList.remove('show');
-            currentVideo = (currentVideo + 1) % videos.length;
-            videos[currentVideo].classList.add('show');
+            images[currentImage].classList.remove('show');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('show');
         }, 7000);
-    
+
+        // メニューボタンのスクリプト
         const menuBtn = document.querySelector('.menu-btn');
         const sidebar = document.querySelector('.sidebar');
         const workBtn = document.querySelector('.work-btn');
