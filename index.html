@@ -2,13 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QP Asahi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* 基本スタイル */
         body, html {
             margin: 0;
             height: 100%;
@@ -20,7 +18,6 @@
             color: white;
         }
 
-        /* メニューボタンのスタイル */
         .menu-btn {
             position: fixed;
             left: 15px;
@@ -34,7 +31,6 @@
             font-size: 24px;
         }
 
-        /* サイドバーのスタイル */
         .sidebar {
             position: fixed;
             top: 0;
@@ -56,24 +52,6 @@
             padding: 15px;
             text-align: center;
             font-size: 40px;
-        }
-
-        .sidebar ul li a {
-            color: white;
-            display: block;
-        }
-
-        .sidebar ul ul {
-            display: none;
-        }
-
-        .sidebar ul ul li {
-            font-size: 20px;
-            padding: 5px;
-        }
-
-        .sidebar ul li.active ul {
-            display: block;
         }
 
         /* 中央の灰色の枠のスタイル */
@@ -115,17 +93,17 @@
             font-size: 20px;
             white-space: nowrap; /* 日付を改行させない */
         }
+
         .video-background h1 {
             position: absolute;
-            top: 1.5%; /* 垂直中央 */
-            left: 50%; /* 水平中央 */
-            transform: translate(-50%, -50%); /* 位置を中央に調整 */
-            font-size: 120px; /* フォントサイズを大きく */
-            color: white; /* テキストの色を白に */
-            z-index: 2; /* 背景画像より前面に */
+            top: 1.5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: white;
+            z-index: 2;
         }
 
-        /* ビデオバックグラウンドとコンテンツスタイル */
         .video-background .background-image {
             position: absolute;
             top: 0;
@@ -138,6 +116,7 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+
         .video-background::before {
             content: '';
             position: absolute;
@@ -145,8 +124,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.8); /* 黒い半透明のオーバーレイ */
-            z-index: -1; /* 背景画像の直前に配置 */
+            background: rgba(0, 0, 0, 0.8);
+            z-index: -1;
         }
 
         .video-background .background-image.show {
@@ -180,7 +159,6 @@
             font-weight: bold;
         }
 
-        /* ソーシャルメディアアイコンスタイル */
         #instagram-icon, #facebook-icon, #youtube-icon {
             position: absolute;
             bottom: 90%;
@@ -203,72 +181,19 @@
             width: 50px;
             display: block;
         }
-        /* .right-panel-container {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 25%;
-            transition: transform 0.5s ease;
-            transform: translateX(100%);
-            z-index: 500;
-        }
-        .trigger-bar {
-            position: absolute;
-            top: 50%;
-            left: -50px;
-            width: 50px;
-            height: 100px;
-            background: rgba(128, 128, 128, 0.7);
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-        .right-panel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(128, 128, 128, 0.7);
-        }
-        .right-panel-container:hover {
-            transform: translateX(0);
-        }
-        .right-panel-content {
-            color: white;
-            padding: 20px;
-            box-sizing: border-box;
-        } */
     </style>
 </head>
 <body>
-
     <div class="menu-btn">
         <i class="fas fa-bars"></i>
     </div>
-
-    <!-- <div class="navbar">
-        <a href="works.html" id="works-link">Works</a> <a href="profile.html">Profile</a>
-    </div> -->
         
     <div class="sidebar">
         <ul>
-            <li><a href="javascript:void(0)" class="work-btn">Works</a>
-                <ul>
-                    <li><a href="work1/work1-details.html">The Legend of Holy Sword</a></li>
-                    <li><a href="work2/work2-details.html">ForceField</a></li>
-                    <li><a href="work3/work3-details.html">Locomotion Interface</a></li>
-                    <li><a href="work4/work4-details.html">Work4</a></li>
-                    <li><a href="work5/work5-details.html">Work5</a></li>
-                    <li><a href="work6/work6-details.html">Work6</a></li>
-                    <li><a href="work7/work7-details.html">Work7</a></li>
-                    <li><a href="work8/work8-details.html">Work8</a></li>
-                </ul>
-            </li>
+            <li><a href="works.html">Works</a></li>
             <li><a href="profile.html">Profile</a></li>
         </ul>
     </div>
-
     <!-- 中央の灰色の枠 -->
     <div class="center-panel">
         <h2>News</h2>
@@ -290,16 +215,6 @@
         </div>
     </div>
 
-    <!-- トリガーバーと右側の枠のコンテナ -->
-    <!--<div class="right-panel-container">
-        <div class="trigger-bar"></div>
-        <div class="right-panel">
-            <div class="right-panel-content">
-                <p>Recent News</p>
-            </div>
-        </div>
-    </div> -->
-    
     <div class="video-background">
         <h1>Hirosuke Asahi</h1>
     
@@ -329,35 +244,27 @@
         // ビデオのスクリプト
         const images = document.querySelectorAll('.video-background .background-image');
         let currentImage = 0;
-
+    
         setInterval(() => {
             images[currentImage].classList.remove('show');
             currentImage = (currentImage + 1) % images.length;
             images[currentImage].classList.add('show');
         }, 7000);
-
+    
         // メニューボタンのスクリプト
         const menuBtn = document.querySelector('.menu-btn');
         const sidebar = document.querySelector('.sidebar');
-        const workBtn = document.querySelector('.work-btn');
-    
+        
         menuBtn.addEventListener('click', () => {
             const left = sidebar.style.left === '-250px' || sidebar.style.left === '' ? '0px' : '-250px';
             sidebar.style.left = left;
         });
     
-        workBtn.addEventListener('click', () => {
-            workBtn.parentElement.classList.toggle('active');
-        });
-
         document.addEventListener('click', (e) => {
             if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.style.left === '0px') {
                 sidebar.style.left = '-250px';
             }
         });
     </script>
-    
-
-
 </body>
 </html>

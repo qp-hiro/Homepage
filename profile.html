@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: black; /* Set background color to black */
-            color: white; /* Set text color to white */
+            background-color: black;
+            color: white;
         }
         .category {
             font-weight: bold;
@@ -16,37 +16,40 @@
         .profile-container {
             display: flex;
             align-items: start;
+            justify-content: center;
+            position: relative;
         }
         .photo {
             position: absolute;
-            top: 15%;
+            top: 7.5%;
             right: 10%;
             width: 400px;
             height: 400px;
             border: 2px solid white;
             border-radius: 5px;
             overflow: hidden;
-            margin-right: 20px;
         }
         .profile-links {
             list-style-type: none;
             padding: 0;
             margin: 0;
-            text-align: left; /* Align text to the left */
-            position: absolute; /* Position relative to the nearest positioned ancestor */
-            top: 75%; /* Adjust to align with the bottom of the photo */
-            right: 2.5%; /* Adjust to align with the left edge of the photo */
-            width: 400px; /* Same as the photo width */
+            position: absolute;
+            top: 32.5%;
+            right: 10%;
+            width: 400px;
+            text-align: center; 
         }
-
+        .profile-content {
+            margin-left: 0%;
+            flex-grow: 1;
+        }
         .profile-links li {
             margin-bottom: 10px;
         }
         .profile-links li::before {
-            content: "- "; /* Adds a hyphen followed by a space before each list item */
-            color: goldenrod; /* Optional: set the color of the hyphen */
+            content: "- ";
+            color: goldenrod;
         }
-
         .profile-links a {
             color: goldenrod;
             text-decoration: none;
@@ -54,20 +57,16 @@
         .profile-links a:hover {
             text-decoration: underline;
         }
-
-        .profile-content {
-            flex-grow: 1;
-            /* Add other styles as needed */
-        }
         .photo img {
             width: 100%;
             height: auto;
         }
         h1 {
-            font-size: 60px; /* Increase the font size */
+            font-size: 60px;
+            text-align: center;
         }
         h2 {
-            margin-top: 50px; /* Increase space between sections */
+            margin-top: 50px;
         }
         .home-icon {
             position: absolute;
@@ -76,79 +75,69 @@
             z-index: 1000;
         }
         .home-icon img {
-            width: 50px; /* Adjust the size as needed */
+            width: 50px;
         }
         .container {
-            margin-bottom: 10%; /* Add space at the bottom of the content */
+            margin-left: 10%;
+            margin-bottom: 10%;
         }
-
         .profile-content > div > p {
-            margin-top: 1px; /* pの上のマージンを縮小 */
-            margin-bottom: 5px; /* pの下のマージンを縮小 */
+            margin-top: 1px;
+            margin-bottom: 5px;
         }
         .research-notation {
-            font-size: 0.9em; /* Smaller font size */
-            color: #ccc; /* Lighter text color */
-            margin-top: 5px; /* Adjust space above the annotation */
-            margin-bottom: 20px; /* Adjust space below the annotation */
+            font-size: 0.9em;
+            color: #ccc;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
         .year-heading {
-            font-size: 1.5em; /* Smaller font size */
-            margin-top: 20px; /* Space above the heading */
+            font-size: 1.5em;
+            margin-top: 20px;
         }
         .links-list {
             list-style-type: none;
             padding: 0;
             margin-bottom: 0px;
         }
-        /* 段落とリンクリスト間のマージンを調整 */
-        .research-notation,
-        .links-list {
-            margin-top: -5px; /* 上のマージンを小さくする */
-            margin-bottom: 15px; /* 下のマージンを小さくする */
-        }
-
         .links-list li {
-            display: inline; /* Display links in a line */
-            margin-right: 10px; /* Space between links */
+            display: inline;
+            margin-right: 10px;
         }
-
         .links-list a {
-            color: #4a90e2; /* Example link color */
+            color: #4a90e2;
             text-decoration: none;
         }
-
         .links-list a:hover {
             text-decoration: underline;
         }
         .read-more-toggle {
-            color: gray; /* Sets the color to gray */
-            text-decoration: none; /* Optional: removes the underline */
-            display: block; /* リンクをブロック要素にする */
-            margin-bottom: 5px; /* 下のマージンを増やす */
+            color: gray;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
         }
-
         .read-more-toggle:hover {
-            text-decoration: underline; /* Optional: adds underline on hover */
+            text-decoration: underline;
         }
         #more-content {
             transition: all 0.3s ease;
             overflow: hidden;
         }
         #more-content p {
-            margin-bottom: -17.5px; /* 段落の下のマージンを減らす */
+            margin-bottom: -17.5px;
         }
         #more-content .links-list {
-            margin-top: 15px; /* リンクリストの上のマージンを減らす */
+            margin-top: 15px;
         }
         .achievement-tag {
-            margin-right: 5px; /* タグとテキストの間隔 */
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
     <a href="index.html" class="home-icon">
-        <img src="home-icon.png" alt="Home"> <!-- Replace with your home icon URL -->
+        <img src="home-icon.png" alt="Home">
     </a>
 
     <div class="d-flex align-items-start profile-container">
