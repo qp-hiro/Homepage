@@ -71,6 +71,17 @@
             display: flex; /* フレックスボックスを使用 */
             flex-direction: column; /* 要素を縦方向に配置 */
             align-items: center; /* 中央に要素を寄せる */
+            position: relative; /* Ensure this is set for positioning the update date */
+        }
+
+        .update-date {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 5px;
         }
 
         .center-panel h2 {
@@ -196,6 +207,7 @@
     </div>
     <!-- 中央の灰色の枠 -->
     <div class="center-panel">
+        <span class="update-date">Last Updated: 2024/01/08</span>
         <h2>News</h2>
         <div class="news-item">
             <span class="news-date">2023/12/01:</span>
