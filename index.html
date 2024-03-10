@@ -54,10 +54,19 @@
             font-size: 40px;
         }
 
+        .read-more-toggle {
+            position: relative; /* positionをrelativeに変更 */
+            margin-top: 10px; /* read moreの上の余白を20pxに設定 */
+            margin-bottom: 10px; /* read moreの下の余白を20pxに設定 */
+            color: white;
+            text-decoration: none;
+            z-index: 1;
+        }
+
         /* 中央の灰色の枠のスタイル */
         .center-panel {
             font-family: Arial, sans-serif;
-            position: absolute;
+            position: relative;
             top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -71,7 +80,6 @@
             display: flex; /* フレックスボックスを使用 */
             flex-direction: column; /* 要素を縦方向に配置 */
             align-items: center; /* 中央に要素を寄せる */
-            position: relative; /* Ensure this is set for positioning the update date */
         }
 
         .update-date {
@@ -92,10 +100,10 @@
         }
 
         .center-panel .news-item {
-            display: flex; /* フレックスボックスを使用 */
-            justify-content: center; /* 要素を中央揃えに */
-            width: 100%; /* 幅を100%に設定 */
-            margin-bottom: 10px; /* 各アイテムの間隔 */
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px; /* ニュース項目の下の余白を20pxに設定 */
         }
 
         .center-panel .news-date {
@@ -170,10 +178,14 @@
             font-weight: bold;
         }
 
-        #instagram-icon, #facebook-icon, #youtube-icon {
+        #github-icon, #instagram-icon, #facebook-icon, #youtube-icon, #note-icon{
             position: absolute;
             bottom: 90%;
             transform: translateX(-50%);
+        }
+
+        #github-icon {
+            left: 30%;
         }
 
         #instagram-icon {
@@ -188,10 +200,15 @@
             left: 60%;
         }
 
-        #instagram-icon img, #facebook-icon img, #youtube-icon img {
+        #note-icon {
+            left: 70%;
+        }
+
+        #github-icon img, #instagram-icon img, #facebook-icon img, #youtube-icon img ,#note-icon img{
             width: 50px;
             display: block;
         }
+
     </style>
 </head>
 <body>
@@ -207,8 +224,12 @@
     </div>
     <!-- 中央の灰色の枠 -->
     <div class="center-panel">
-        <span class="update-date">Last Updated: 2024/01/08</span>
+        <span class="update-date">Last Updated: 2024/02/27</span>
         <h2>News</h2>
+        <div class="news-item">
+            <span class="news-date">2023/03/17:</span>
+            <span><a href="https://www.ipsj.or.jp/kenkyukai/event/ec71.html">第71回EC研究会 発表・デモ展示 @Work3</a></span>
+        </div>
         <div class="news-item">
             <span class="news-date">2023/12/01:</span>
             <span><a href="https://www.ntv.co.jp/imaginarium/award/">日テレイマジナリウム審査員奨励賞受賞 @Work1</a></span>
@@ -221,9 +242,14 @@
             <span class="news-date">2023/11/21:</span>
             <span><a href="https://ivrc.net/2023/release3/">IVRC 2023 VoxelKei賞受賞 @Work1</a></span>
         </div>
-        <div class="news-item">
-            <span class="news-date">2023/09/15:</span>
-            <span><a href="https://ivrc.net/2023/release2/">IVRC 2023 LeapStage進出 @Work1</a></span>
+
+        <a href="#" onclick="toggleContent(event)" class="read-more-toggle">>>>Read more</a>
+
+        <div id="more-content" style="display: none;">
+            <div class="news-item" id="hidden-news" style="display: none;">
+                <span class="news-date">2023/09/15:</span>
+                <span><a href="https://ivrc.net/2023/release2/">IVRC 2023 LeapStage進出 @Work1</a></span>
+            </div>
         </div>
     </div>
 
@@ -232,10 +258,13 @@
     
         <img id="image1" src="work1/横長宣材.png" class="background-image show" alt="Image 1">
         <img id="image2" src="work2/Poster.png" class="background-image" alt="Image 2">
-        <img id="image3" src="work3/提案手法.png" class="background-image" alt="Image 3">
+        <img id="image3" src="work3/system.png" class="background-image" alt="Image 3">
     
         <div class="content">
             <section>
+                <a href="https://github.com/qp-hiro" target="_blank" id="github-icon">
+                    <img src="github-icon.png" alt="Github Icon">
+                </a>
                 <a href="https://www.instagram.com/hiro.asahi.22/" target="_blank" id="instagram-icon">
                     <img src="instagram-icon.png" alt="Instagram Icon">
                 </a>
@@ -244,6 +273,9 @@
                 </a>
                 <a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" id="youtube-icon">
                     <img src="youtube-icon.png" alt="YouTube Icon">
+                </a>
+                <a href="https://note.com/qp_blueberry" target="_blank" id="note-icon">
+                    <img src="note-icon.png" alt="Note Icon">
                 </a>
                 <p class="label">Affiliation：</p><p>The University of Tokyo IST </p><br>
                 <p class="label">Research：</p><p>Information somatics, Locomotion system </p><br>
@@ -277,6 +309,22 @@
                 sidebar.style.left = '-250px';
             }
         });
+
+        function toggleContent(event) {
+            event.preventDefault(); // リンクのデフォルト動作を阻止
+            var content = document.getElementById("more-content");
+            var hiddenNews = document.getElementById("hidden-news");
+            // var hiddenNews2 = document.getElementById("hidden-news-2");
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // コンテンツを表示
+                hiddenNews.style.display = "block"; // 隠れたニュースを表示
+                hiddenNews2.style.display = "block"; // 隠れたニュースを表示
+            } else {
+                content.style.display = "none"; // コンテンツを非表示
+                hiddenNews.style.display = "none"; // 隠れたニュースを非表示
+                hiddenNews2.style.display = "none"; // 隠れたニュースを非表示
+            }
+        }
     </script>
 </body>
 </html>
