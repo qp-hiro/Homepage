@@ -1,0 +1,32 @@
+# Compiled output
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+.DS_Store
+
+# Ignore all JPEG image files
+*.jpg
+*.png
+*.mp4
+*.pdf
+*.pptx
+Files_for_index/
+Files_for_works/
+Files_for_profile/
