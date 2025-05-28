@@ -18,28 +18,21 @@
             top: 15%;
             right: 10%;
             width: 400px;
-            height: 400px;
+            height: auto;
             border: 2px solid white;
             border-radius: 5px;
             overflow: hidden;
         }
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
         .profile-links {
             list-style-type: none;
             padding: 0;
-            margin: 0;
-            position: absolute;
-            top: 72%;
-            right: 10%;
-            width: 400px;
-            text-align: center; 
-        }
-        .profile-container {
-            display: flex;
-            justify-content: center;
-        }
-        .profile-content {
-            margin-left: 0%;
-            flex-grow: 1;
+            margin: 10px 0 0 0;
+            text-align: center;
         }
         .profile-links li {
             margin-bottom: 10px;
@@ -55,9 +48,13 @@
         .profile-links a:hover {
             text-decoration: underline;
         }
-        .photo img {
-            width: 100%;
-            height: auto;
+        .profile-container {
+            display: flex;
+            justify-content: center;
+        }
+        .profile-content {
+            margin-left: 0%;
+            flex-grow: 1;
         }
         h1 {
             font-size: 60px;
@@ -79,9 +76,8 @@
             margin-left: 10%;
             margin-bottom: 10%;
         }
-        .profile-content > div > p {
-            margin-top: 1px;
-            margin-bottom: 5px;
+        .profile-content .container p {
+            margin: 0 0 10px 0;
         }
         .research-notation {
             font-size: 0.9em;
@@ -92,12 +88,12 @@
         .year-heading {
             font-size: 1.5em;
             margin-top: 20px;
+            margin-bottom: 10px;
         }
         .links-list {
             list-style-type: none;
             padding: 0;
-            margin-top: -7.5px;
-            margin-bottom: 10px;
+            margin: 0 0 10px 0;
         }
         .links-list li {
             display: inline;
@@ -122,16 +118,13 @@
         #more-content {
             transition: all 0.3s ease;
             overflow: hidden;
-        }
-        #more-content p {
-            margin-bottom: 5px;
-        }
-        #more-content .links-list {
-            margin-top: -7.5px;
-            margin-bottom: 10px;
+            display: none;
         }
         .achievement-tag {
             margin-right: 5px;
+        }
+        .author {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -143,30 +136,29 @@
     <div class="profile-container">
         <div class="photo">
             <img src="https://lh3.googleusercontent.com/d/1GTpYUJ_NdsnJzY2ve9UzmGkVJUuHMBhq" alt="Hirosuke Asahi">
+            <ul class="profile-links">
+                <li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ&view_op=list_works&gmla=AH8HC4zjG-IBRjDvVPLeuqWWM6U97JFQ0Jl38zTR2xkMSzbDAaEc8LfirOv0AHuckKjuHFETnNho2-evt6dDfc2lr0BPaTdOFtHLldRoACECzWtZn8loy61e3o4" target="_blank">Google Scholar</a></li>
+                <li><a href="CV_template.pdf" target="_blank">Curriculum Vitae</a></li>
+            </ul>
         </div>
-        <ul class="profile-links">
-            <li><a href="https://scholar.google.co.jp/citations?hl=en&view_op=list_works&gmla=AH70aAUFPd_Vbc4xbX53jCMun2w13aHMWqomk1NQY4ABLzIAVX-tnBi1icyT_eqba9KKs-WCMl0L-3jzBJC-eA&user=fKayinYAAAAJ" target="_blank">Google Scholar</a></li>
-            <li><a href="CV_template.pdf" target="_blank">Curriculum Vitae</a></li>
-        </ul>
-    
         <div class="profile-content">
             <h1 class="text-center">Profile</h1>
             <div class="container">
                 <!-- Experience -->
                 <h2>Education</h2>
-                <p>2016.4-2019.3 &nbsp; Kurume Fusetsu High School </p>
-                <p>2019.4-2023.3 &nbsp; B.S. Precision Engineering, The University of Tokyo </p>
-                <p>2019.4-2025.3 &nbsp; M.S. Information Physics & Computing, The University of Tokyo </p>
-                <!-- Add more as needed -->
+                <p>2016.4-2019.3 &nbsp; Kurume Fusetsu High School</p>
+                <p>2019.4-2023.3 &nbsp; B.S. Precision Engineering, The University of Tokyo</p>
+                <p>2023.4-2025.3 &nbsp; M.S. Information Physics & Computing, The University of Tokyo</p>
+                <p>2025.4- &nbsp; D.S. Advanced Interdisciplinary Studies, The University of Tokyo</p>
 
                 <!-- Skills -->
                 <h2>Technical Skills</h2>
                 <div class="category">Language:</div>
-                <p>English, Chinese, Japanese</p>
+                <p>Japanese, Chinese, English, Spanish</p>
                 <div class="category">Advanced:</div>
-                <p>Python, C, C#, C++, HTML/CSS, Arduino, 3DCAD</p>
+                <p>Python, C, C#, C++, HTML/CSS, Arduino, 3DCAD, Unity</p>
                 <div class="category">Intermediate:</div>
-                <p>Java script, MySQL, Unity, Machine learning</p>
+                <p>Java script, MySQL, ROS, Machine learning</p>
                 <div class="category">Beginner:</div>
                 <p>Blender, Houdini</p>
 
@@ -176,66 +168,101 @@
 
                 <!-- Research Achievements -->
                 <h2>Research Achievements</h2>
-                <p class="research-notation">IC = International Conference / IJ = International Journal / IW = International Workshop / DC = Domestic Conference (国内学会) / DJ = Domestic Journal (国内論文誌) / DW = Domestic Workshop</p>
-                <p class="research-notation">Po = Poster / Pr = Presentation / De = Demonstration</p>
+                <p class="research-notation">
+                IC = International Conference / IJ = International Journal / IW = International Workshop /
+                DC = Domestic Conference (国内学会) / DJ = Domestic Journal (国内論文誌) /
+                DW = Domestic Workshop / AX = arXiv
+                </p>
+                <p class="research-notation">
+                Po = Poster / Pr = Presentation / De = Demonstration
+                </p>
 
                 <h3 class="year-heading">2024</h3>
-                <p><span class="achievement-tag">[DW.2][Pr&De]</span>身体運動周期を用いた没入型ロコモーションインターフェースの検討
-                    <br><u>旭博佑</u>, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦
-                    <br>第71回EC研究発表会, 京都, 日本, 2024.03.
-                </p>
-                <ul class="links-list">
-                    <li><a href="Files_for_profile/71thEC/ver1_EC_71萌芽_身体運動周期を用いた没入型ロコモーションインターフェースの検討.pdf" target="_blank">[PDF]</a></li>
-                    <li><a href="Files_for_profile/71thEC/Poster_71thEC2024.pdf" target="_blank">[Poster]</a></li>
-                    <li><a href="Files_for_profile/71thEC/71thEC2024.pptx" target="_blank">[PowerPoint]</a></li>
-                </ul>
-
-                <p><span class="achievement-tag">[DW.1][Po]</span>非生得身体への没入型ロコモーションインターフェースの検討
-                    <br><u>旭博佑</u>, 稲見昌彦
-                    <br>新学術領域研究「植物の周期と変調」第2回領域会議, 兵庫, 日本, 2024.01.
-                </p>
-                <ul class="links-list">
-                    <li><a href="Files_for_profile/Plant/植物の周期と変調_poster_240117.pdf" target="_blank">[PDF]</a></li>
-                </ul>
-
-                <p><span class="achievement-tag">[DC.3]</span>腹腔鏡下手術縫合手技における針把持姿勢と持針器軌道の最適化及び手技者との比較検証
-                    <br>内池智哉, <u>旭博佑</u>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子
-                    <br>2024年度精密工学会春季大会学術講演会, 東京, 日本, 2024.03.
+                <p>
+                <span class="achievement-tag">[AX.2]</span>
+                SEMANTIC SEE-THROUGH GOGGLES: Wearing Linguistic Virtual Reality in (Artificial) Intelligence<br>
+                Goki Muramoto, Yuri Yasui, <span class="author">Hirosuke Asahi</span><br>
+                arXiv preprint arXiv:2412.02641, 2024.12.<br>
+                <a href="https://arxiv.org/abs/2412.02641" target="_blank">[DOI]</a>
                 </p>
 
-                <!-- トグルリンク -->
+                <p>
+                <span class="achievement-tag">[IC.2][De]</span>
+                Semantic See-through Goggles<br>
+                Goki Muramoto, Yuri Yasui, <span class="author">Hirosuke Asahi</span><br>
+                SIGGRAPH Asia Art Gallery, Tokyo, Japan, 2024.12.<br>
+                <a href="https://dl.acm.org/doi/abs/10.1145/3680529.3688959" target="_blank">[DOI]</a>
+                <a href="https://www.youtube.com/watch?v=0Wy07jKqhEY" target="_blank">[YouTube]</a>
+                </p>
+
+                <p>
+                <span class="achievement-tag">[AX.1]</span>
+                The Legend of Holy Sword: An Immersive Experience for Concentration Enhancement<br>
+                <span class="author">Hirosuke Asahi</span>, Ryoma Sonoyama, Chihiro Shoda, Nanami Kotani<br>
+                arXiv preprint arXiv:2408.16782, 2024.8.<br>
+                <a href="https://arxiv.org/abs/2408.16782" target="_blank">[DOI]</a>
+                </p>
+
+                <p>
+                <span class="achievement-tag">[DW.3][Po]</span>
+                動物型身体への没入型ロコモーションインタフェースの検討<br>
+                <span class="author">旭博佑</span>, 稲見昌彦<br>
+                VRSJ The Special Interest Group on Human Augmentation 2nd Workshop of Human Augmentation,
+                沖縄, 日本, 2024.06.
+                </p>
+
+                <p>
+                <span class="achievement-tag">[DW.2][Pr&amp;De]</span>
+                身体運動周期を用いた没入型ロコモーションインターフェースの検討<br>
+                高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦, <span class="author">旭博佑</span><br>
+                第71回EC研究発表会, 京都, 日本, 2024.03.
+                </p>
+
                 <a href="#" onclick="toggleContent(event)" class="read-more-toggle">>>>Read more</a>
 
-                <!-- Hidden content -->
-                <div id="more-content" style="display: none;">
-                    <h3 class="year-heading">2023</h3>
-                    <p><span class="achievement-tag">[IC.1][De]</span>ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing
-                        <br>Takatoshi Yoshida, Takafumi Watanabe, <u>Hirosuke Asahi</u>, Kashun Rin, Haruki Kozuka, Masaharu Hirose, Masahiko Inami
-                        <br>SIGGRAPH Asia 2023 Emerging Technologies (SA '23), Sydney, Australia, 2023.11.
-                    </p>
-                    <ul class="links-list">
-                        <li><a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank">[DOI]</a></li>
-                        <li><a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank">[YouTube]</a></li>
-                    </ul>
+                <div id="more-content">
+                <p>
+                    <span class="achievement-tag">[DW.1][Po]</span>
+                    非生得身体への没入型ロコモーションインターフェースの検討<br>
+                    <span class="author">旭博佑</span>, 稲見昌彦<br>
+                    新学術領域研究「植物の周期と変調」第2回領域会議, 兵庫, 日本, 2024.01.
+                </p>
 
-                    <p><span class="achievement-tag">[DC.2][De]</span>聖剣を継ぐ者　- 集中の証明 -
-                        <br>園山遼馬, <u>旭博佑</u>, 正田千宙, 小谷七海
-                        <br>第28回バーチャルリアリティ学会大会, 東京, 日本, 2023.09.
-                    </p>
-                    <ul class="links-list">
-                        <li><a href="https://conference.vrsj.org/ac2023/program/doc/IVRC-03.pdf" target="_blank">[DOI]</a></li>
-                        <li><a href="https://www.youtube.com/watch?v=iUkLfrCzRpg" target="_blank">[YouTube]</a></li>
-                    </ul>
+                <p>
+                    <span class="achievement-tag">[DC.3]</span>
+                    腹腔鏡下縫合手技における針把持姿勢と縫合軌道最適化に関する研究<br>
+                    内池智哉, <span class="author">旭博佑</span>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子<br>
+                    2024年度精密工学会春季大会学術講演会, 東京, 日本, 2024.03.<br>
+                    <a href="https://www.jstage.jst.go.jp/article/pscjspe/2024S/0/2024S_462/_article/-char/ja/" target="_blank">[DOI]</a>
+                </p>
 
-                    <p><span class="achievement-tag">[DC.1][Pr]</span>腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証
-                        <br><u>旭博佑</u>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子
-                        <br>第32回　ライフサポート学会フロンティア講演会, 東京, 日本, 2023.03.
-                    </p>
-                    <ul class="links-list">
-                        <li><a href="Files_for_profile/LifeSupport/ライフサポート抄録_旭博佑.pdf" target="_blank">[PDF]</a></li>
-                        <li><a href="Files_for_profile/LifeSupport/Life_Support_Hirosuke_Asahi_0314.pptx" target="_blank">[PowerPoint]</a></li>
-                    </ul>
+                <h3 class="year-heading">2023</h3>
+                <p>
+                    <span class="achievement-tag">[IC.1][De]</span>
+                    ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing<br>
+                    Takatoshi Yoshida, Takafumi Watanabe, <span class="author">Hirosuke Asahi</span>, Kashun Rin, Haruki Kozuka, Masaharu Hirose, Masahiko Inami<br>
+                    SIGGRAPH Asia 2023 Emerging Technologies (SA '23), Sydney, Australia, 2023.11.<br>
+                    <a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank">[DOI]</a>
+                    <a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank">[YouTube]</a>
+                </p>
+
+                <p>
+                    <span class="achievement-tag">[DC.2][De]</span>
+                    聖剣を継ぐ者　- 集中の証明 -<br>
+                    園山遼馬, <span class="author">旭博佑</span>, 正田千宙, 小谷七海<br>
+                    第28回バーチャルリアリティ学会大会, 東京, 日本, 2023.09.<br>
+                    <a href="https://conference.vrsj.org/ac2023/program/doc/IVRC-03.pdf" target="_blank">[DOI]</a>
+                    <a href="https://www.youtube.com/watch?v=iUkLfrCzRpg" target="_blank">[YouTube]</a>
+                </p>
+
+                <p>
+                    <span class="achievement-tag">[DC.1][Pr]</span>
+                    腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証<br>
+                    <span class="author">旭博佑</span>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子<br>
+                    第32回　ライフサポート学会フロンティア講演会, 東京, 日本, 2023.03.
+                </p>
                 </div>
+
 
                 <!-- Awards -->
                 <h2>Awards</h2>
@@ -245,9 +272,7 @@
 
                 <!-- Others -->
                 <h2>Others</h2>
-                <p>Driver's license: Manual car license</p>
-                <p>Trap hunting license</p>
-                <p>Net hunting license</p>
+                <p>グリーントランスフォーメーション(GX)を先導する高度人材育成 2025 年 4 月～2028 年 3 月</p>
             </div>
         </div>
     </div>
@@ -257,12 +282,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function toggleContent(event) {
-            event.preventDefault(); // リンクのデフォルト動作を阻止
+            event.preventDefault();
             var content = document.getElementById("more-content");
             if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block"; // コンテンツを表示
+                content.style.display = "block";
             } else {
-                content.style.display = "none"; // コンテンツを非表示
+                content.style.display = "none";
             }
         }
     </script>
