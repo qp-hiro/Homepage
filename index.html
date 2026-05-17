@@ -1,348 +1,812 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QP Asahi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        body, html {
-            margin: 0;
-            height: 100%;
-            font-family: 'Amatic SC', cursive;
-            line-height: 1.6;
-        }
 
-        a {
-            color: white;
-        }
+    <!-- =========================================================
+         ► EDIT: page <title> and meta description
+         ========================================================= -->
+    <title>Hirosuke Asahi — Researcher · The University of Tokyo</title>
+    <meta name="description" content="Hirosuke Asahi — Researcher at The University of Tokyo, RCAST. Information somatics, HCI, VR, Robotics.">
 
-        .menu-btn {
-            position: fixed;
-            left: 15px;
-            top: 15px;
-            cursor: pointer;
-            z-index: 1001;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        .menu-btn i {
-            color: white;
-            font-size: 24px;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px 0;
-            transition: left 0.3s ease;
-            z-index: 1000;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            text-align: center;
-            font-size: 40px;
-        }
-
-        .read-more-toggle {
-            position: relative; /* positionをrelativeに変更 */
-            margin-top: 10px; /* read moreの上の余白を20pxに設定 */
-            margin-bottom: 20px; /* read moreの下の余白を20pxに設定 */
-            color: white;
-            text-decoration: none;
-            z-index: 1;
-        }
-
-        /* 中央の灰色の枠のスタイル */
-        .center-panel {
-            font-family: Arial, sans-serif;
-            position: relative;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 30%;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            box-sizing: border-box;
-            color: white;
-            overflow-y: auto;
-            display: flex; /* フレックスボックスを使用 */
-            flex-direction: column; /* 要素を縦方向に配置 */
-            align-items: center; /* 中央に要素を寄せる */
-        }
-
-        .update-date {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: white;
-            font-size: 15px;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .center-panel h2 {
-            margin-top: -5px;
-            margin-bottom: 10px; /* タイトル下のマージンを調整 */
-            font-size: 36px;
-            text-align: center; /* タイトルを中央揃えに */
-        }
-
-        .center-panel .news-item {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 10px; /* ニュース項目の下の余白を20pxに設定 */
-        }
-
-        .center-panel .news-date {
-            font-weight: bold;
-            margin-right: 10px;
-            font-size: 20px;
-            white-space: nowrap; /* 日付を改行させない */
-        }
-
-        .video-background h1 {
-            position: absolute;
-            top: 1.5%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 120px;
-            color: white;
-            z-index: 2;
-        }
-
-        .video-background .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: blur(2px);
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .video-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: -1;
-        }
-
-        .video-background .background-image.show {
-            opacity: 0.4;
-        }
-
-        .content {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            color: white;
-            text-align: center;
-            font-size: 40px;
-            padding: 30px;
-            width: auto;
-        }
-
-        .content h2, .content p.label {
-            color: white;
-            font-size: 40px;
-            display: inline;
-            font-weight: bold;
-        }
-
-        .content p {
-            color: white;
-            font-size: 30px;
-            display: inline;
-            font-weight: bold;
-        }
-
-        #github-icon, #instagram-icon, #facebook-icon, #youtube-icon, #note-icon{
-            position: absolute;
-            bottom: 90%;
-            transform: translateX(-50%);
-        }
-
-        #github-icon {
-            left: 30%;
-        }
-
-        #instagram-icon {
-            left: 40%;
-        }
-
-        #facebook-icon {
-            left: 50%;
-        }
-
-        #youtube-icon {
-            left: 60%;
-        }
-
-        #note-icon {
-            left: 70%;
-        }
-
-        #github-icon img, #instagram-icon img, #facebook-icon img, #youtube-icon img ,#note-icon img{
-            width: 50px;
-            display: block;
-        }
-
-    </style>
-
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics (do not edit) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S7V1ZM4MJ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-7S7V1ZM4MJ');
     </script>
 </head>
-<body>
-    <div class="menu-btn">
-        <i class="fas fa-bars"></i>
-    </div>
-        
-    <div class="sidebar">
-        <ul>
-            <li><a href="works.html">Works</a></li>
-            <li><a href="profile.html">Profile</a></li>
-        </ul>
-    </div>
-    <!-- 中央の灰色の枠 -->
-    <div class="center-panel">
-        <span class="update-date">Last Updated: 2025/05/28</span>
-        <h2>News</h2>
-        <div class="news-item">
-            <span class="news-date">2024/12/03:</span>
-            <span><a href="https://dl.acm.org/doi/10.1145/3680529.3688959">Siggraph Asia 2023 デモ展示 @Work3</a></span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2023/03/19:</span>
-            <span><a href="https://ipsj.ixsq.nii.ac.jp/ej/?action=pages_view_main&active_action=repository_view_main_item_detail&item_id=233638&item_no=1&page_id=13&block_id=8">第71回EC研究会 デモ奨励賞　第1位 @Work4</a></span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2023/03/17:</span>
-            <span><a href="https://www.ipsj.or.jp/kenkyukai/event/ec71.html">第71回EC研究会 発表・デモ展示 @Work4</a></span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2023/12/01:</span>
-            <span><a href="https://www.ntv.co.jp/imaginarium/award/">日テレイマジナリウム審査員奨励賞受賞 @Work1</a></span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2023/12/15:</span>
-            <span><a href="https://dl.acm.org/doi/10.1145/3610541.3614587">Siggraph Asia 2023 デモ展示 @Work2</a></span>
+
+<!--
+    ╔════════════════════════════════════════════════════════════════╗
+    ║  TABLE OF CONTENTS — index.html                                 ║
+    ╠════════════════════════════════════════════════════════════════╣
+    ║   0.  TOPBAR (navigation)                                       ║
+    ║   1.  HERO (name + lede + latest news + bg slideshow)           ║
+    ║   2.  01 / PROFILE       プロフィール  (#profile)               ║
+    ║   3.  02 / CAREER        経歴          (#career)                ║
+    ║   4.  03 / RESEARCH & SKILLS  研究と技能  (#research)           ║
+    ║   5.  04 / WORKS            作品        (#works)                ║
+    ║   6.  05 / PUBLICATIONS & ACHIEVEMENTS  研究業績  (#publications)║
+    ║   7.  06 / CONTACT       連絡先        (#contact)               ║
+    ║   8.  FOOTER                                                    ║
+    ╚════════════════════════════════════════════════════════════════╝
+
+    ─── EDITING WORKFLOW  /  編集ワークフロー ───
+    • Japanese text inside <span class="jp">…</span> is the SOURCE OF TRUTH.
+      Edit the Japanese first; the surrounding English is a translation
+      that should be kept in sync with the Japanese.
+    • 日本語（<span class="jp">…</span> 内）が原本です。
+      日本語を編集し、その内容に合わせて英語訳を後で更新します。
+    • Search for "► EDIT:" to jump to editable copy.
+    • All section IDs match the nav and TOC above.
+-->
+
+<body class="page-landing">
+
+    <!-- ════════════════════════════════════════════════════════════
+         0 — TOPBAR  /  上部ナビゲーション
+         ════════════════════════════════════════════════════════════ -->
+    <header class="topbar">
+
+        <!-- ► EDIT: site mark (logo) — left side -->
+        <a href="index.html" class="mark">
+            <span>Hirosuke Asahi</span>
+            <span class="jp">旭 博佑</span>
+        </a>
+
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- ► EDIT: nav items — keep the # anchors in sync with sections below -->
+        <nav class="primary-nav">
+            <a href="#profile">Profile <span class="jp">プロフィール</span></a>
+            <a href="#career">Career <span class="jp">経歴</span></a>
+            <a href="#publications">Publications <span class="jp">業績</span></a>
+            <a href="works.html">Works <span class="jp">作品</span></a>
+            <a href="#contact">Contact <span class="jp">連絡</span></a>
+        </nav>
+    </header>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         1 — HERO  /  ヒーロー（名前 + 紹介 + 最新ニュース + 背景スライドショー）
+         ════════════════════════════════════════════════════════════ -->
+    <section class="hero">
+
+        <!-- ► EDIT: hero background slideshow images (rotate every 7s) -->
+        <div class="hero-bg" aria-hidden="true">
+            <img src="https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx" class="hero-bg__img is-active" alt="">
+            <img src="https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh" class="hero-bg__img" alt="">
+            <img src="https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq" class="hero-bg__img" alt="">
+            <img src="https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T" class="hero-bg__img" alt="">
+            <div class="hero-bg__veil"></div>
+            <div class="hero-bg__grain"></div>
         </div>
 
-        <a href="#" onclick="toggleContent(event)" class="read-more-toggle">>>>Read more</a>
+        <!-- LEFT: name + lede -->
+        <div class="hero__main">
+            <div data-reveal>
+                <!-- ► EDIT: eyebrow tagline above name -->
+                <span class="eyebrow">Researcher · HCI / VR / Robotics</span>
 
-        <div id="more-content" style="display: none;">
-            <div class="news-item">
-                <span class="news-date">2023/11/21:</span>
-                <span><a href="https://ivrc.net/2023/release3/">IVRC 2023 VoxelKei賞受賞 @Work1</a></span>
+                <!-- ► EDIT: name -->
+                <h1 class="hero__name" style="margin-top: 24px;">
+                    <span>Hirosuke <span class="em">Asahi</span></span>
+                    <span class="jp">旭 博佑</span>
+                </h1>
             </div>
-            <div class="news-item" id="hidden-news" style="display: none;">
-                <span class="news-date">2023/09/15:</span>
-                <span><a href="https://ivrc.net/2023/release2/">IVRC 2023 LeapStage進出 @Work1</a></span>
+
+            <!-- ► EDIT: hero lede paragraph (English first, Japanese sub) -->
+            <p class="hero__lede" data-reveal>
+                Affiliated with <strong>The University of Tokyo, RCAST</strong>. My research intervenes in human bodily sensation and movement — redesigning them to give rise to new kinds of experience.
+                <span class="jp">東京大学 先端科学技術研究センター在籍。人の身体感覚や運動に介入し、それらを再設計することで新しい体験を生み出すことを目指し、研究を行っています。</span>
+            </p>
+        </div>
+
+        <!-- RIGHT: latest-news panel -->
+        <aside class="hero-news" data-reveal>
+            <header class="hero-news__head">
+                <!-- ► EDIT: news panel title + updated date -->
+                <h2 class="hero-news__title">
+                    Latest News
+                    <span class="jp">最新情報</span>
+                </h2>
+                <span class="hero-news__updated">Updated 2026.05</span>
+            </header>
+
+            <!-- ► AUTO: this list is auto-populated by main.js from the
+                       publications section below (top 3 by year, then
+                       DOM order). To edit news, edit the publications
+                       items. To change the count, edit HERO_NEWS_COUNT
+                       in main.js. -->
+            <ul class="hero-news__list" data-auto-news></ul>
+
+            <a href="#publications" class="hero-news__more">All updates</a>
+        </aside>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         2 — 01 / PROFILE  /  プロフィール
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="profile">
+
+        <!-- Section header -->
+        <div class="chapter__num" data-reveal>
+            <span>01 / Profile</span>
+            <span class="jp">プロフィール</span>
+        </div>
+        <h2 class="chapter__heading" data-reveal>
+            <span>Profile</span>
+            <span class="jp">プロフィール</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
+
+        <div class="profile-snap" data-reveal>
+
+            <!-- ► EDIT: portrait image + caption -->
+            <div class="profile-snap__photo">
+                <img src="https://lh3.googleusercontent.com/d/1GTpYUJ_NdsnJzY2ve9UzmGkVJUuHMBhq=w1600?v=2" alt="Hirosuke Asahi">
+                <span class="profile-snap__photo-caption">2025 · Tokyo</span>
+            </div>
+
+            <div class="profile-snap__body">
+
+                <!-- ► EDIT: short bio paragraph (English first, Japanese sub) -->
+                <p class="profile-snap__intro">
+                    Born 2000 in Fukuoka, Japan. Spent his childhood across Japan and China. Studied in the Faculty of Engineering at The University of Tokyo, continued through the Graduate School of Information Science and Technology, and is currently a doctoral student in Advanced Interdisciplinary Studies at UTokyo, RCAST.
+                    <span class="jp">2000年福岡県福岡市生まれ。幼少期を日中の両国で過ごす。東京大学工学部を卒業後、同大学院情報理工学系研究科を経て、現在は先端学際工学専攻の博士課程に在籍。</span>
+                </p>
+
+                <!-- ► EDIT: fact table — quick reference profile -->
+                <ul class="fact-table">
+                    <li>
+                        <span class="key">Name <span class="key-jp">氏名</span></span>
+                        <span class="val">Hirosuke Asahi <span class="jp">旭 博佑（あさひ ひろすけ）</span></span>
+                    </li>
+                    <li>
+                        <span class="key">Affiliation <span class="key-jp">所属</span></span>
+                        <span class="val">The University of Tokyo · RCAST <span class="jp">東京大学 先端科学技術研究センター</span></span>
+                    </li>
+                    <li>
+                        <span class="key">Position <span class="key-jp">職位</span></span>
+                        <span class="val">Doctoral Student, 1st year <span class="jp">博士課程 1年</span></span>
+                    </li>
+                    <li>
+                        <span class="key">Field <span class="key-jp">研究分野</span></span>
+                        <span class="val">Information Somatics · HCI · VR · Robotics <span class="jp">情報身体学・HCI・VR・ロボティクス</span></span>
+                    </li>
+                    <li>
+                        <span class="key">Based in <span class="key-jp">拠点</span></span>
+                        <span class="val">Tokyo, Japan <span class="jp">東京</span></span>
+                    </li>
+                    <li>
+                        <span class="key">Languages <span class="key-jp">言語</span></span>
+                        <span class="val">English · 日本語 (native) · 中文 · Español</span>
+                    </li>
+                    <li>
+                        <span class="key">Email <span class="key-jp">連絡先</span></span>
+                        <span class="val"><a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp" style="color:var(--text); border-bottom:1px solid var(--border);">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a></span>
+                    </li>
+                </ul>
+
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="video-background">
-        <h1>Hirosuke Asahi</h1>
-    
-        <img id="image1" src="https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx" class="background-image show" alt="Image 1">
-        <img id="image2" src="https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh" class="background-image" alt="Image 2">
-        <img id="image3" src="https://lh3.googleusercontent.com/d/1I9FdplX_q-UBRHsY073AYH3jEsMawFrk" class="background-image" alt="Image 3">
-    
-        <div class="content">
-            <section>
-                <a href="https://github.com/qp-hiro" target="_blank" id="github-icon">
-                    <img src="https://lh3.googleusercontent.com/d/1FZGeC0-Y4_3Lt8Z6VwbdaVvNKCC9hBws"  alt="Github Icon">
-                </a>
-                <a href="https://www.instagram.com/hiro.asahi.00/" target="_blank" id="instagram-icon">
-                    <img src="https://lh3.googleusercontent.com/d/1FTfqeoRCs20xwjilARvKI8bMY1gdpcYl" alt="Instagram Icon">
-                </a>
-                <a href="https://www.facebook.com/hiro.asahi.37/" target="_blank" id="facebook-icon">
-                    <img src="https://lh3.googleusercontent.com/d/1F_t1UJrcCMSNALvyxFw6cAgMY27_e11Y" alt="Facebook Icon">
-                </a>
-                <a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" id="youtube-icon">
-                    <img src="https://lh3.googleusercontent.com/d/1Gc5IpbEc7NRKf4B6aqj6d7J9Nt16FBkU" alt="YouTube Icon">
-                </a>
-                <a href="https://note.com/qp_blueberry" target="_blank" id="note-icon">
-                    <img src="https://lh3.googleusercontent.com/d/1FQA2iCT88iYi3C8e9a6RAADa0zj38dTI" alt="Note Icon">
-                </a>
-                <p class="label">Affiliation：</p><p>The University of Tokyo RCAST </p><br>
-                <p class="label">Research：</p><p>Information somatics, HCI, VR, Robotics </p><br>
-                <p class="label">Email：</p><p><a href="mailto: hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> </p><br>
-            </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+         3 — 02 / CAREER  /  経歴
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="career">
+
+        <div class="chapter__num" data-reveal>
+            <span>02 / Career</span>
+            <span class="jp">経歴</span>
         </div>
-    </div>
-    
-    <script>
-        // ビデオのスクリプト
-        const images = document.querySelectorAll('.video-background .background-image');
-        let currentImage = 0;
-    
-        setInterval(() => {
-            images[currentImage].classList.remove('show');
-            currentImage = (currentImage + 1) % images.length;
-            images[currentImage].classList.add('show');
-        }, 7000);
-    
-        // メニューボタンのスクリプト
-        const menuBtn = document.querySelector('.menu-btn');
-        const sidebar = document.querySelector('.sidebar');
-        
-        menuBtn.addEventListener('click', () => {
-            const left = sidebar.style.left === '-250px' || sidebar.style.left === '' ? '0px' : '-250px';
-            sidebar.style.left = left;
-        });
-    
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.style.left === '0px') {
-                sidebar.style.left = '-250px';
-            }
-        });
+        <h2 class="chapter__heading" data-reveal>
+            <span>Career</span>
+            <span class="jp">経歴</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
 
-        function toggleContent(event) {
-            event.preventDefault(); // リンクのデフォルト動作を阻止
-            var content = document.getElementById("more-content");
-            var hiddenNews = document.getElementById("hidden-news");
-            // var hiddenNews2 = document.getElementById("hidden-news-2");
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block"; // コンテンツを表示
-                hiddenNews.style.display = "block"; // 隠れたニュースを表示
-                hiddenNews2.style.display = "block"; // 隠れたニュースを表示
-            } else {
-                content.style.display = "none"; // コンテンツを非表示
-                hiddenNews.style.display = "none"; // 隠れたニュースを非表示
-                hiddenNews2.style.display = "none"; // 隠れたニュースを非表示
-            }
-        }
-    </script>
+        <!-- ► EDIT: career timeline (newest first). First <li> is highlighted as "current". -->
+        <ol class="career" data-reveal>
+            <li>
+                <span class="career__period">2025.04 – present <span class="now">Now</span></span>
+                <span class="career__role">
+                    <span class="en">D.S. Advanced Interdisciplinary Studies, The University of Tokyo</span>
+                    <span class="jp">東京大学大学院 先端学際工学専攻 博士課程</span>
+                </span>
+                <span class="career__tag">Doctorate</span>
+            </li>
+            <li>
+                <span class="career__period">2023.04 – 2025.03</span>
+                <span class="career__role">
+                    <span class="en">M.S. Information Physics &amp; Computing, The University of Tokyo</span>
+                    <span class="jp">東京大学大学院 情報理工学系研究科 修士課程</span>
+                </span>
+                <span class="career__tag">Master</span>
+            </li>
+            <li>
+                <span class="career__period">2019.04 – 2023.03</span>
+                <span class="career__role">
+                    <span class="en">B.S. Precision Engineering, The University of Tokyo</span>
+                    <span class="jp">東京大学 工学部 精密工学科</span>
+                </span>
+                <span class="career__tag">Bachelor</span>
+            </li>
+            <li>
+                <span class="career__period">2016.04 – 2019.03</span>
+                <span class="career__role">
+                    <span class="en">Kurume Fusetsu High School</span>
+                    <span class="jp">久留米附設高等学校</span>
+                </span>
+                <span class="career__tag">High School</span>
+            </li>
+        </ol>
+
+        <!-- ► EDIT: fellowships sub-block -->
+        <div style="margin-top: 56px;">
+            <div class="chapter__num" style="margin-top: 0;" data-reveal>
+                <span>Fellowship</span>
+                <span class="jp">フェローシップ</span>
+            </div>
+            <ol class="career" data-reveal>
+                <li>
+                    <span class="career__period">2025.04 – 2028.03</span>
+                    <span class="career__role">
+                        <span class="en">UTokyo GX Advanced Human Resource Development Program</span>
+                        <span class="jp">グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム</span>
+                    </span>
+                    <span class="career__tag">Fellow</span>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         4 — 03 / RESEARCH & SKILLS  /  研究と技能
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="research">
+
+        <div class="chapter__num" data-reveal>
+            <span>03 / Research &amp; Skills</span>
+            <span class="jp">研究と技能</span>
+        </div>
+        <h2 class="chapter__heading" data-reveal>
+            <span>Research &amp; Skills</span>
+            <span class="jp">研究分野と技能</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
+
+        <div class="chapter__body" data-reveal>
+
+            <!-- ► EDIT: research-interest paragraph (English + Japanese sub) -->
+            <div class="chapter__prose">
+                <p>
+                    My work spans a wide range of related fields — <strong>VR / AR</strong>, <strong>robotics</strong>, <strong>haptics</strong>, <strong>biomechanics</strong>, <strong>motor learning</strong>, and <strong>AI</strong>.
+                </p>
+                <p>
+                    Through implementations and exhibitions, I take up the question: how does an extended body reshape perception and action?
+                    <span class="jp">VR/AR, ロボティクス, ハプティクス, バイオメカニクス, 運動学習, AIなど、関連領域は多岐に渡る。拡張された身体が、知覚や行為をいかに変えるのかという問いに、実装・展示を通じて取り組んでいます。</span>
+                </p>
+            </div>
+
+            <!-- ► EDIT: skill chips by tier -->
+            <div>
+                <div class="skill-block">
+                    <span class="skill-block__label">Advanced <span class="jp">熟練</span></span>
+                    <div class="skill-chips">
+                        <span>Python</span><span>C</span><span>C#</span><span>C++</span>
+                        <span>HTML / CSS</span><span>Arduino</span><span>3D CAD</span><span>Unity</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <span class="skill-block__label">Intermediate <span class="jp">中級</span></span>
+                    <div class="skill-chips">
+                        <span class="tier-2">JavaScript</span><span class="tier-2">MySQL</span>
+                        <span class="tier-2">ROS</span><span class="tier-2">Machine Learning</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <span class="skill-block__label">Beginner <span class="jp">初級</span></span>
+                    <div class="skill-chips">
+                        <span class="tier-3">Blender</span><span class="tier-3">Houdini</span>
+                    </div>
+                </div>
+                <div class="skill-block">
+                    <span class="skill-block__label">Languages <span class="jp">言語</span></span>
+                    <div class="skill-chips">
+                        <span>English</span><span>日本語</span><span>中文</span><span>Español</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         5 — 04 / WORKS  /  作品
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter chapter--wide" id="works" style="max-width: 1080px;">
+
+        <div class="chapter__num" data-reveal>
+            <span>04 / Works</span>
+            <span class="jp">作品</span>
+        </div>
+        <h2 class="chapter__heading" data-reveal>
+            <span>Works</span>
+            <span class="jp">作品</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
+
+        <!-- ► EDIT: each <a class="cascade__item"> is one work card. -->
+        <div class="cascade">
+
+            <!-- Work 01 — The Legend of Holy Sword -->
+            <a class="cascade__item" href="works/work1-details.html" data-reveal>
+                <div class="cascade__media">
+                    <img src="https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx" alt="">
+                    <span class="cascade__num">№ 01</span>
+                    <span class="cascade__year">2023</span>
+                    <span class="cascade__veil"></span>
+                    <span class="cascade__more">↗</span>
+                </div>
+                <div class="cascade__caption">
+                    <h3 class="cascade__title">The Legend of Holy Sword</h3>
+                    <span class="cascade__tags">VR · Multimodal</span>
+                    <p class="cascade__subtitle">A multimodal proof of concentration, embodied in the pulling of a sword. <span class="jp">聖剣を継ぐ者 — 集中の証明。</span></p>
+                </div>
+            </a>
+
+            <!-- Work 02 — ForceField -->
+            <a class="cascade__item" href="works/work2-details.html" data-reveal>
+                <div class="cascade__media">
+                    <img src="https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh" alt="">
+                    <span class="cascade__num">№ 02</span>
+                    <span class="cascade__year">2023</span>
+                    <span class="cascade__veil"></span>
+                    <span class="cascade__more">↗</span>
+                </div>
+                <div class="cascade__caption">
+                    <h3 class="cascade__title">ForceField</h3>
+                    <span class="cascade__tags">Sensing · Spatial</span>
+                    <p class="cascade__subtitle">Visualising intermaterial force across a room, without instrumenting bodies. <span class="jp">床と深度センシングによる物体間相互作用の可視化。</span></p>
+                </div>
+            </a>
+
+            <!-- Work 03 — Semantic See-through Goggles -->
+            <a class="cascade__item" href="works/work3-details.html" data-reveal>
+                <div class="cascade__media">
+                    <img src="https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq" alt="">
+                    <span class="cascade__num">№ 03</span>
+                    <span class="cascade__year">2024</span>
+                    <span class="cascade__veil"></span>
+                    <span class="cascade__more">↗</span>
+                </div>
+                <div class="cascade__caption">
+                    <h3 class="cascade__title">Semantic See-through Goggles</h3>
+                    <span class="cascade__tags">VR · Generative AI</span>
+                    <p class="cascade__subtitle">Glasses through which the view becomes once a line of text, and is re-scenified. <span class="jp">視界をいちど一文に変え、再び画像に戻すゴーグル。</span></p>
+                </div>
+            </a>
+
+            <!-- Work 04 — Heteromorphic Locomotion Interface  (HIDDEN — temporarily withheld) -->
+            <!--
+            <a class="cascade__item" href="works/work4-details.html" data-reveal>
+                <div class="cascade__media">
+                    <img src="https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T" alt="">
+                    <span class="cascade__num">№ 04</span>
+                    <span class="cascade__year">2024</span>
+                    <span class="cascade__veil"></span>
+                    <span class="cascade__more">↗</span>
+                </div>
+                <div class="cascade__caption">
+                    <h3 class="cascade__title">Heteromorphic Locomotion Interface</h3>
+                    <span class="cascade__tags">VR · Robotics</span>
+                    <p class="cascade__subtitle">A locomotion interface that lets you wear the gait of a four-legged animal. <span class="jp">移動する動物のリズムをユーザの身体で実現する、ロコモーション装置。</span></p>
+                </div>
+            </a>
+            -->
+            <!-- /HIDDEN Work 04 -->
+
+
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         6 — 05 / PUBLICATIONS & ACHIEVEMENTS  /  研究業績
+         ════════════════════════════════════════════════════════════
+         Structure:
+           ┌── International Conferences (peer-reviewed)  items  1 – 5
+           ├── Domestic Conferences                       items  6 – 11
+           ├── Awards                                     items 12 – 15
+           └── Other Activities                           items 16 – 17
+         Each group <ol class="ach-list"> auto-numbers via CSS counters.
+         If you reorder or add items, also update each <ol>'s
+         `start="…"` and `style="counter-reset: ach …;"` so the
+         numbering remains continuous.
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="publications">
+
+        <div class="chapter__num" data-reveal>
+            <span>05 / Publications &amp; Achievements</span>
+            <span class="jp">研究業績</span>
+        </div>
+        <h2 class="chapter__heading" data-reveal>
+            <span>Publications &amp; Achievements</span>
+            <span class="jp">研究業績</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
+
+
+        <!-- ─── GROUP A: International (peer-reviewed) ───────────────── -->
+        <div class="ach-group" data-reveal>
+            <h3 class="ach-group__title">
+                <span>International Conferences (peer-reviewed)</span>
+                <span class="jp">国際学会・会議での発表（査読あり）</span>
+                <span class="count">5 items</span>
+            </h3>
+
+            <ol class="ach-list">
+                <!-- 01 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">AdaptiveFly: Bio-Congruent Adaptation for Embodied 3D Locomotion</p>
+                        <p class="ach__cite">Kong L., Dechaux A., Yoshida M., <span class="self">Asahi H.</span>, Xu J., Gowrishankar G., Inami M.</p>
+                        <p class="ach__venue">Augmented Humans '26 · 2026</p>
+                    </div>
+                </li>
+                <!-- 02 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">A Design Framework for Virtual Space based on Spectral Relationships</p>
+                        <p class="ach__cite">Wang H., <span class="self">Asahi H.</span>, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M.</p>
+                        <p class="ach__venue">Augmented Humans '26 · 2026</p>
+                    </div>
+                </li>
+                <!-- 03 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">Semantic See-through Goggles: Wearing Linguistic Virtual Reality in (Artificial) Intelligence</p>
+                        <p class="ach__cite">Muramoto G., Yasui Y., <span class="self">Asahi H.</span>, Hirose M., Inami M.</p>
+                        <p class="ach__venue">IUI '26 · 2026</p>
+                    </div>
+                </li>
+                <!-- 04 -->
+                <li>
+                    <span class="ach__type">Demo <span class="jp">展示</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">Semantic See-through Goggles</p>
+                        <p class="ach__cite">Muramoto G., Yasui Y., <span class="self">Asahi H.</span></p>
+                        <p class="ach__venue">
+                            SIGGRAPH Asia Art Gallery · 2024
+                            <span class="ach__links">
+                                <a href="https://dl.acm.org/doi/10.1145/3680529.3688959" target="_blank" rel="noopener">DOI</a>
+                                <a href="https://www.youtube.com/watch?v=0Wy07jKqhEY" target="_blank" rel="noopener">Video</a>
+                            </span>
+                        </p>
+                    </div>
+                </li>
+                <!-- 05 -->
+                <li>
+                    <span class="ach__type">Demo <span class="jp">展示</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing</p>
+                        <p class="ach__cite">Yoshida T., Watanabe T., <span class="self">Asahi H.</span>, Rin K., Kozuka H., Hirose M., Inami M.</p>
+                        <p class="ach__venue">
+                            SIGGRAPH Asia Emerging Technologies · 2023
+                            <span class="ach__links">
+                                <a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank" rel="noopener">DOI</a>
+                                <a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank" rel="noopener">Video</a>
+                            </span>
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+
+        <!-- ─── GROUP B: Domestic Conferences  ───────────────────────── -->
+        <div class="ach-group" data-reveal>
+            <h3 class="ach-group__title">
+                <span>Domestic Conferences</span>
+                <span class="jp">国内学会発表</span>
+                <span class="count">6 items</span>
+            </h3>
+
+            <ol class="ach-list" start="6" style="counter-reset: ach 5;">
+                <!-- 06 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">Designing Transparent Control via Bio-Congruent Adaptation for Embodied 3D Locomotion</p>
+                        <p class="ach__cite">Kong L., <span class="self">Asahi H.</span>, et al.</p>
+                        <p class="ach__venue">WISS 2025</p>
+                    </div>
+                </li>
+                <!-- 07 -->
+                <li>
+                    <span class="ach__type">Oral &amp; Poster <span class="jp">口頭・ポスター</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">歩行時の上肢運動を用いた身体表象の変容技術に関する研究</p>
+                        <p class="ach__cite"><span class="self">旭博佑</span>, 齊藤寛人, 櫻田国治, 前川和純, 門内靖明, 稲見昌彦</p>
+                        <p class="ach__venue">第30回 バーチャルリアリティ学会大会 · 2025</p>
+                    </div>
+                </li>
+                <!-- 08 -->
+                <li>
+                    <span class="ach__type">Oral &amp; Demo <span class="jp">口頭・展示</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">身体運動周期を用いた没入型ロコモーションインターフェースの検討</p>
+                        <p class="ach__cite"><span class="self">旭博佑</span>, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦</p>
+                        <p class="ach__venue">第71回 EC研究発表会 · 2024</p>
+                    </div>
+                </li>
+                <!-- 09 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">腹腔鏡下手術縫合手技における針把持姿勢と持針器軌道の最適化及び手技者との比較検証</p>
+                        <p class="ach__cite">内池智哉, <span class="self">旭博佑</span>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子</p>
+                        <p class="ach__venue">2024年度 精密工学会春季大会学術講演会 · 2024</p>
+                    </div>
+                </li>
+                <!-- 10 -->
+                <li>
+                    <span class="ach__type">Demo <span class="jp">展示</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">聖剣を継ぐ者 — 集中の証明</p>
+                        <p class="ach__cite">園山遼馬, <span class="self">旭博佑</span>, 正田千宙, 小谷七海</p>
+                        <p class="ach__venue">第28回 バーチャルリアリティ学会大会 · 2023</p>
+                    </div>
+                </li>
+                <!-- 11 -->
+                <li>
+                    <span class="ach__type">Oral <span class="jp">口頭</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証</p>
+                        <p class="ach__cite"><span class="self">旭博佑</span>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子</p>
+                        <p class="ach__venue">第32回 ライフサポート学会フロンティア講演会 · 2023</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+
+        <!-- ─── GROUP C: Awards ──────────────────────────────────────── -->
+        <div class="ach-group" data-reveal>
+            <h3 class="ach-group__title">
+                <span>Awards</span>
+                <span class="jp">受賞</span>
+                <span class="count">4 items</span>
+            </h3>
+
+            <ol class="ach-list" start="12" style="counter-reset: ach 11;">
+                <!-- 12 -->
+                <li>
+                    <span class="ach__type">Award <span class="jp">受賞</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">Best Student Paper Honorable Mention <span class="jp">学生最優秀論文 佳作（61本中）</span></p>
+                        <p class="ach__cite">Wang H., <span class="self">Asahi H.</span>, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M. — A Design Framework for Virtual Space based on Spectral Relationships</p>
+                        <p class="ach__venue">Augmented Humans '26 · 2026</p>
+                    </div>
+                </li>
+                <!-- 13 -->
+                <li>
+                    <span class="ach__type">Award <span class="jp">受賞</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">IPSJ EC #71 — Demo Award, 1st place <span class="jp">第71回EC研究会 デモ奨励賞 第1位</span></p>
+                        <p class="ach__cite"><span class="self">旭博佑</span>, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦 — 身体運動周期を用いた没入型ロコモーションインターフェース</p>
+                        <p class="ach__venue">
+                            情報処理学会 EC研究会 · 2024
+                            <span class="ach__links"><a href="https://entcomp.org/sig/?p=1087" target="_blank" rel="noopener">Link</a></span>
+                        </p>
+                    </div>
+                </li>
+                <!-- 14 -->
+                <li>
+                    <span class="ach__type">Award <span class="jp">受賞</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">IVRC 2023 — VoxelKei Award <span class="jp">VoxelKei賞</span></p>
+                        <p class="ach__cite">園山遼馬, <span class="self">旭博佑</span>, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明-</p>
+                        <p class="ach__venue">
+                            IVRC 2023 · 2023
+                            <span class="ach__links"><a href="https://ivrc.net/2023/release3/" target="_blank" rel="noopener">Link</a></span>
+                        </p>
+                    </div>
+                </li>
+                <!-- 15 -->
+                <li>
+                    <span class="ach__type">Award <span class="jp">受賞</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">NTV Imaginarium — Jury Award <span class="jp">日テレ イマジナリウム 審査員奨励賞</span></p>
+                        <p class="ach__cite">園山遼馬, <span class="self">旭博佑</span>, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明-</p>
+                        <p class="ach__venue">
+                            日テレ イマジナリウム · 2023
+                            <span class="ach__links"><a href="https://www.ntv.co.jp/imaginarium/award/" target="_blank" rel="noopener">Link</a></span>
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+
+        <!-- ─── GROUP D: Other Activities  ───────────────────────────── -->
+        <div class="ach-group" data-reveal>
+            <h3 class="ach-group__title">
+                <span>Other Activities</span>
+                <span class="jp">その他（展示・メディア・教育・競争的資金）</span>
+                <span class="count">2 items</span>
+            </h3>
+
+            <ol class="ach-list" start="16" style="counter-reset: ach 15;">
+                <!-- 16 -->
+                <li>
+                    <span class="ach__type">Exhibition <span class="jp">展示</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">聖剣を継ぐ者 — 集中の証明</p>
+                        <p class="ach__cite">園山遼馬, <span class="self">旭博佑</span>, 正田千宙, 小谷七海</p>
+                        <p class="ach__venue">SCIENCE AGORA · 2023</p>
+                    </div>
+                </li>
+                <!-- 17 -->
+                <li>
+                    <span class="ach__type">Fellowship <span class="jp">フェロー</span></span>
+                    <div class="ach__body">
+                        <p class="ach__title">UTokyo GX Advanced Human Resource Development Program <span class="jp">グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム</span></p>
+                        <p class="ach__venue">The University of Tokyo · 2025.04 – 2028.03</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         7 — 06 / CONTACT  /  連絡先
+         ════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="contact">
+
+        <div class="chapter__num" data-reveal>
+            <span>06 / Contact</span>
+            <span class="jp">連絡先</span>
+        </div>
+        <h2 class="chapter__heading" data-reveal>
+            <span>Contact</span>
+            <span class="jp">連絡先</span>
+        </h2>
+        <span class="chapter__heading-rule"></span>
+
+        <!-- ► EDIT: contact rows. Each <a class="contact-row"> is one entry.
+                  Order matters visually (2-column grid). -->
+        <div class="contact-grid" data-reveal>
+
+            <!-- Email -->
+            <a class="contact-row" href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="5" width="18" height="14"/>
+                        <path d="M3 7l9 7 9-7"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">Email <span class="jp">メール</span></span>
+                <span class="contact-row__value">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</span>
+            </a>
+
+            <!-- Google Scholar -->
+            <a class="contact-row" href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 4L2 9l10 5 10-5-10-5z"/>
+                        <path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5"/>
+                        <path d="M22 9v6"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">Google Scholar <span class="jp">論文一覧</span></span>
+                <span class="contact-row__value">scholar.google.com<span class="handle">/YPA6TZ4</span></span>
+            </a>
+
+            <!-- GitHub -->
+            <a class="contact-row" href="https://github.com/qp-hiro" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.475 2 2 6.475 2 12c0 4.42 2.865 8.165 6.84 9.5.5.085.685-.215.685-.475 0-.235-.01-.85-.015-1.67-2.78.605-3.37-1.34-3.37-1.34-.455-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.605.07-.605 1.005.07 1.535 1.03 1.535 1.03.895 1.53 2.345 1.09 2.915.835.09-.65.35-1.09.635-1.34-2.22-.25-4.555-1.11-4.555-4.94 0-1.09.39-1.985 1.03-2.685-.105-.255-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.025A9.58 9.58 0 0112 6.795c.85.005 1.705.115 2.504.34 1.91-1.295 2.75-1.025 2.75-1.025.55 1.38.205 2.395.1 2.65.64.7 1.03 1.595 1.03 2.685 0 3.84-2.34 4.685-4.565 4.935.36.305.685.91.685 1.835 0 1.325-.015 2.39-.015 2.715 0 .265.18.57.69.475C19.135 20.165 22 16.42 22 12c0-5.525-4.475-10-10-10z"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">GitHub</span>
+                <span class="contact-row__value">github.com<span class="handle">/qp-hiro</span></span>
+            </a>
+
+            <!-- Instagram -->
+            <a class="contact-row" href="https://www.instagram.com/hiro.asahi.00/" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="0"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">Instagram</span>
+                <span class="contact-row__value">instagram.com<span class="handle">/hiro.asahi.00</span></span>
+            </a>
+
+            <!-- YouTube -->
+            <a class="contact-row" href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="6" width="20" height="12"/>
+                        <polygon points="10,9.5 16,12 10,14.5" fill="currentColor" stroke="none"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">YouTube</span>
+                <span class="contact-row__value">youtube.com<span class="handle">/Hirosuke</span></span>
+            </a>
+
+            <!-- note.com -->
+            <a class="contact-row" href="https://note.com/qp_blueberry" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3.5" y="3.5" width="17" height="17"/>
+                        <path d="M8 17V8l8 9V8"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">note <span class="jp">ノート</span></span>
+                <span class="contact-row__value">note.com<span class="handle">/qp_blueberry</span></span>
+            </a>
+
+            <!-- Facebook -->
+            <a class="contact-row" href="https://www.facebook.com/hiro.asahi.37/" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13.5 22V12.5h3.2l.47-3.6h-3.67V6.6c0-1.04.29-1.74 1.78-1.74H17.3V1.66c-.34-.05-1.51-.16-2.86-.16-2.83 0-4.77 1.72-4.77 4.88V8.9H6.5v3.6h3.17V22h3.83z"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">Facebook</span>
+                <span class="contact-row__value">facebook.com<span class="handle">/hiro.asahi.37</span></span>
+            </a>
+
+            <!-- CV -->
+            <a class="contact-row" href="CV_template.pdf" target="_blank" rel="noopener">
+                <span class="contact-row__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/>
+                        <path d="M14 3v6h6"/>
+                        <path d="M8 13h8"/>
+                        <path d="M8 17h5"/>
+                    </svg>
+                </span>
+                <span class="contact-row__label">CV <span class="jp">履歴書</span></span>
+                <span class="contact-row__value">CV_template.pdf</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         8 — FOOTER
+         ════════════════════════════════════════════════════════════ -->
+    <footer class="page-foot">
+        <!-- ► EDIT: footer copy -->
+        <span>© 2025 Hirosuke Asahi <span style="color:var(--text-faint); margin-left:8px;">旭 博佑</span></span>
+        <span>The University of Tokyo · RCAST</span>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>

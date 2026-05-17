@@ -3,118 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Works - Hirosuke Asahi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-        }
-        .card {
-            cursor: pointer;
-            position: relative;
-        }
-        .card img {
-            object-fit: cover;
-            width: 100%;
-        }
-        .card-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-        .col-md-3 {
-            padding: 0; /* Remove padding to make the panels closer */
-        }
-        .card {
-            height: 100%; /* Make the card fill the container */
-        }
-        .container-fluid {
-            padding: 0 15%; /* Added padding to give margin from the page width */
-        }
-        .home-icon {
-            position: absolute;
-            top: 5%;
-            right: 2.5%;
-            z-index: 1000;
-        }
-        .home-icon img {
-            width: 50px; /* Adjust the size as needed */
-        }
-    </style>
+    <title>Works — Hirosuke Asahi</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S7V1ZM4MJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7S7V1ZM4MJ');
+    </script>
 </head>
 <body>
 
-    <a href="index.html" class="home-icon">
-        <img src="https://lh3.googleusercontent.com/d/1FX9OwQujYPYrxJ0yCoC4LmMyT4h-1V0X" alt="Home"> <!-- Replace with your home icon URL -->
-    </a>
+    <header class="topbar">
+        <a href="index.html" class="mark">
+            <span>Hirosuke Asahi</span>
+            <span class="jp">旭 博佑</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="primary-nav">
+            <a href="index.html#profile">Profile <span class="jp">プロフィール</span></a>
+            <a href="index.html#career">Career <span class="jp">経歴</span></a>
+            <a href="index.html#publications">Publications <span class="jp">業績</span></a>
+            <a href="works.html" class="is-current">Works <span class="jp">作品</span></a>
+            <a href="index.html#contact">Contact <span class="jp">連絡</span></a>
+        </nav>
+    </header>
 
-    <h1 class="text-center my-5">Works</h1>
-
-    <div class="container-fluid"> <!-- Changed to container-fluid -->
-        <div class="row" id="works-container">
-            <!-- Works will be inserted here by JavaScript -->
+    <main class="page-shell">
+        <div class="page-head">
+            <span class="page-head__meta">主な作品 · 2023 – 2025</span>
+            <h1 class="page-head__title">Works <span class="jp" style="display:block; font-size:0.30em; color:var(--text-soft); margin-top:8px;">作品</span></h1>
+            <span class="page-head__index">03 / 03</span>
         </div>
-    </div>
+
+        <div class="works-grid" id="works-container"></div>
+    </main>
+
+    <footer class="page-foot">
+        <span>© 2025 Hirosuke Asahi</span>
+        <span><a href="index.html">↑ Back to top</a></span>
+    </footer>
 
     <script>
         const works = [
-            { title: 'The Legend of Holy Sword', subtitle: '- Proof of Concentration -', imagePath: 'https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx', detailsPath: 'works/work1-details.html', fontSize: '14px'},
-            { title: 'ForceField', subtitle: '-Visualizing Intermaterial Interaction-', imagePath: 'https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh', detailsPath: 'works/work2-details.html', fontSize: '14px'},
-            { title: 'Semantic See-through Goggles', subtitle: '-Linguistic Virtual Reality in (Artificial) Intelligence-', imagePath: 'https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq', detailsPath: 'works/work3-details.html', fontSize: '14px'},
-            { title: 'Heteromorphic Locomotion Interface', subtitle: '-Transformation to universal creatures-', imagePath: 'https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T', detailsPath: 'works/work4-details.html', fontSize: '14px'},
-            { title: 'Work 5<br>-Description-', imagePath: 'https://lh3.googleusercontent.com/d/12G9WOL5SQv3VnbXenYcbbKU5OPm0AQZA', detailsPath: 'works/work5-details.html', fontSize: '14px'},
-            { title: 'Work 6<br>-Description-', imagePath: 'https://lh3.googleusercontent.com/d/12G9WOL5SQv3VnbXenYcbbKU5OPm0AQZA', detailsPath: 'works/work6-details.html', fontSize: '14px'},
-            { title: 'Work 7<br>-Description-', imagePath: 'https://lh3.googleusercontent.com/d/12G9WOL5SQv3VnbXenYcbbKU5OPm0AQZA', detailsPath: 'works/work7-details.html', fontSize: '14px' }, // Added new work
-            { title: 'Work 8<br>-Description-', imagePath: 'https://lh3.googleusercontent.com/d/12G9WOL5SQv3VnbXenYcbbKU5OPm0AQZA', detailsPath: 'works/work8-details.html', fontSize: '14px' }  // Added new work
+            {
+                title: 'The Legend of Holy Sword',
+                subtitle: 'Proof of Concentration',
+                year: '2023',
+                imagePath: 'https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx',
+                detailsPath: 'works/work1-details.html'
+            },
+            {
+                title: 'ForceField',
+                subtitle: 'Visualizing Intermaterial Interaction',
+                year: '2023',
+                imagePath: 'https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh',
+                detailsPath: 'works/work2-details.html'
+            },
+            {
+                title: 'Semantic See-through Goggles',
+                subtitle: 'Linguistic Virtual Reality in (Artificial) Intelligence',
+                year: '2024',
+                imagePath: 'https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq',
+                detailsPath: 'works/work3-details.html'
+            }
+            // — Work 04 (Heteromorphic Locomotion Interface) is temporarily hidden. —
+            // ,{
+            //     title: 'Heteromorphic Locomotion Interface',
+            //     subtitle: 'Transformation to universal creatures',
+            //     year: '2024',
+            //     imagePath: 'https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T',
+            //     detailsPath: 'works/work4-details.html'
+            // }
         ];
 
-        const worksContainer = document.getElementById('works-container');
+        const container = document.getElementById('works-container');
 
-        works.forEach(work => {
-        const col = document.createElement('div');
-        col.className = 'col-md-3 mb-4'; 
+        works.forEach((work, i) => {
+            const a = document.createElement('a');
+            a.href = work.detailsPath;
+            a.className = 'work-card';
+            a.setAttribute('data-reveal', '');
 
-        const card = document.createElement('div');
-        card.className = 'card text-dark h-100'; 
-        card.onclick = () => window.location.href = work.detailsPath;
-
-        const img = document.createElement('img');
-        img.src = work.imagePath;
-        img.alt = work.title;
-        img.className = 'card-img-top';
-        img.onload = () => {
-            img.style.height = img.width + 'px'; 
-        };
-
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'card-title';
-
-        const title = document.createElement('div');
-        title.innerHTML = work.title;
-        // Optionally, set a default font size for title if needed
-        title.style.fontSize = '18px';
-
-        const subtitle = document.createElement('div');
-        subtitle.innerHTML = work.subtitle || ''; // Fallback for works without a subtitle
-        subtitle.style.fontSize = work.fontSize; // Set font size only for subtitle
-
-        titleDiv.appendChild(title);
-        titleDiv.appendChild(subtitle);
-        card.appendChild(img);
-        card.appendChild(titleDiv);
-        col.appendChild(card);
-        worksContainer.appendChild(col);
+            a.innerHTML = `
+                <img class="work-card__img" src="${work.imagePath}" alt="${work.title}" loading="lazy">
+                <div class="work-card__veil"></div>
+                <span class="work-card__num">№ ${String(i + 1).padStart(2, '0')}</span>
+                <span class="work-card__year">${work.year}</span>
+                <div class="work-card__caption">
+                    <h2 class="work-card__title">${work.title}</h2>
+                    <p class="work-card__subtitle">— ${work.subtitle}</p>
+                </div>
+                <span class="work-card__arrow" aria-hidden="true">↗</span>
+            `;
+            container.appendChild(a);
         });
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

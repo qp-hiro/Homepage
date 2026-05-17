@@ -3,293 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Hirosuke Asahi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-        }
-        .category {
-            font-weight: bold;
-        }
-        .photo {
-            position: absolute;
-            top: 15%;
-            right: 10%;
-            width: 400px;
-            height: auto;
-            border: 2px solid white;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .profile-links {
-            list-style-type: none;
-            padding: 0;
-            margin: 10px 0 0 0;
-            text-align: center;
-        }
-        .profile-links li {
-            margin-bottom: 10px;
-        }
-        .profile-links li::before {
-            content: "- ";
-            color: goldenrod;
-        }
-        .profile-links a {
-            color: goldenrod;
-            text-decoration: none;
-        }
-        .profile-links a:hover {
-            text-decoration: underline;
-        }
-        .profile-container {
-            display: flex;
-            justify-content: center;
-        }
-        .profile-content {
-            margin-left: 0%;
-            flex-grow: 1;
-        }
-        h1 {
-            font-size: 60px;
-            text-align: center;
-        }
-        h2 {
-            margin-top: 50px;
-        }
-        .home-icon {
-            position: absolute;
-            top: 5%;
-            right: 2.5%;
-            z-index: 1000;
-        }
-        .home-icon img {
-            width: 50px;
-        }
-        .container {
-            margin-left: 10%;
-            margin-bottom: 10%;
-        }
-        .profile-content .container p {
-            margin: 0 0 10px 0;
-        }
-        .research-notation {
-            font-size: 0.9em;
-            color: #ccc;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
-        .year-heading {
-            font-size: 1.5em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .links-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 0 10px 0;
-        }
-        .links-list li {
-            display: inline;
-            margin-right: 10px;
-        }
-        .links-list a {
-            color: #4a90e2;
-            text-decoration: none;
-        }
-        .links-list a:hover {
-            text-decoration: underline;
-        }
-        .read-more-toggle {
-            color: gray;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .read-more-toggle:hover {
-            text-decoration: underline;
-        }
-        #more-content {
-            transition: all 0.3s ease;
-            overflow: hidden;
-            display: none;
-        }
-        .achievement-tag {
-            margin-right: 5px;
-        }
-        .author {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Profile — Hirosuke Asahi</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S7V1ZM4MJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7S7V1ZM4MJ');
+    </script>
 </head>
 <body>
-    <a href="index.html" class="home-icon">
-        <img src="https://lh3.googleusercontent.com/d/1FX9OwQujYPYrxJ0yCoC4LmMyT4h-1V0X" alt="Home">
-    </a>
 
-    <div class="profile-container">
-        <div class="photo">
-            <img src="https://lh3.googleusercontent.com/d/1GTpYUJ_NdsnJzY2ve9UzmGkVJUuHMBhq" alt="Hirosuke Asahi">
-            <ul class="profile-links">
-                <li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ&view_op=list_works&gmla=AH8HC4zjG-IBRjDvVPLeuqWWM6U97JFQ0Jl38zTR2xkMSzbDAaEc8LfirOv0AHuckKjuHFETnNho2-evt6dDfc2lr0BPaTdOFtHLldRoACECzWtZn8loy61e3o4" target="_blank">Google Scholar</a></li>
-                <li><a href="CV_template.pdf" target="_blank">Curriculum Vitae</a></li>
-            </ul>
+    <header class="topbar">
+        <a href="index.html" class="mark">
+            <span>Hirosuke Asahi</span>
+            <span class="jp">旭 博佑</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="primary-nav">
+            <a href="index.html#profile">Profile <span class="jp">プロフィール</span></a>
+            <a href="index.html#career">Career <span class="jp">経歴</span></a>
+            <a href="profile.html" class="is-current">Publications <span class="jp">業績</span></a>
+            <a href="works.html">Works <span class="jp">作品</span></a>
+            <a href="index.html#contact">Contact <span class="jp">連絡</span></a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="page-head">
+            <span class="page-head__meta">Vol. 01 / 業績一覧</span>
+            <h1 class="page-head__title">Profile</h1>
+            <span class="page-head__index">2026</span>
         </div>
-        <div class="profile-content">
-            <h1 class="text-center">Profile</h1>
-            <div class="container">
-                <!-- Experience -->
-                <h2>Education</h2>
-                <p>2016.4-2019.3 &nbsp; Kurume Fusetsu High School</p>
-                <p>2019.4-2023.3 &nbsp; B.S. Precision Engineering, The University of Tokyo</p>
-                <p>2023.4-2025.3 &nbsp; M.S. Information Physics & Computing, The University of Tokyo</p>
-                <p>2025.4- &nbsp; D.S. Advanced Interdisciplinary Studies, The University of Tokyo</p>
 
-                <!-- Skills -->
-                <h2>Technical Skills</h2>
-                <div class="category">Language:</div>
-                <p>Japanese, Chinese, English, Spanish</p>
-                <div class="category">Advanced:</div>
-                <p>Python, C, C#, C++, HTML/CSS, Arduino, 3DCAD, Unity</p>
-                <div class="category">Intermediate:</div>
-                <p>Java script, MySQL, ROS, Machine learning</p>
-                <div class="category">Beginner:</div>
-                <p>Blender, Houdini</p>
-
-                <!-- Research Interest -->
-                <h2>Research Interest</h2>
-                <p>My interest is in Human-Computer Interaction, Virtual Reality, Augmented Reality, Computer Graphics, Computer Vision, Machine Learning</p>
-
-                <!-- Research Achievements -->
-                <h2>Research Achievements</h2>
-                <p class="research-notation">
-                IC = International Conference / IJ = International Journal / IW = International Workshop /
-                DC = Domestic Conference (国内学会) / DJ = Domestic Journal (国内論文誌) /
-                DW = Domestic Workshop / AX = arXiv
-                </p>
-                <p class="research-notation">
-                Po = Poster / Pr = Presentation / De = Demonstration
-                </p>
-
-                <h3 class="year-heading">2024</h3>
-                <p>
-                <span class="achievement-tag">[AX.2]</span>
-                SEMANTIC SEE-THROUGH GOGGLES: Wearing Linguistic Virtual Reality in (Artificial) Intelligence<br>
-                Goki Muramoto, Yuri Yasui, <span class="author">Hirosuke Asahi</span><br>
-                arXiv preprint arXiv:2412.02641, 2024.12.<br>
-                <a href="https://arxiv.org/abs/2412.02641" target="_blank">[DOI]</a>
-                </p>
-
-                <p>
-                <span class="achievement-tag">[IC.2][De]</span>
-                Semantic See-through Goggles<br>
-                Goki Muramoto, Yuri Yasui, <span class="author">Hirosuke Asahi</span><br>
-                SIGGRAPH Asia Art Gallery, Tokyo, Japan, 2024.12.<br>
-                <a href="https://dl.acm.org/doi/abs/10.1145/3680529.3688959" target="_blank">[DOI]</a>
-                <a href="https://www.youtube.com/watch?v=0Wy07jKqhEY" target="_blank">[YouTube]</a>
-                </p>
-
-                <p>
-                <span class="achievement-tag">[AX.1]</span>
-                The Legend of Holy Sword: An Immersive Experience for Concentration Enhancement<br>
-                <span class="author">Hirosuke Asahi</span>, Ryoma Sonoyama, Chihiro Shoda, Nanami Kotani<br>
-                arXiv preprint arXiv:2408.16782, 2024.8.<br>
-                <a href="https://arxiv.org/abs/2408.16782" target="_blank">[DOI]</a>
-                </p>
-
-                <p>
-                <span class="achievement-tag">[DW.3][Po]</span>
-                動物型身体への没入型ロコモーションインタフェースの検討<br>
-                <span class="author">旭博佑</span>, 稲見昌彦<br>
-                VRSJ The Special Interest Group on Human Augmentation 2nd Workshop of Human Augmentation,
-                沖縄, 日本, 2024.06.
-                </p>
-
-                <p>
-                <span class="achievement-tag">[DW.2][Pr&amp;De]</span>
-                身体運動周期を用いた没入型ロコモーションインターフェースの検討<br>
-                高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦, <span class="author">旭博佑</span><br>
-                第71回EC研究発表会, 京都, 日本, 2024.03.
-                </p>
-
-                <a href="#" onclick="toggleContent(event)" class="read-more-toggle">>>>Read more</a>
-
-                <div id="more-content">
-                <p>
-                    <span class="achievement-tag">[DW.1][Po]</span>
-                    非生得身体への没入型ロコモーションインターフェースの検討<br>
-                    <span class="author">旭博佑</span>, 稲見昌彦<br>
-                    新学術領域研究「植物の周期と変調」第2回領域会議, 兵庫, 日本, 2024.01.
-                </p>
-
-                <p>
-                    <span class="achievement-tag">[DC.3]</span>
-                    腹腔鏡下縫合手技における針把持姿勢と縫合軌道最適化に関する研究<br>
-                    内池智哉, <span class="author">旭博佑</span>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子<br>
-                    2024年度精密工学会春季大会学術講演会, 東京, 日本, 2024.03.<br>
-                    <a href="https://www.jstage.jst.go.jp/article/pscjspe/2024S/0/2024S_462/_article/-char/ja/" target="_blank">[DOI]</a>
-                </p>
-
-                <h3 class="year-heading">2023</h3>
-                <p>
-                    <span class="achievement-tag">[IC.1][De]</span>
-                    ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing<br>
-                    Takatoshi Yoshida, Takafumi Watanabe, <span class="author">Hirosuke Asahi</span>, Kashun Rin, Haruki Kozuka, Masaharu Hirose, Masahiko Inami<br>
-                    SIGGRAPH Asia 2023 Emerging Technologies (SA '23), Sydney, Australia, 2023.11.<br>
-                    <a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank">[DOI]</a>
-                    <a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank">[YouTube]</a>
-                </p>
-
-                <p>
-                    <span class="achievement-tag">[DC.2][De]</span>
-                    聖剣を継ぐ者　- 集中の証明 -<br>
-                    園山遼馬, <span class="author">旭博佑</span>, 正田千宙, 小谷七海<br>
-                    第28回バーチャルリアリティ学会大会, 東京, 日本, 2023.09.<br>
-                    <a href="https://conference.vrsj.org/ac2023/program/doc/IVRC-03.pdf" target="_blank">[DOI]</a>
-                    <a href="https://www.youtube.com/watch?v=iUkLfrCzRpg" target="_blank">[YouTube]</a>
-                </p>
-
-                <p>
-                    <span class="achievement-tag">[DC.1][Pr]</span>
-                    腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証<br>
-                    <span class="author">旭博佑</span>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子<br>
-                    第32回　ライフサポート学会フロンティア講演会, 東京, 日本, 2023.03.
-                </p>
+        <div class="profile-grid">
+            <aside class="profile-aside">
+                <div class="profile-photo">
+                    <img src="https://lh3.googleusercontent.com/d/1GTpYUJ_NdsnJzY2ve9UzmGkVJUuHMBhq=w1600?v=2" alt="Hirosuke Asahi">
                 </div>
+                <ul class="profile-aside__links">
+                    <li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ&view_op=list_works" target="_blank" rel="noopener">Google Scholar</a></li>
+                    <li><a href="CV_template.pdf" target="_blank" rel="noopener">Curriculum Vitae</a></li>
+                    <li><a href="https://github.com/qp-hiro" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">Email</a></li>
+                </ul>
+            </aside>
 
+            <div class="profile-content">
 
-                <!-- Awards -->
-                <h2>Awards</h2>
-                <p>2023 &nbsp; <a href="https://ivrc.net/2023/release3/">VoxelKei July Award, IVRC2023 @work1</a></p>
-                <p>2023 &nbsp; <a href="https://www.ntv.co.jp/imaginarium/award/">NTV Imaginarium July Award @work1</a></p>
-                <p>2024 &nbsp; <a href="https://entcomp.org/sig/?p=1087">第71回EC研究会デモ奨励賞第1位 @work3</a></p>
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="01"><span>Education <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">学歴</span></span></h2>
+                    <ul class="timeline">
+                        <li><time>2016.04 – 2019.03</time><span>Kurume Fusetsu High School</span></li>
+                        <li><time>2019.04 – 2023.03</time><span>B.S. Precision Engineering, The University of Tokyo</span></li>
+                        <li><time>2023.04 – 2025.03</time><span>M.S. Information Physics &amp; Computing, The University of Tokyo</span></li>
+                        <li><time>2025.04 – present</time><span>D.S. Advanced Interdisciplinary Studies, The University of Tokyo</span></li>
+                    </ul>
+                </section>
 
-                <!-- Others -->
-                <h2>Others</h2>
-                <p>グリーントランスフォーメーション(GX)を先導する高度人材育成 2025 年 4 月～2028 年 3 月</p>
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="02"><span>Technical Skills <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">技能</span></span></h2>
+                    <div class="skill-grid">
+                        <div class="skill-grid__row">
+                            <span class="skill-grid__label">Languages</span>
+                            <span class="skill-grid__value">Japanese · Chinese · English · Spanish</span>
+                        </div>
+                        <div class="skill-grid__row">
+                            <span class="skill-grid__label">Advanced</span>
+                            <span class="skill-grid__value">Python · C · C# · C++ · HTML/CSS · Arduino · 3D CAD · Unity</span>
+                        </div>
+                        <div class="skill-grid__row">
+                            <span class="skill-grid__label">Intermediate</span>
+                            <span class="skill-grid__value">JavaScript · MySQL · ROS · Machine Learning</span>
+                        </div>
+                        <div class="skill-grid__row">
+                            <span class="skill-grid__label">Beginner</span>
+                            <span class="skill-grid__value">Blender · Houdini</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="03"><span>Research Interest <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">研究分野</span></span></h2>
+                    <p class="prose">
+                        My interest lies in <strong>Human–Computer Interaction</strong>, <strong>Virtual &amp; Augmented Reality</strong>,
+                        <strong>Computer Graphics</strong>, <strong>Computer Vision</strong>, and <strong>Machine Learning</strong> —
+                        especially in how computationally extended bodies reshape our sense of perception and agency.
+                    </p>
+                </section>
+
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="04"><span>Research Achievements <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">研究業績</span></span></h2>
+
+                    <p class="research-note">
+                        IC = International Conference &nbsp;/&nbsp; IJ = International Journal &nbsp;/&nbsp; IW = International Workshop<br>
+                        DC = Domestic Conference (国内学会) &nbsp;/&nbsp; DJ = Domestic Journal (国内論文誌) &nbsp;/&nbsp; DW = Domestic Workshop &nbsp;/&nbsp; AX = arXiv<br>
+                        Po = Poster &nbsp;/&nbsp; Pr = Presentation &nbsp;/&nbsp; De = Demonstration
+                    </p>
+
+                    <div class="year-band">2024</div>
+
+                    <article class="pub">
+                        <span class="pub__tag">AX · 2</span>
+                        <h3 class="pub__title">SEMANTIC SEE-THROUGH GOGGLES: Wearing Linguistic Virtual Reality in (Artificial) Intelligence</h3>
+                        <p class="pub__authors">Goki Muramoto, Yuri Yasui, <span class="self">Hirosuke Asahi</span></p>
+                        <p class="pub__venue">arXiv preprint arXiv:2412.02641 · 2024.12</p>
+                        <div class="pub__links">
+                            <a href="https://arxiv.org/abs/2412.02641" target="_blank" rel="noopener">DOI</a>
+                        </div>
+                    </article>
+
+                    <article class="pub">
+                        <span class="pub__tag">IC · 2 · De</span>
+                        <h3 class="pub__title">Semantic See-through Goggles</h3>
+                        <p class="pub__authors">Goki Muramoto, Yuri Yasui, <span class="self">Hirosuke Asahi</span></p>
+                        <p class="pub__venue">SIGGRAPH Asia Art Gallery · Tokyo, Japan · 2024.12</p>
+                        <div class="pub__links">
+                            <a href="https://dl.acm.org/doi/abs/10.1145/3680529.3688959" target="_blank" rel="noopener">DOI</a>
+                            <a href="https://www.youtube.com/watch?v=0Wy07jKqhEY" target="_blank" rel="noopener">YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="pub">
+                        <span class="pub__tag">AX · 1</span>
+                        <h3 class="pub__title">The Legend of Holy Sword: An Immersive Experience for Concentration Enhancement</h3>
+                        <p class="pub__authors"><span class="self">Hirosuke Asahi</span>, Ryoma Sonoyama, Chihiro Shoda, Nanami Kotani</p>
+                        <p class="pub__venue">arXiv preprint arXiv:2408.16782 · 2024.08</p>
+                        <div class="pub__links">
+                            <a href="https://arxiv.org/abs/2408.16782" target="_blank" rel="noopener">DOI</a>
+                        </div>
+                    </article>
+
+                    <article class="pub">
+                        <span class="pub__tag">DW · 3 · Po</span>
+                        <h3 class="pub__title">動物型身体への没入型ロコモーションインタフェースの検討</h3>
+                        <p class="pub__authors"><span class="self">旭博佑</span>, 稲見昌彦</p>
+                        <p class="pub__venue">VRSJ SIG Human Augmentation, 2nd Workshop · 沖縄, 日本 · 2024.06</p>
+                    </article>
+
+                    <article class="pub">
+                        <span class="pub__tag">DW · 2 · Pr &amp; De</span>
+                        <h3 class="pub__title">身体運動周期を用いた没入型ロコモーションインターフェースの検討</h3>
+                        <p class="pub__authors">高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦, <span class="self">旭博佑</span></p>
+                        <p class="pub__venue">第71回EC研究発表会 · 京都, 日本 · 2024.03</p>
+                    </article>
+
+                    <button class="read-more-toggle" type="button" data-collapsible-trigger="profile-more">
+                        <span class="label">Show more</span>
+                        <span class="chev">↓</span>
+                    </button>
+
+                    <div id="profile-more" class="collapsible">
+                        <article class="pub">
+                            <span class="pub__tag">DW · 1 · Po</span>
+                            <h3 class="pub__title">非生得身体への没入型ロコモーションインターフェースの検討</h3>
+                            <p class="pub__authors"><span class="self">旭博佑</span>, 稲見昌彦</p>
+                            <p class="pub__venue">新学術領域研究「植物の周期と変調」第2回領域会議 · 兵庫, 日本 · 2024.01</p>
+                        </article>
+
+                        <article class="pub">
+                            <span class="pub__tag">DC · 3</span>
+                            <h3 class="pub__title">腹腔鏡下縫合手技における針把持姿勢と縫合軌道最適化に関する研究</h3>
+                            <p class="pub__authors">内池智哉, <span class="self">旭博佑</span>, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子</p>
+                            <p class="pub__venue">2024年度精密工学会春季大会学術講演会 · 東京, 日本 · 2024.03</p>
+                            <div class="pub__links">
+                                <a href="https://www.jstage.jst.go.jp/article/pscjspe/2024S/0/2024S_462/_article/-char/ja/" target="_blank" rel="noopener">DOI</a>
+                            </div>
+                        </article>
+
+                        <div class="year-band">2023</div>
+
+                        <article class="pub">
+                            <span class="pub__tag">IC · 1 · De</span>
+                            <h3 class="pub__title">ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing</h3>
+                            <p class="pub__authors">Takatoshi Yoshida, Takafumi Watanabe, <span class="self">Hirosuke Asahi</span>, Kashun Rin, Haruki Kozuka, Masaharu Hirose, Masahiko Inami</p>
+                            <p class="pub__venue">SIGGRAPH Asia 2023 Emerging Technologies (SA '23) · Sydney, Australia · 2023.11</p>
+                            <div class="pub__links">
+                                <a href="https://dl.acm.org/doi/10.1145/3610541.3614587" target="_blank" rel="noopener">DOI</a>
+                                <a href="https://www.youtube.com/watch?v=zNszz4TDAnI" target="_blank" rel="noopener">YouTube</a>
+                            </div>
+                        </article>
+
+                        <article class="pub">
+                            <span class="pub__tag">DC · 2 · De</span>
+                            <h3 class="pub__title">聖剣を継ぐ者 — 集中の証明</h3>
+                            <p class="pub__authors">園山遼馬, <span class="self">旭博佑</span>, 正田千宙, 小谷七海</p>
+                            <p class="pub__venue">第28回バーチャルリアリティ学会大会 · 東京, 日本 · 2023.09</p>
+                            <div class="pub__links">
+                                <a href="https://conference.vrsj.org/ac2023/program/doc/IVRC-03.pdf" target="_blank" rel="noopener">DOI</a>
+                                <a href="https://www.youtube.com/watch?v=iUkLfrCzRpg" target="_blank" rel="noopener">YouTube</a>
+                            </div>
+                        </article>
+
+                        <article class="pub">
+                            <span class="pub__tag">DC · 1 · Pr</span>
+                            <h3 class="pub__title">腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証</h3>
+                            <p class="pub__authors"><span class="self">旭博佑</span>, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子</p>
+                            <p class="pub__venue">第32回 ライフサポート学会フロンティア講演会 · 東京, 日本 · 2023.03</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="05"><span>Awards <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">受賞</span></span></h2>
+                    <ul class="award-list">
+                        <li><time>2023</time><span><a href="https://ivrc.net/2023/release3/" target="_blank" rel="noopener">VoxelKei July Award, IVRC 2023</a> <span style="color:var(--text-muted)">@Work1</span></span></li>
+                        <li><time>2023</time><span><a href="https://www.ntv.co.jp/imaginarium/award/" target="_blank" rel="noopener">NTV Imaginarium July Award</a> <span style="color:var(--text-muted)">@Work1</span></span></li>
+                        <li><time>2024</time><span><a href="https://entcomp.org/sig/?p=1087" target="_blank" rel="noopener">第71回EC研究会 デモ奨励賞 第1位</a> <span style="color:var(--text-muted)">@Work3</span></span></li>
+                    </ul>
+                </section>
+
+                <section class="profile-section" data-reveal>
+                    <h2 class="profile-section__title" data-num="06"><span>Fellowships <span class="jp" style="font-size:0.6em; color:var(--text-muted); margin-left:14px;">フェローシップ</span></span></h2>
+                    <p class="prose">
+                        グリーントランスフォーメーション (GX) を先導する高度人材育成 — 2025.04 – 2028.03
+                    </p>
+                </section>
+
             </div>
         </div>
-    </div>
+    </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function toggleContent(event) {
-            event.preventDefault();
-            var content = document.getElementById("more-content");
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block";
-            } else {
-                content.style.display = "none";
-            }
-        }
-    </script>
+    <footer class="page-foot">
+        <span>© 2025 Hirosuke Asahi</span>
+        <span><a href="index.html">↑ Back to top</a></span>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>

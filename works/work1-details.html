@@ -3,164 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Detail - Hirosuke Asahi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 36%; /* 16:9 Aspect Ratio */
-            height: 0;
-            margin-left: 5%;
-            width: 64%;
-            margin-bottom: 20px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .description {
-            font-size: 20px;
-            margin-left: -55%;
-            margin-right: 10%;
-        }
-        .images {
-            margin-left: 3%; /* Align the left edge of images with the video */
-        }
-        .images img {
-            width: auto; /* Changed to auto to maintain the aspect ratio */
-            height: 150px; /* Set a fixed height */
-            margin: 0.5%; /* Added margin to each image */
-            transition: transform 0.5s ease;
-            float: left;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .overlay img {
-            max-width: 0%;
-            max-height: 0%;
-            transition: all 0.5s ease;
-            pointer-events: none;
-        }
-        .overlay.active img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            font-size: 50px;
-        }
-        .home-icon {
-            position: absolute;
-            top: 5%;
-            right: 2.5%;
-            z-index: 1000;
-        }
-        .home-icon img {
-            width: 50px; /* Adjust the size as needed */
-        }
-    </style>
+    <title>The Legend of Holy Sword — Hirosuke Asahi</title>
+    <link rel="stylesheet" href="../styles.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S7V1ZM4MJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7S7V1ZM4MJ');
+    </script>
 </head>
 <body>
 
-    <script>
-        // ここで変数を設定
-        const workTitle = "The Legend of Holy Sword -Proof of Concentration-";
-        const abstractText = "Concentration is significant for maximizing potential in any activity. However, traditional methods to improve it often lack direct and natural feedback. We propose an innovative and inspiring VR system to experience and improve concentration. In the experience of pulling out the holy sword, which cannot be achieved simply by force, the player receives multimodal concentration feedback in visual, auditory, and haptic senses. We believe that this experience will help the user confront his/her concentration and improve the ability to control it consciously.";
-        const youtubeLink = "https://www.youtube.com/embed/n8j5po9vFQg";
-        const imagePaths = [
-            "https://lh3.googleusercontent.com/d/1HnkUa9LZE7F4cErlBNRmRtggFrZAGCo9",
-            "https://lh3.googleusercontent.com/d/1HmPDTxouFfo84JNUIvoZWSjYzWqU61bC",
-            "https://lh3.googleusercontent.com/d/1Hz0zW9ViqbQT68YCZ4oLQteFGxSu3yYJ",
-            "https://lh3.googleusercontent.com/d/1HlpEE8lahys1L6n1oApAGX7gwiK4R5WY"
-        ];
-    </script>
+    <header class="topbar">
+        <a href="../index.html" class="mark">
+            <span>Hirosuke Asahi</span>
+            <span class="jp">旭 博佑</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="primary-nav">
+            <a href="../index.html#profile">Profile <span class="jp">プロフィール</span></a>
+            <a href="../index.html#career">Career <span class="jp">経歴</span></a>
+            <a href="../index.html#publications">Publications <span class="jp">業績</span></a>
+            <a href="../works.html" class="is-current">Works <span class="jp">作品</span></a>
+            <a href="../index.html#contact">Contact <span class="jp">連絡</span></a>
+        </nav>
+    </header>
 
-    <h1 id="workTitle"></h1>
+    <main class="detail-shell">
+        <a href="../works.html" class="detail-back">← Back to Works</a>
 
-    <a href="../index.html" class="home-icon">
-        <img src="https://lh3.googleusercontent.com/d/1FX9OwQujYPYrxJ0yCoC4LmMyT4h-1V0X" alt="Home"> <!-- Replace with your home icon URL -->
-    </a>
+        <header class="detail-head" data-reveal>
+            <span class="detail-head__eyebrow">№ 01 · 2023 · VR / Interactive</span>
+            <h1 class="detail-head__title">The Legend of Holy Sword</h1>
+            <p class="detail-head__subtitle">— Proof of Concentration</p>
+        </header>
 
-    <div class="row no-gutters">
-        <div class="col-md-8">
-            <div class="video-container">
-                <iframe id="youtubeVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <section class="detail-body" data-reveal>
+            <div class="video-frame">
+                <iframe src="https://www.youtube.com/embed/n8j5po9vFQg" title="The Legend of Holy Sword" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="description">
-                <h2>Abstract</h2>
-                <p id="abstractText"></p>
+            <div class="detail-abstract">
+                <p class="detail-abstract__label">Abstract</p>
+                <p class="detail-abstract__text">
+                    Concentration is significant for maximizing potential in any activity. However, traditional methods to improve it often lack direct and natural feedback. We propose an innovative and inspiring VR system to experience and improve concentration. In the experience of pulling out the holy sword — which cannot be achieved simply by force — the player receives multimodal concentration feedback in visual, auditory, and haptic senses. We believe that this experience will help the user confront his/her concentration and improve the ability to control it consciously.
+                </p>
             </div>
-        </div>
+        </section>
+
+        <section class="detail-gallery" data-reveal>
+            <img data-lightbox src="https://lh3.googleusercontent.com/d/1HnkUa9LZE7F4cErlBNRmRtggFrZAGCo9" alt="">
+            <img data-lightbox src="https://lh3.googleusercontent.com/d/1HmPDTxouFfo84JNUIvoZWSjYzWqU61bC" alt="">
+            <img data-lightbox src="https://lh3.googleusercontent.com/d/1Hz0zW9ViqbQT68YCZ4oLQteFGxSu3yYJ" alt="">
+            <img data-lightbox src="https://lh3.googleusercontent.com/d/1HlpEE8lahys1L6n1oApAGX7gwiK4R5WY" alt="">
+        </section>
+    </main>
+
+    <div class="lightbox" role="dialog" aria-modal="true">
+        <span class="lightbox__close">[ ESC to close ]</span>
+        <img src="" alt="">
     </div>
 
-    <div class="images" id="imageContainer"></div>
+    <footer class="page-foot">
+        <span>© 2025 Hirosuke Asahi</span>
+        <span><a href="../works.html">↑ Back to Works</a></span>
+    </footer>
 
-    <div class="overlay">
-        <img src="" alt="Enlarged Work Image">
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('workTitle').innerText = workTitle;
-        document.getElementById('abstractText').innerText = abstractText;
-        document.getElementById('youtubeVideo').src = youtubeLink;
-
-        const imageContainer = document.getElementById('imageContainer');
-        imagePaths.forEach(path => {
-            const img = document.createElement('img');
-            img.src = path;
-            img.alt = "Work Image";
-            img.style.width = 'auto';
-            img.style.height = '150px';
-            img.style.margin = '5px';
-            img.style.transition = 'transform 0.5s ease';
-            img.style.float = 'left';
-            imageContainer.appendChild(img);
-        });
-
-        const images = document.querySelectorAll('.images img');
-        const overlay = document.querySelector('.overlay');
-        const overlayImg = overlay.querySelector('img');
-
-        images.forEach(img => {
-            img.addEventListener('click', () => {
-                overlayImg.src = img.src;
-                overlay.style.display = 'flex';
-                setTimeout(() => {
-                    overlay.classList.add('active');
-                }, 50);
-            });
-        });
-
-        overlay.addEventListener('click', () => {
-            overlay.classList.remove('active');
-            overlay.style.display = 'none';
-        });
-    </script>
+    <script src="../main.js"></script>
 </body>
 </html>
