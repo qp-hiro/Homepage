@@ -13,6 +13,7 @@ This site is bilingual (English / Japanese). For AI agents and LLMs, the complet
 - [Home](https://qp-hiro.github.io/Homepage/index.html): Profile, career, research & skills, works, publications & achievements, contact
 - [Profile / Publications detail](https://qp-hiro.github.io/Homepage/profile.html): Detailed research achievements list with venue tags
 - [Works](https://qp-hiro.github.io/Homepage/works.html): Interactive works and exhibitions
+- [Gallery](https://qp-hiro.github.io/Homepage/gallery.html): Photography by Hirosuke Asahi
 
 ## External
 

@@ -9,6 +9,7 @@
 - **Affiliation:** Research Center for Advanced Science and Technology (RCAST), The University of Tokyo / 東京大学 先端科学技術研究センター
 - **Position:** Doctoral student, Advanced Interdisciplinary Studies (since 2025.04) / 先端学際工学専攻 博士課程
 - **Fields:** Information Somatics · Human-Computer Interaction (HCI) · Virtual Reality (VR) · Robotics / 情報身体学・HCI・VR・ロボティクス
+- **Also:** Photographer / 写真家としても活動
 - **Based in:** Tokyo, Japan
 - **Languages:** Japanese (native), English, Chinese, Spanish
 - **Email:** hirosuke.asahi@star.rcast.u-tokyo.ac.jp
@@ -73,6 +74,11 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 1. **The Legend of Holy Sword（聖剣を継ぐ者 — 集中の証明）** (2023) — A multimodal VR proof of concentration, embodied in the pulling of a sword. Concentration is measured multimodally and proven through the act of drawing a holy sword. — https://qp-hiro.github.io/Homepage/works/work1-details.html
 2. **ForceField** (2023) — Visualising intermaterial force across a room through floor and depth sensing, without instrumenting bodies. — https://qp-hiro.github.io/Homepage/works/work2-details.html
 3. **Semantic See-through Goggles** (2024) — Goggles through which the view is first converted into a line of text and then re-scenified as an image; wearing linguistic virtual reality. — https://qp-hiro.github.io/Homepage/works/work3-details.html
+
+## Photography / 写真
+
+He is also active as a photographer. His photographic works are published in the Gallery: https://qp-hiro.github.io/Homepage/gallery.html
+研究活動に加えて写真家としても活動しており、写真作品をギャラリーページで公開している。
 
 ## Technical skills / 技能
 

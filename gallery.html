@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery — Hirosuke Asahi</title>
+    <meta name="description" content="Photography by Hirosuke Asahi — a gallery of photographic works.">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- ► AI/LLM readers: full site content as Markdown -->
+    <link rel="alternate" type="text/plain" href="llms-full.txt" title="LLM-friendly content">
+    <link rel="canonical" href="https://qp-hiro.github.io/Homepage/gallery.html">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S7V1ZM4MJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7S7V1ZM4MJ');
+    </script>
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="mark">
+            <span>Hirosuke Asahi</span>
+            <span class="jp">旭 博佑</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="primary-nav">
+            <a href="index.html#profile">Profile <span class="jp">プロフィール</span></a>
+            <a href="index.html#career">Career <span class="jp">経歴</span></a>
+            <a href="index.html#publications">Publications <span class="jp">業績</span></a>
+            <a href="works.html">Works <span class="jp">作品</span></a>
+            <a href="gallery.html" class="is-current">Gallery <span class="jp">写真</span></a>
+            <a href="index.html#contact">Contact <span class="jp">連絡</span></a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="page-head">
+            <span class="page-head__meta">Photography</span>
+            <h1 class="page-head__title">Gallery <span class="jp" style="display:block; font-size:0.30em; color:var(--text-soft); margin-top:8px;">写真</span></h1>
+            <span class="page-head__index">—</span>
+        </div>
+
+        <div class="photo-grid" id="gallery-container"></div>
+
+        <div class="gallery-empty" id="gallery-empty" hidden>
+            <span class="gallery-empty__mark">— Coming Soon —</span>
+            <p class="gallery-empty__text">
+                Photographic works will be published here.
+                <span class="jp">写真作品を近日公開予定です。</span>
+            </p>
+        </div>
+    </main>
+
+    <div class="lightbox" role="dialog" aria-modal="true">
+        <span class="lightbox__close">[ ESC to close ]</span>
+        <img src="" alt="">
+    </div>
+
+    <footer class="page-foot">
+        <span>© 2025 Hirosuke Asahi</span>
+        <span><a href="index.html">↑ Back to top</a></span>
+    </footer>
+
+    <script>
+        /* ► EDIT: add photos here — one object per photo, newest first.
+           src:      image URL. For Google Drive images use
+                     'https://lh3.googleusercontent.com/d/FILE_ID' with the
+                     file shared as "anyone with the link can view".
+           title:    short English title (optional: '' to hide)
+           jp:       Japanese caption (optional)
+           year:     e.g. '2026'
+           location: e.g. 'Tokyo' (optional)
+
+           Example:
+           {
+               src: 'https://lh3.googleusercontent.com/d/XXXXXXXXXXXX',
+               title: 'Morning Light',
+               jp: '朝の光',
+               year: '2026',
+               location: 'Tokyo'
+           },
+        */
+        const photos = [
+        ];
+
+        const container = document.getElementById('gallery-container');
+        const emptyEl = document.getElementById('gallery-empty');
+
+        if (!photos.length) {
+            emptyEl.hidden = false;
+        } else {
+            photos.forEach((p) => {
+                const fig = document.createElement('figure');
+                fig.className = 'photo-card';
+                fig.setAttribute('data-reveal', '');
+
+                const img = document.createElement('img');
+                img.src = p.src;
+                img.alt = p.title || 'Photograph by Hirosuke Asahi';
+                img.loading = 'lazy';
+                img.setAttribute('data-lightbox', '');
+                fig.appendChild(img);
+
+                const metaBits = [p.year, p.location].filter(Boolean).join(' · ');
+                if (p.title || p.jp || metaBits) {
+                    const cap = document.createElement('figcaption');
+                    cap.className = 'photo-card__caption';
+                    cap.innerHTML =
+                        (p.title ? `<span class="photo-card__title">${p.title}</span>` : '') +
+                        (p.jp ? `<span class="photo-card__jp">${p.jp}</span>` : '') +
+                        (metaBits ? `<span class="photo-card__meta">${metaBits}</span>` : '');
+                    fig.appendChild(cap);
+                }
+                container.appendChild(fig);
+            });
+        }
+    </script>
+    <script src="main.js"></script>
+    <script src="chatbot.js" defer></script>
+</body>
+</html>

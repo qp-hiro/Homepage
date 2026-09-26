@@ -2601,6 +2601,94 @@ em, i { font-style: normal; }
     .skill-grid { grid-template-columns: 1fr; }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   GALLERY (photography)  /  写真ギャラリー — gallery.html
+   ═══════════════════════════════════════════════════════════════ */
+.photo-grid {
+    columns: 3 300px;
+    column-gap: 20px;
+}
+
+.photo-card {
+    break-inside: avoid;
+    margin: 0 0 20px;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-elev);
+    overflow: hidden;
+}
+
+.photo-card img {
+    width: 100%;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.7s var(--ease-slow), filter 0.4s var(--ease);
+}
+
+.photo-card:hover img {
+    transform: scale(1.025);
+    filter: brightness(1.03);
+}
+
+.photo-card__caption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--border-soft);
+}
+
+.photo-card__title {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+}
+
+.photo-card__jp {
+    font-family: var(--jp);
+    font-size: 11.5px;
+    color: var(--text-soft);
+}
+
+.photo-card__meta {
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.gallery-empty {
+    border: 1px dashed var(--border);
+    padding: 96px 24px;
+    text-align: center;
+}
+
+.gallery-empty__mark {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.gallery-empty__text {
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+.gallery-empty__text .jp {
+    display: block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+    .photo-grid { columns: 2 160px; column-gap: 12px; }
+    .photo-card { margin-bottom: 12px; }
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

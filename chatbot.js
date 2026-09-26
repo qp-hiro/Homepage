@@ -179,6 +179,13 @@
             en: `Selected works:<ul class="hcb-list"><li><a href="${ROOT('works/work1-details.html')}">The Legend of Holy Sword</a> — a multimodal VR proof of concentration (2023)</li><li><a href="${ROOT('works/work2-details.html')}">ForceField</a> — visualising intermaterial force via floor &amp; depth sensing (2023)</li><li><a href="${ROOT('works/work3-details.html')}">Semantic See-through Goggles</a> — glasses that turn the view into text and re-scenify it (2024)</li></ul>See the <a href="${ROOT('works.html')}">Works page</a>.`
         },
         {
+            id: 'photography',
+            keys: ['写真', 'ギャラリー', 'カメラ', '撮影', 'フォト'],
+            words: ['photo', 'photos', 'photography', 'photographer', 'gallery', 'camera'],
+            jp: `写真家としても活動しています。写真作品は<a href="${ROOT('gallery.html')}">Galleryページ</a>で公開しています。`,
+            en: `He is also active as a photographer. His photographic works are published on the <a href="${ROOT('gallery.html')}">Gallery page</a>.`
+        },
+        {
             id: 'skills',
             keys: ['スキル', '技能', 'プログラミング', '技術', '得意'],
             words: ['skill', 'skills', 'programming', 'tech stack', 'unity', 'python'],
