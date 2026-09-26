@@ -1,0 +1,24 @@
+# Hirosuke Asahi (旭 博佑)
+
+> Personal academic homepage of Hirosuke Asahi, a doctoral researcher at RCAST, The University of Tokyo. Fields: Information Somatics, Human-Computer Interaction (HCI), Virtual Reality (VR), and Robotics. His research intervenes in human bodily sensation and movement — redesigning them to give rise to new kinds of experience.
+
+This site is bilingual (English / Japanese). For AI agents and LLMs, the complete site content is available as a single Markdown document:
+
+## Full content
+
+- [llms-full.txt](https://qp-hiro.github.io/Homepage/llms-full.txt): Complete profile, career, publications, awards, works, skills, and contact information in Markdown
+
+## Pages
+
+- [Home](https://qp-hiro.github.io/Homepage/index.html): Profile, career, research & skills, works, publications & achievements, contact
+- [Profile / Publications detail](https://qp-hiro.github.io/Homepage/profile.html): Detailed research achievements list with venue tags
+- [Works](https://qp-hiro.github.io/Homepage/works.html): Interactive works and exhibitions
+
+## External
+
+- [Google Scholar](https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ): Publication list
+- [GitHub](https://github.com/qp-hiro): Code
+
+## Contact
+
+- Email: hirosuke.asahi@star.rcast.u-tokyo.ac.jp
