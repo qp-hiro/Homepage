@@ -46,6 +46,41 @@
             <span class="page-head__index">—</span>
         </div>
 
+        <!-- ═══ ADMIN PANEL (visible only via gallery.html#admin) ═══
+             Photos are managed through this panel: authentication is a
+             GitHub fine-grained personal access token (Contents R/W on
+             this repository only). Without a valid token the GitHub API
+             rejects every write, so the panel is inert for visitors. -->
+        <section class="gadmin" id="gadmin" hidden>
+            <div class="gadmin__head">
+                <span class="gadmin__title">Gallery Admin <span class="jp">管理モード</span></span>
+                <button class="gadmin__logout" id="gadmin-logout" type="button" hidden>ログアウト</button>
+            </div>
+
+            <div class="gadmin__auth" id="gadmin-auth">
+                <p class="gadmin__note">
+                    パスワード(GitHubトークン)を入力してください。<br>
+                    <span class="gadmin__hint">GitHub → Settings → Developer settings → Fine-grained tokens で、このリポジトリのみ・Contents (Read and write) 権限のトークンを作成。</span>
+                </p>
+                <div class="gadmin__row">
+                    <input type="password" id="gadmin-token" class="gadmin__input" placeholder="github_pat_… / ghp_…" autocomplete="off">
+                    <button class="gadmin__btn" id="gadmin-login" type="button">認証</button>
+                </div>
+                <label class="gadmin__remember"><input type="checkbox" id="gadmin-remember"> この端末に記憶する</label>
+                <p class="gadmin__status" id="gadmin-auth-status"></p>
+            </div>
+
+            <div class="gadmin__tools" id="gadmin-tools" hidden>
+                <div class="gadmin__drop" id="gadmin-drop">
+                    <span class="gadmin__drop-icon">⇣</span>
+                    ここに写真をドラッグ&ドロップ<span class="jp">またはクリックして選択(複数可)</span>
+                    <input type="file" id="gadmin-file" accept="image/*" multiple hidden>
+                </div>
+                <div class="gadmin__queue" id="gadmin-queue"></div>
+                <p class="gadmin__status" id="gadmin-status"></p>
+            </div>
+        </section>
+
         <div class="photo-grid" id="gallery-container"></div>
 
         <div class="gallery-empty" id="gallery-empty" hidden>
@@ -68,43 +103,53 @@
     </footer>
 
     <script>
-        /* ► EDIT: add photos here — one object per photo, newest first.
-           src:      image URL. For Google Drive images use
-                     'https://lh3.googleusercontent.com/d/FILE_ID' with the
-                     file shared as "anyone with the link can view".
-           title:    short English title (optional: '' to hide)
-           jp:       Japanese caption (optional)
-           year:     e.g. '2026'
-           location: e.g. 'Tokyo' (optional)
+    /* ═══════════════════════════════════════════════════════════════
+       GALLERY — data lives in photos.json; images live in photos/.
+       Public view: read-only. Admin (#admin): drag & drop to add,
+       ✕ to delete — every write goes through the GitHub API and is
+       authorised by the owner's fine-grained token ("password").
+       ═══════════════════════════════════════════════════════════════ */
+    (() => {
+        'use strict';
 
-           Example:
-           {
-               src: 'https://lh3.googleusercontent.com/d/XXXXXXXXXXXX',
-               title: 'Morning Light',
-               jp: '朝の光',
-               year: '2026',
-               location: 'Tokyo'
-           },
-        */
-        const photos = [
-        ];
+        const REPO   = 'qp-hiro/Homepage';
+        const BRANCH = 'main';
+        const API    = `https://api.github.com/repos/${REPO}/contents/`;
+        const MAX_DIM = 2200;          // longest edge after client-side resize
+        const JPEG_Q  = 0.85;
+
+        const isAdmin = () => location.hash === '#admin';
 
         const container = document.getElementById('gallery-container');
-        const emptyEl = document.getElementById('gallery-empty');
+        const emptyEl   = document.getElementById('gallery-empty');
+        const adminEl   = document.getElementById('gadmin');
+        const authEl    = document.getElementById('gadmin-auth');
+        const toolsEl   = document.getElementById('gadmin-tools');
+        const authStat  = document.getElementById('gadmin-auth-status');
+        const statusEl  = document.getElementById('gadmin-status');
+        const queueEl   = document.getElementById('gadmin-queue');
 
-        if (!photos.length) {
-            emptyEl.hidden = false;
-        } else {
-            photos.forEach((p) => {
+        const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c =>
+            ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+        let photos = [];          // current manifest
+        let manifestSha = null;   // sha of photos.json (for API updates)
+        let token = sessionStorage.getItem('gh_token') || localStorage.getItem('gh_token') || '';
+
+        /* ---------- Rendering ---------- */
+        function render() {
+            container.innerHTML = '';
+            emptyEl.hidden = photos.length > 0;
+            photos.forEach((p, i) => {
                 const fig = document.createElement('figure');
                 fig.className = 'photo-card';
-                fig.setAttribute('data-reveal', '');
 
                 const img = document.createElement('img');
                 img.src = p.src;
                 img.alt = p.title || 'Photograph by Hirosuke Asahi';
                 img.loading = 'lazy';
-                img.setAttribute('data-lightbox', '');
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', () => openLightbox(p.src));
                 fig.appendChild(img);
 
                 const metaBits = [p.year, p.location].filter(Boolean).join(' · ');
@@ -112,14 +157,256 @@
                     const cap = document.createElement('figcaption');
                     cap.className = 'photo-card__caption';
                     cap.innerHTML =
-                        (p.title ? `<span class="photo-card__title">${p.title}</span>` : '') +
-                        (p.jp ? `<span class="photo-card__jp">${p.jp}</span>` : '') +
-                        (metaBits ? `<span class="photo-card__meta">${metaBits}</span>` : '');
+                        (p.title ? `<span class="photo-card__title">${esc(p.title)}</span>` : '') +
+                        (p.jp ? `<span class="photo-card__jp">${esc(p.jp)}</span>` : '') +
+                        (metaBits ? `<span class="photo-card__meta">${esc(metaBits)}</span>` : '');
                     fig.appendChild(cap);
+                }
+
+                if (isAdmin() && token) {
+                    const del = document.createElement('button');
+                    del.type = 'button';
+                    del.className = 'photo-card__del';
+                    del.textContent = '✕ 削除';
+                    del.addEventListener('click', () => confirmDelete(del, i));
+                    fig.appendChild(del);
                 }
                 container.appendChild(fig);
             });
         }
+
+        /* Lightbox (self-contained; main.js binds only elements present at load) */
+        const lb = document.querySelector('.lightbox');
+        const lbImg = lb.querySelector('img');
+        function openLightbox(src) { lbImg.src = src; lb.classList.add('is-open'); }
+        lb.addEventListener('click', () => lb.classList.remove('is-open'));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('is-open'); });
+
+        /* ---------- Load manifest (public view: plain fetch) ---------- */
+        async function loadPublic() {
+            try {
+                const res = await fetch('photos.json?v=' + Date.now(), { cache: 'no-store' });
+                const data = await res.json();
+                photos = Array.isArray(data.photos) ? data.photos : [];
+            } catch (e) { photos = []; }
+            render();
+        }
+
+        /* ---------- GitHub API helpers ---------- */
+        const ghHeaders = () => ({
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+        });
+
+        async function ghGet(path) {
+            const res = await fetch(API + path + '?ref=' + BRANCH, { headers: ghHeaders(), cache: 'no-store' });
+            if (!res.ok) throw new Error('GET ' + path + ' → ' + res.status);
+            return res.json();
+        }
+
+        async function ghPut(path, base64, message, sha) {
+            const body = { message, content: base64, branch: BRANCH };
+            if (sha) body.sha = sha;
+            const res = await fetch(API + path, { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) });
+            if (!res.ok) throw new Error('PUT ' + path + ' → ' + res.status + ' ' + (await res.text()).slice(0, 200));
+            return res.json();
+        }
+
+        async function ghDelete(path, sha, message) {
+            const res = await fetch(API + path, { method: 'DELETE', headers: ghHeaders(),
+                body: JSON.stringify({ message, sha, branch: BRANCH }) });
+            if (!res.ok) throw new Error('DELETE ' + path + ' → ' + res.status);
+            return res.json();
+        }
+
+        /* Fetch manifest through the API so we always have its current sha */
+        async function loadManifestAuthed() {
+            const data = await ghGet('photos.json');
+            manifestSha = data.sha;
+            const text = new TextDecoder().decode(Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0)));
+            const parsed = JSON.parse(text);
+            photos = Array.isArray(parsed.photos) ? parsed.photos : [];
+        }
+
+        async function saveManifest(message) {
+            const json = JSON.stringify({ photos }, null, 2) + '\n';
+            const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(json)));
+            const res = await ghPut('photos.json', b64, message, manifestSha);
+            manifestSha = res.content.sha;
+        }
+
+        /* ---------- Admin: auth ---------- */
+        async function tryLogin(t, remember) {
+            authStat.textContent = '確認中…';
+            token = t.trim();
+            try {
+                await loadManifestAuthed();
+                sessionStorage.setItem('gh_token', token);
+                if (remember) localStorage.setItem('gh_token', token);
+                authEl.hidden = true;
+                toolsEl.hidden = false;
+                document.getElementById('gadmin-logout').hidden = false;
+                authStat.textContent = '';
+                render();
+            } catch (e) {
+                token = '';
+                authStat.textContent = '認証に失敗しました。トークンと権限(Contents: Read and write)を確認してください。';
+            }
+        }
+
+        function logout() {
+            token = '';
+            sessionStorage.removeItem('gh_token');
+            localStorage.removeItem('gh_token');
+            toolsEl.hidden = true;
+            authEl.hidden = false;
+            document.getElementById('gadmin-logout').hidden = true;
+            render();
+        }
+
+        /* ---------- Admin: image processing ---------- */
+        async function fileToJpeg(file) {
+            let bmp;
+            try { bmp = await createImageBitmap(file, { imageOrientation: 'from-image' }); }
+            catch (e) { bmp = await createImageBitmap(file); }
+            const scale = Math.min(1, MAX_DIM / Math.max(bmp.width, bmp.height));
+            const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+            const cv = document.createElement('canvas');
+            cv.width = w; cv.height = h;
+            cv.getContext('2d').drawImage(bmp, 0, 0, w, h);
+            const blob = await new Promise(r => cv.toBlob(r, 'image/jpeg', JPEG_Q));
+            const buf = new Uint8Array(await blob.arrayBuffer());
+            let bin = '';
+            const CHUNK = 0x8000;
+            for (let i = 0; i < buf.length; i += CHUNK) bin += String.fromCharCode(...buf.subarray(i, i + CHUNK));
+            return { base64: btoa(bin), width: w, height: h, size: blob.size, previewURL: URL.createObjectURL(blob) };
+        }
+
+        const safeName = (name) => name.toLowerCase()
+            .replace(/\.[a-z0-9]+$/, '')
+            .replace(/[^a-z0-9_-]+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .slice(0, 40) || 'photo';
+
+        /* ---------- Admin: upload queue ---------- */
+        function enqueueFiles(files) {
+            [...files].forEach(async (file) => {
+                if (!file.type.startsWith('image/')) return;
+                const item = document.createElement('div');
+                item.className = 'gadmin__item';
+                item.innerHTML = `<div class="gadmin__thumb"><img alt=""></div>
+                    <div class="gadmin__fields">
+                        <input type="text" data-f="title" placeholder="Title (English, 任意)">
+                        <input type="text" data-f="jp" placeholder="キャプション(日本語, 任意)">
+                        <div class="gadmin__row">
+                            <input type="text" data-f="year" placeholder="Year" value="${new Date().getFullYear()}" style="width:90px;">
+                            <input type="text" data-f="location" placeholder="Location (任意)">
+                        </div>
+                        <div class="gadmin__row">
+                            <button type="button" class="gadmin__btn" data-act="up">アップロード</button>
+                            <button type="button" class="gadmin__btn gadmin__btn--ghost" data-act="rm">取消</button>
+                            <span class="gadmin__item-status"></span>
+                        </div>
+                    </div>`;
+                queueEl.appendChild(item);
+
+                const st = item.querySelector('.gadmin__item-status');
+                st.textContent = '圧縮中…';
+                let processed;
+                try {
+                    processed = await fileToJpeg(file);
+                    item.querySelector('.gadmin__thumb img').src = processed.previewURL;
+                    st.textContent = `${processed.width}×${processed.height} · ${(processed.size / 1024).toFixed(0)} KB`;
+                } catch (e) {
+                    st.textContent = '画像を読み込めませんでした';
+                    return;
+                }
+
+                item.querySelector('[data-act="rm"]').addEventListener('click', () => item.remove());
+                item.querySelector('[data-act="up"]').addEventListener('click', async (ev) => {
+                    const btn = ev.currentTarget;
+                    btn.disabled = true;
+                    st.textContent = 'アップロード中…';
+                    try {
+                        const path = `photos/${Date.now()}-${safeName(file.name)}.jpg`;
+                        await ghPut(path, processed.base64, 'gallery: add ' + path);
+                        await loadManifestAuthed();   // refresh sha in case of concurrent edits
+                        const get = (f) => item.querySelector(`[data-f="${f}"]`).value.trim();
+                        photos.unshift({ src: path, title: get('title'), jp: get('jp'), year: get('year'), location: get('location') });
+                        await saveManifest('gallery: update photos.json');
+                        item.remove();
+                        render();
+                        statusEl.textContent = '✓ 追加しました。公開サイトへの反映には数分かかります(GitHub Pagesの再ビルド)。';
+                    } catch (e) {
+                        btn.disabled = false;
+                        st.textContent = '失敗: ' + e.message;
+                    }
+                });
+            });
+        }
+
+        /* ---------- Admin: delete (two-step confirm) ---------- */
+        function confirmDelete(btn, index) {
+            if (btn.dataset.armed !== '1') {
+                btn.dataset.armed = '1';
+                btn.textContent = '本当に削除する?';
+                btn.classList.add('is-armed');
+                setTimeout(() => { btn.dataset.armed = ''; btn.textContent = '✕ 削除'; btn.classList.remove('is-armed'); }, 4000);
+                return;
+            }
+            (async () => {
+                btn.disabled = true;
+                btn.textContent = '削除中…';
+                try {
+                    const p = photos[index];
+                    await loadManifestAuthed();       // fresh sha + latest list
+                    const idx = photos.findIndex(x => x.src === p.src);
+                    if (idx !== -1) photos.splice(idx, 1);
+                    if (p.src.startsWith('photos/')) {
+                        try {
+                            const meta = await ghGet(p.src);
+                            await ghDelete(p.src, meta.sha, 'gallery: delete ' + p.src);
+                        } catch (e) { /* file already gone — still fix manifest */ }
+                    }
+                    await saveManifest('gallery: update photos.json');
+                    render();
+                    statusEl.textContent = '✓ 削除しました。公開サイトへの反映には数分かかります。';
+                } catch (e) {
+                    btn.disabled = false;
+                    btn.textContent = '失敗: ' + e.message;
+                }
+            })();
+        }
+
+        /* ---------- Wire up ---------- */
+        function initAdminUI() {
+            adminEl.hidden = !isAdmin();
+            if (!isAdmin()) return;
+
+            const drop = document.getElementById('gadmin-drop');
+            const fileInput = document.getElementById('gadmin-file');
+            drop.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', () => { enqueueFiles(fileInput.files); fileInput.value = ''; });
+            ['dragover', 'dragenter'].forEach(ev => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('is-over'); }));
+            ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('is-over'); }));
+            drop.addEventListener('drop', (e) => enqueueFiles(e.dataTransfer.files));
+
+            document.getElementById('gadmin-login').addEventListener('click', () =>
+                tryLogin(document.getElementById('gadmin-token').value,
+                         document.getElementById('gadmin-remember').checked));
+            document.getElementById('gadmin-token').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') tryLogin(e.target.value, document.getElementById('gadmin-remember').checked);
+            });
+            document.getElementById('gadmin-logout').addEventListener('click', logout);
+
+            if (token) tryLogin(token, false);
+        }
+
+        window.addEventListener('hashchange', () => { initAdminUI(); render(); });
+        loadPublic();
+        initAdminUI();
+    })();
     </script>
     <script src="main.js"></script>
     <script src="chatbot.js" defer></script>

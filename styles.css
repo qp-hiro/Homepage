@@ -2689,6 +2689,129 @@ em, i { font-style: normal; }
     .photo-card { margin-bottom: 12px; }
 }
 
+/* ── Gallery admin (visible only via #admin) ───────────────────── */
+.gadmin {
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    padding: 22px 24px;
+    margin-bottom: 40px;
+}
+
+.gadmin__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.gadmin__title {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.gadmin__title .jp { margin-left: 10px; font-size: 11px; color: var(--text-muted); }
+
+.gadmin__note { font-size: 12.5px; color: var(--text-soft); line-height: 1.7; margin-bottom: 12px; }
+.gadmin__hint { font-size: 11px; color: var(--text-muted); }
+
+.gadmin__row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.gadmin__input {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid var(--border);
+    background: var(--bg-pale);
+    color: var(--text);
+    font-size: 13px;
+    padding: 9px 12px;
+    outline: none;
+    font-family: inherit;
+}
+.gadmin__input:focus { border-color: var(--accent-line); }
+
+.gadmin__btn {
+    border: none;
+    background: var(--bg-deep);
+    color: var(--hi-text);
+    font-size: 12.5px;
+    padding: 9px 16px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+}
+.gadmin__btn:hover { opacity: 0.85; }
+.gadmin__btn:disabled { opacity: 0.4; cursor: default; }
+.gadmin__btn--ghost { background: transparent; color: var(--text-soft); border: 1px solid var(--border); }
+
+.gadmin__remember { display: block; margin-top: 10px; font-size: 11.5px; color: var(--text-muted); }
+
+.gadmin__logout {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.gadmin__status { font-size: 12px; color: var(--text-soft); margin-top: 10px; min-height: 1em; }
+
+.gadmin__drop {
+    border: 2px dashed var(--border);
+    padding: 34px 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+.gadmin__drop:hover, .gadmin__drop.is-over { background: var(--surface); border-color: var(--accent-line); }
+.gadmin__drop .jp { display: block; margin-top: 4px; font-size: 11px; color: var(--text-muted); }
+.gadmin__drop-icon { display: block; font-size: 22px; margin-bottom: 6px; color: var(--text-muted); }
+
+.gadmin__queue { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+
+.gadmin__item {
+    display: flex;
+    gap: 14px;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-pale);
+    padding: 12px;
+}
+
+.gadmin__thumb { width: 120px; flex-shrink: 0; }
+.gadmin__thumb img { width: 100%; display: block; border: 1px solid var(--border-soft); }
+
+.gadmin__fields { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.gadmin__fields input {
+    border: 1px solid var(--border-soft);
+    background: #fff;
+    color: var(--text);
+    font-size: 12.5px;
+    padding: 7px 10px;
+    outline: none;
+    font-family: inherit;
+}
+.gadmin__fields input:focus { border-color: var(--accent-line); }
+
+.gadmin__item-status { font-size: 11.5px; color: var(--text-muted); }
+
+.photo-card__del {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: rgba(28, 26, 23, 0.82);
+    color: var(--hi-text);
+    font-size: 11.5px;
+    padding: 6px 10px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+}
+.photo-card { position: relative; }
+.photo-card__del.is-armed { background: #8a2b1d; }
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
