@@ -205,8 +205,8 @@
             id: 'contact',
             keys: ['連絡', 'メール', 'コンタクト', '問い合わせ', '共同研究', '依頼', '取材'],
             words: ['contact', 'email', 'mail', 'reach', 'collaboration', 'collaborate', 'inquiry'],
-            jp: `連絡はメールでどうぞ: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a>(大学) / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a>(個人)<br>共同研究・取材などのご相談も歓迎です。SNSは<a href="${ROOT('index.html')}#contact">Contactセクション</a>にまとまっています。`,
-            en: `The best way is email: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> (academic) / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a> (personal)<br>Collaboration and media inquiries are welcome. Social links are in the <a href="${ROOT('index.html')}#contact">Contact section</a>.`
+            jp: `連絡はメールでどうぞ: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a><br>共同研究・取材などのご相談も歓迎です。SNSは<a href="${ROOT('index.html')}#contact">Contactセクション</a>にまとまっています。`,
+            en: `The best way is email: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a><br>Collaboration and media inquiries are welcome. Social links are in the <a href="${ROOT('index.html')}#contact">Contact section</a>.`
         },
         {
             id: 'sns',
