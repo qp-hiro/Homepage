@@ -22,4 +22,4 @@ This site is bilingual (English / Japanese). For AI agents and LLMs, the complet
 
 ## Contact
 
-- Email: hirosuke.asahi@star.rcast.u-tokyo.ac.jp
+- Email: hirosuke.asahi@star.rcast.u-tokyo.ac.jp (academic) / hirosuke2000@outlook.jp (personal)

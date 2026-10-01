@@ -40,7 +40,7 @@
 
     <main class="page-shell">
         <div class="page-head">
-            <span class="page-head__meta">主な作品 · 2023 – 2025</span>
+            <span class="page-head__meta">主な作品 · 2023 – 2026</span>
             <h1 class="page-head__title">Works <span class="jp" style="display:block; font-size:0.30em; color:var(--text-soft); margin-top:8px;">作品</span></h1>
             <span class="page-head__index">03 / 03</span>
         </div>
@@ -53,60 +53,36 @@
         <span><a href="index.html">↑ Back to top</a></span>
     </footer>
 
+    <!-- Card data is generated from the Drive folder by tools/build_works.py -->
+    <script src="works/works-data.js"></script>
     <script>
-        const works = [
-            {
-                title: 'The Legend of Holy Sword',
-                subtitle: 'Proof of Concentration',
-                year: '2023',
-                imagePath: 'https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx',
-                detailsPath: 'works/work1-details.html'
-            },
-            {
-                title: 'ForceField',
-                subtitle: 'Visualizing Intermaterial Interaction',
-                year: '2023',
-                imagePath: 'https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh',
-                detailsPath: 'works/work2-details.html'
-            },
-            {
-                title: 'Semantic See-through Goggles',
-                subtitle: 'Linguistic Virtual Reality in (Artificial) Intelligence',
-                year: '2024',
-                imagePath: 'https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq',
-                detailsPath: 'works/work3-details.html'
-            }
-            // — Work 04 (Heteromorphic Locomotion Interface) is temporarily hidden. —
-            // ,{
-            //     title: 'Heteromorphic Locomotion Interface',
-            //     subtitle: 'Transformation to universal creatures',
-            //     year: '2024',
-            //     imagePath: 'https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T',
-            //     detailsPath: 'works/work4-details.html'
-            // }
-        ];
-
         const container = document.getElementById('works-container');
 
-        works.forEach((work, i) => {
-            const a = document.createElement('a');
-            a.href = work.detailsPath;
-            a.className = 'work-card';
-            a.setAttribute('data-reveal', '');
+        WORKS_DATA
+            .slice()
+            .sort((a, b) => Number(b.year) - Number(a.year) || b.num - a.num)
+            .forEach((work) => {
+                const a = document.createElement('a');
+                a.href = work.detailsPath;
+                a.className = 'work-card';
+                a.setAttribute('data-reveal', '');
 
-            a.innerHTML = `
-                <img class="work-card__img" src="${work.imagePath}" alt="${work.title}" loading="lazy">
-                <div class="work-card__veil"></div>
-                <span class="work-card__num">№ ${String(i + 1).padStart(2, '0')}</span>
-                <span class="work-card__year">${work.year}</span>
-                <div class="work-card__caption">
-                    <h2 class="work-card__title">${work.title}</h2>
-                    <p class="work-card__subtitle">— ${work.subtitle}</p>
-                </div>
-                <span class="work-card__arrow" aria-hidden="true">↗</span>
-            `;
-            container.appendChild(a);
-        });
+                const img = work.imagePath
+                    ? `<img class="work-card__img" src="${work.imagePath}" alt="${work.title}" loading="lazy">`
+                    : '';
+                a.innerHTML = `
+                    ${img}
+                    <div class="work-card__veil"></div>
+                    <span class="work-card__num">№ ${String(work.num).padStart(2, '0')}</span>
+                    <span class="work-card__year">${work.year}</span>
+                    <div class="work-card__caption">
+                        <h2 class="work-card__title">${work.title}</h2>
+                        <p class="work-card__subtitle">— ${work.subtitle}</p>
+                    </div>
+                    <span class="work-card__arrow" aria-hidden="true">↗</span>
+                `;
+                container.appendChild(a);
+            });
     </script>
     <script src="main.js"></script>
     <script src="chatbot.js" defer></script>

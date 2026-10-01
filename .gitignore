@@ -30,3 +30,9 @@ yarn-error.log
 Files_for_index/
 Files_for_works/
 Files_for_profile/
+works_sync.log
+tools/.works_cache.json
+
+# Exception: generated web images for works (built by tools/build_works.py)
+!works/img/**/*.jpg
+!works/img/**/*.png

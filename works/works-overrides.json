@@ -1,0 +1,45 @@
+{
+  "_comment": "Manual knobs for tools/build_works.py. Everything else (title, subtitle, year, abstract, images) is auto-derived from the Drive folder H:\\マイドライブ\\Homepage\\Files_for_works. Keys per work: title, subtitle, subtitle_jp, desc_en, desc_jp, tags, year, youtube (video id), thumbnail (source filename in the Drive folder), abstract, hidden.",
+  "work1": {
+    "subtitle": "Proof of Concentration",
+    "subtitle_jp": "聖剣を継ぐ者 — 集中の証明。",
+    "desc_en": "A multimodal proof of concentration, embodied in the pulling of a sword.",
+    "desc_jp": "集中を証明するマルチモーダルVR体験",
+    "tags": "VR · Multimodal",
+    "year": "2023",
+    "youtube": "n8j5po9vFQg",
+    "thumbnail": "teaser_new.png"
+  },
+  "work2": {
+    "subtitle": "Visualizing Intermaterial Interaction",
+    "subtitle_jp": "床と深度センシングによる物体間相互作用の可視化。",
+    "desc_en": "Visualising intermaterial force across a room, without instrumenting bodies.",
+    "desc_jp": "床と深度センシングによる物体間相互作用の可視化",
+    "tags": "Sensing · Spatial",
+    "year": "2023",
+    "youtube": "zNszz4TDAnI",
+    "thumbnail": "SystemImage2.png"
+  },
+  "work3": {
+    "abstract": "Semantic See-through Goggles are a kind of glasses, through which the view becomes once a line of text and is re-scenified. Participants wear original goggles equipped with a camera and HMD. First, the AI converts a single image from the camera into a single line of text. Next, the AI generates an image from that line of text, displayed on both eye displays. These processes occur in real time, allowing the user to perceive and act on the real physical world through this redrawn view. This experience confronts, bodily and literally, the kind of radical virtual reality latent in a society that mediates sensory information under language — an attempt to appropriate some of the energy of today's debate over artificial intelligence for a classical inquiry: \"intelligence can only see the world under meaning.\"",
+    "subtitle": "Linguistic Virtual Reality in (Artificial) Intelligence",
+    "subtitle_jp": "視界をいちど一文に変え、再び画像に戻すゴーグル。",
+    "desc_en": "Glasses through which the view becomes once a line of text, and is re-scenified.",
+    "desc_jp": "視界を一度言語に変換し再画像化するゴーグル",
+    "tags": "VR · Generative AI",
+    "year": "2024",
+    "youtube": "0Wy07jKqhEY",
+    "thumbnail": "teaser.png"
+  },
+  "work4": {
+    "subtitle_jp": "腕の素材感を書き換えるウェアラブル触覚システム。",
+    "desc_en": "A wearable haptic system that rewrites the perceived material of your arm.",
+    "desc_jp": "腕の素材感を書き換えるウェアラブル触覚システム",
+    "tags": "Haptics · VR",
+    "thumbnail": "main image.png"
+  },
+  "work5": {
+    "hidden": true,
+    "_note": "CHI 2027査読中のため採択まで非公開。公開するときは hidden を外す"
+  }
+}

@@ -173,10 +173,12 @@
         },
         {
             id: 'works',
-            keys: ['作品', 'プロジェクト', 'デモ', '展示', '聖剣', 'ゴーグル'],
-            words: ['works', 'project', 'projects', 'demo', 'exhibition', 'goggles', 'forcefield', 'sword'],
-            jp: `代表的な作品:<ul class="hcb-list"><li><a href="${ROOT('works/work1-details.html')}">The Legend of Holy Sword(聖剣を継ぐ者)</a> — 集中を証明するマルチモーダルVR体験 (2023)</li><li><a href="${ROOT('works/work2-details.html')}">ForceField</a> — 床と深度センシングによる物体間相互作用の可視化 (2023)</li><li><a href="${ROOT('works/work3-details.html')}">Semantic See-through Goggles</a> — 視界を一度言語に変換し再画像化するゴーグル (2024)</li></ul><a href="${ROOT('works.html')}">作品一覧はこちら</a>。`,
-            en: `Selected works:<ul class="hcb-list"><li><a href="${ROOT('works/work1-details.html')}">The Legend of Holy Sword</a> — a multimodal VR proof of concentration (2023)</li><li><a href="${ROOT('works/work2-details.html')}">ForceField</a> — visualising intermaterial force via floor &amp; depth sensing (2023)</li><li><a href="${ROOT('works/work3-details.html')}">Semantic See-through Goggles</a> — glasses that turn the view into text and re-scenify it (2024)</li></ul>See the <a href="${ROOT('works.html')}">Works page</a>.`
+            keys: ['作品', 'プロジェクト', 'デモ', '展示', '聖剣', 'ゴーグル', 'マテリアライザ', 'ロコモーション'],
+            words: ['works', 'project', 'projects', 'demo', 'exhibition', 'goggles', 'forcefield', 'sword', 'materializer', 'haptic', 'locomotion'],
+            // WORKS:AUTO:BEGIN
+            jp: `代表的な作品:<ul class="hcb-list"><li><a href="${ROOT('works/work4-details.html')}">Arm Materializer</a> — 腕の素材感を書き換えるウェアラブル触覚システム (2026)</li><li><a href="${ROOT('works/work3-details.html')}">Semantic See-through Goggles</a> — 視界を一度言語に変換し再画像化するゴーグル (2024)</li><li><a href="${ROOT('works/work2-details.html')}">ForceField</a> — 床と深度センシングによる物体間相互作用の可視化 (2023)</li><li><a href="${ROOT('works/work1-details.html')}">The Legend of Holy Sword</a> — 集中を証明するマルチモーダルVR体験 (2023)</li></ul><a href="${ROOT('works.html')}">作品一覧はこちら</a>。`,
+            en: `Selected works:<ul class="hcb-list"><li><a href="${ROOT('works/work4-details.html')}">Arm Materializer</a> — A wearable haptic system that rewrites the perceived material of your arm. (2026)</li><li><a href="${ROOT('works/work3-details.html')}">Semantic See-through Goggles</a> — Glasses through which the view becomes once a line of text, and is re-scenified. (2024)</li><li><a href="${ROOT('works/work2-details.html')}">ForceField</a> — Visualising intermaterial force across a room, without instrumenting bodies. (2023)</li><li><a href="${ROOT('works/work1-details.html')}">The Legend of Holy Sword</a> — A multimodal proof of concentration, embodied in the pulling of a sword. (2023)</li></ul>See the <a href="${ROOT('works.html')}">Works page</a>.`
+// WORKS:AUTO:END
         },
         {
             id: 'photography',
@@ -203,15 +205,15 @@
             id: 'contact',
             keys: ['連絡', 'メール', 'コンタクト', '問い合わせ', '共同研究', '依頼', '取材'],
             words: ['contact', 'email', 'mail', 'reach', 'collaboration', 'collaborate', 'inquiry'],
-            jp: `連絡はメールでどうぞ: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a><br>共同研究・取材などのご相談も歓迎です。SNSは<a href="${ROOT('index.html')}#contact">Contactセクション</a>にまとまっています。`,
-            en: `The best way is email: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a><br>Collaboration and media inquiries are welcome. Social links are in the <a href="${ROOT('index.html')}#contact">Contact section</a>.`
+            jp: `連絡はメールでどうぞ: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a>(大学) / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a>(個人)<br>共同研究・取材などのご相談も歓迎です。SNSは<a href="${ROOT('index.html')}#contact">Contactセクション</a>にまとまっています。`,
+            en: `The best way is email: <a href="mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp">hirosuke.asahi@star.rcast.u-tokyo.ac.jp</a> (academic) / <a href="mailto:hirosuke2000@outlook.jp">hirosuke2000@outlook.jp</a> (personal)<br>Collaboration and media inquiries are welcome. Social links are in the <a href="${ROOT('index.html')}#contact">Contact section</a>.`
         },
         {
             id: 'sns',
             keys: ['github', 'ギットハブ', 'インスタ', 'youtube', 'ユーチューブ', 'note', 'facebook', 'sns', 'スカラー'],
             words: ['github', 'instagram', 'youtube', 'facebook', 'note', 'scholar', 'social'],
-            jp: 'リンク:<ul class="hcb-list"><li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://github.com/qp-hiro" target="_blank" rel="noopener">GitHub (qp-hiro)</a></li><li><a href="https://www.instagram.com/hiro.asahi.00/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://note.com/qp_blueberry" target="_blank" rel="noopener">note</a></li></ul>',
-            en: 'Links:<ul class="hcb-list"><li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://github.com/qp-hiro" target="_blank" rel="noopener">GitHub (qp-hiro)</a></li><li><a href="https://www.instagram.com/hiro.asahi.00/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://note.com/qp_blueberry" target="_blank" rel="noopener">note</a></li></ul>'
+            jp: 'リンク:<ul class="hcb-list"><li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://github.com/qp-hiro" target="_blank" rel="noopener">GitHub (qp-hiro)</a></li><li><a href="https://www.instagram.com/qpcam00/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://note.com/qp_blueberry" target="_blank" rel="noopener">note</a></li></ul>',
+            en: 'Links:<ul class="hcb-list"><li><a href="https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://github.com/qp-hiro" target="_blank" rel="noopener">GitHub (qp-hiro)</a></li><li><a href="https://www.instagram.com/qpcam00/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://note.com/qp_blueberry" target="_blank" rel="noopener">note</a></li></ul>'
         },
         {
             id: 'origin',
@@ -222,10 +224,10 @@
         },
         {
             id: 'fellowship',
-            keys: ['フェロー', '奨学', '資金', 'gx'],
-            words: ['fellowship', 'funding', 'grant', 'gx'],
-            jp: '東京大学「グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム」のフェローです(2025.04–2028.03)。',
-            en: 'He is a fellow of the UTokyo GX (Green Transformation) Advanced Human Resource Development Program (2025.04–2028.03).'
+            keys: ['フェロー', '奨学', '資金', 'gx', '学振', '特別研究員', 'dc2'],
+            words: ['fellowship', 'funding', 'grant', 'gx', 'jsps', 'dc2'],
+            jp: '日本学術振興会 特別研究員 (DC2) に採用されています(2027.04–2029.03)。また、東京大学「グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム」のフェローです(2025.04–2027.03)。',
+            en: 'He has been selected as a JSPS Research Fellow (DC2, 2027.04–2029.03). He is also a fellow of the UTokyo GX (Green Transformation) Advanced Human Resource Development Program (2025.04–2027.03).'
         },
         {
             id: 'cv',

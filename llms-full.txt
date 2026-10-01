@@ -1,7 +1,7 @@
 # Hirosuke Asahi (旭 博佑) — Full Site Content for AI Readers
 
 > Machine-readable Markdown version of https://qp-hiro.github.io/Homepage/
-> Last updated: 2026-09-26. This file is kept in sync with the site; publications are also updated automatically.
+> Last updated: 2026-10-01. This file is kept in sync with the site; publications are also updated automatically.
 
 ## Profile / プロフィール
 
@@ -12,7 +12,7 @@
 - **Also:** Photographer / 写真家としても活動
 - **Based in:** Tokyo, Japan
 - **Languages:** Japanese (native), English, Chinese, Spanish
-- **Email:** hirosuke.asahi@star.rcast.u-tokyo.ac.jp
+- **Email:** hirosuke.asahi@star.rcast.u-tokyo.ac.jp (academic) / hirosuke2000@outlook.jp (personal)
 
 Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His research intervenes in human bodily sensation and movement — redesigning them to give rise to new kinds of experience. His work spans VR/AR, robotics, haptics, biomechanics, motor learning, and AI, asking how a computationally extended body reshapes perception and action, explored through working systems and exhibitions.
 
@@ -27,7 +27,8 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 
 ### Fellowship
 
-- 2025.04 – 2028.03: UTokyo GX (Green Transformation) Advanced Human Resource Development Program, Fellow / グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム
+- 2027.04 – 2029.03: JSPS Research Fellowship for Young Scientists (DC2) / 日本学術振興会 特別研究員 (DC2)
+- 2025.04 – 2027.03: UTokyo GX (Green Transformation) Advanced Human Resource Development Program, Fellow / グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム
 
 ## Publications & Achievements / 研究業績
 
@@ -71,9 +72,12 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 
 ## Works / 作品
 
-1. **The Legend of Holy Sword（聖剣を継ぐ者 — 集中の証明）** (2023) — A multimodal VR proof of concentration, embodied in the pulling of a sword. Concentration is measured multimodally and proven through the act of drawing a holy sword. — https://qp-hiro.github.io/Homepage/works/work1-details.html
-2. **ForceField** (2023) — Visualising intermaterial force across a room through floor and depth sensing, without instrumenting bodies. — https://qp-hiro.github.io/Homepage/works/work2-details.html
-3. **Semantic See-through Goggles** (2024) — Goggles through which the view is first converted into a line of text and then re-scenified as an image; wearing linguistic virtual reality. — https://qp-hiro.github.io/Homepage/works/work3-details.html
+<!-- WORKS:AUTO:BEGIN -->
+1. **Arm Materializer: Dynamic Pseudo-Attraction for Modulating Perceived Arm Material** (2026) — The human body is not simply rigid. Its viscoelastic properties contribute to material qualities perceived through movement, which can be important for conceptualizing movement and embodying avatars with different material characteristics. We propose Arm Materializer, a wearable haptic system that induces viscoelastic deformation sensations in the arm using motion-coupled pseudoattraction. The system forms a closed loop between the user’s arm motion and haptic feedback. Arm motion drives a simulation of viscoelastic deformation, and the simulated response is presented back to the arm as pseudo-attraction forces at two locations. Preliminary demonstrations suggest that the system can modulate perceived deformation dynamics and material qualities of the arm. In the demonstration, users can explore these sensations through both VR and real-space interactions. — https://qp-hiro.github.io/Homepage/works/work4-details.html
+2. **Semantic See-through Goggles: Linguistic Virtual Reality in (Artificial) Intelligence** (2024) — Semantic See-through Goggles are a kind of glasses, through which the view becomes once a line of text and is re-scenified. Participants wear original goggles equipped with a camera and HMD. First, the AI converts a single image from the camera into a single line of text. Next, the AI generates an image from that line of text, displayed on both eye displays. These processes occur in real time, allowing the user to perceive and act on the real physical world through this redrawn view. This experience confronts, bodily and literally, the kind of radical virtual reality latent in a society that mediates sensory information under language — an attempt to appropriate some of the energy of today's debate over artificial intelligence for a classical inquiry: "intelligence can only see the world under meaning." — https://qp-hiro.github.io/Homepage/works/work3-details.html
+3. **ForceField: Visualizing Intermaterial Interaction** (2023) — ForceField realizes the measurement of intermaterial contact forces across any surface within a room-scale environment without the need for additional device attachments to bodies or objects. It achieves this by acquiring a 3D model through a depth sensor and capturing ground pressure through a floor sensor, and then reconstructing contact forces between surfaces where no sensors are attached, such as when a hand pushes a desk, or people push against each other, from information on force and geometry. Through this unobtrusive environmental measurement approach, ForceField opens up the possibility of highly physical spatial interactions in domains such as healthcare, sports, and entertainment. — https://qp-hiro.github.io/Homepage/works/work2-details.html
+4. **The Legend of Holy Sword: Proof of Concentration** (2023) — Concentration is significant for maximizing potential in any activity. However, traditional methods to improve it often lack direct and natural feedback. We propose an innovative and inspiring VR system to experience and improve concentration. In the experience of pulling out the holy sword, which cannot be achieved simply by force, the player receives multimodal concentration feedback in visual, auditory, and haptic senses. We believe that this experience will help the user confront his/her concentration and improve the ability to control it consciously. — https://qp-hiro.github.io/Homepage/works/work1-details.html
+<!-- WORKS:AUTO:END -->
 
 ## Photography / 写真
 
@@ -93,7 +97,7 @@ He is also active as a photographer. His photographic works are published in the
 - GitHub: https://github.com/qp-hiro
 - YouTube: https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA
 - note: https://note.com/qp_blueberry
-- Instagram: https://www.instagram.com/hiro.asahi.00/
+- Instagram: https://www.instagram.com/qpcam00/
 - Facebook: https://www.facebook.com/hiro.asahi.37/
 
 ## Contact / 連絡先

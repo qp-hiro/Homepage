@@ -166,3 +166,30 @@
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
     els.forEach(el => io.observe(el));
 })();
+
+// ---------- Lite YouTube embed (click to play) ----------
+// The iframe is injected only on click. On file:// previews YouTube refuses to
+// embed entirely, so there we open the video on YouTube instead of erroring.
+(() => {
+    document.querySelectorAll('.video-frame[data-youtube]').forEach(frame => {
+        const id = frame.dataset.youtube;
+        const play = () => {
+            if (location.protocol === 'file:') {
+                window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener');
+                return;
+            }
+            if (frame.querySelector('iframe')) return;
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+            iframe.title = frame.getAttribute('aria-label') || 'Video';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            frame.innerHTML = '';
+            frame.appendChild(iframe);
+        };
+        frame.addEventListener('click', play);
+        frame.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+        });
+    });
+})();
