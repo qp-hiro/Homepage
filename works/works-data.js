@@ -5,7 +5,11 @@ const WORKS_DATA = [
         title: "Arm Materializer",
         subtitle: "Dynamic Pseudo-Attraction for Modulating Perceived Arm Material",
         year: "2026",
-        imagePath: "works/img/work4/main-image.jpg",
+        imagePaths: [
+            "works/img/work4/main-image.jpg",
+            "works/img/work4/algorithm.jpg",
+            "works/img/work4/system-architecture.jpg"
+        ],
         detailsPath: "works/work4-details.html"
     },
     {
@@ -13,7 +17,12 @@ const WORKS_DATA = [
         title: "Semantic See-through Goggles",
         subtitle: "Linguistic Virtual Reality in (Artificial) Intelligence",
         year: "2024",
-        imagePath: "works/img/work3/teaser.jpg",
+        imagePaths: [
+            "works/img/work3/teaser.jpg",
+            "works/img/work3/still.jpg",
+            "works/img/work3/workshop1.jpg",
+            "works/img/work3/workshop2.jpg"
+        ],
         detailsPath: "works/work3-details.html"
     },
     {
@@ -21,7 +30,12 @@ const WORKS_DATA = [
         title: "ForceField",
         subtitle: "Visualizing Intermaterial Interaction",
         year: "2023",
-        imagePath: "works/img/work2/systemimage2.jpg",
+        imagePaths: [
+            "works/img/work2/systemimage2.jpg",
+            "works/img/work2/poster.jpg",
+            "works/img/work2/systemimage3.jpg",
+            "works/img/work2/systemoverview.png"
+        ],
         detailsPath: "works/work2-details.html"
     },
     {
@@ -29,7 +43,12 @@ const WORKS_DATA = [
         title: "The Legend of Holy Sword",
         subtitle: "Proof of Concentration",
         year: "2023",
-        imagePath: "works/img/work1/teaser-new.jpg",
+        imagePaths: [
+            "works/img/work1/teaser-new.jpg",
+            "works/img/work1/seed-stage.jpg",
+            "works/img/work1/09338401.jpg",
+            "works/img/work1/12a801fb.jpg"
+        ],
         detailsPath: "works/work1-details.html"
     }
 ];

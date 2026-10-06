@@ -40,6 +40,24 @@
     }, 7000);
 })();
 
+// ---------- Works cascade: per-card image slideshow ----------
+(() => {
+    const groups = document.querySelectorAll('.cascade__slides[data-slides]');
+    if (!groups.length) return;
+    groups.forEach((group, cardIdx) => {
+        const imgs = group.querySelectorAll('img');
+        if (imgs.length < 2) return;
+        let i = 0;
+        setTimeout(() => {
+            setInterval(() => {
+                imgs[i].classList.remove('is-active');
+                i = (i + 1) % imgs.length;
+                imgs[i].classList.add('is-active');
+            }, 4000);
+        }, cardIdx * 900);
+    });
+})();
+
 // ---------- News card: expand/collapse ----------
 (() => {
     const card = document.querySelector('.news-card');
