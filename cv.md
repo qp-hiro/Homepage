@@ -6,7 +6,7 @@ Research Center for Advanced Science and Technology (RCAST), The University of T
 
 [hirosuke.asahi@star.rcast.u-tokyo.ac.jp](mailto:hirosuke.asahi@star.rcast.u-tokyo.ac.jp) / [hirosuke2000@outlook.jp](mailto:hirosuke2000@outlook.jp) · [https://qp-hiro.github.io/Homepage/](https://qp-hiro.github.io/Homepage/)
 
-*Last updated: 2026-10-09*
+*Last updated: 2026-10-08*
 
 ## Research Interests
 
