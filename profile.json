@@ -1,0 +1,90 @@
+{
+  "_comment": "Source of truth for the CV. Edit this file (and publications.json) and push; build_cv.py regenerates cv.pdf and cv.md.",
+  "name": {
+    "en": "Hirosuke Asahi",
+    "jp": "旭 博佑"
+  },
+  "pronunciation_jp": "あさひ ひろすけ",
+  "title_en": "Doctoral Student · Information Somatics · HCI · VR",
+  "title_jp": "博士課程 / 情報身体学・HCI・VR",
+  "affiliation": {
+    "en": "Research Center for Advanced Science and Technology (RCAST), The University of Tokyo",
+    "jp": "東京大学 先端科学技術研究センター"
+  },
+  "email": [
+    "hirosuke.asahi@star.rcast.u-tokyo.ac.jp",
+    "hirosuke2000@outlook.jp"
+  ],
+  "homepage": "https://qp-hiro.github.io/Homepage/",
+  "research_interests": {
+    "en": "My research intervenes in human bodily sensation and movement — redesigning them to give rise to new kinds of experience. My work spans VR / AR, robotics, haptics, biomechanics, motor learning, and AI, asking how a computationally extended body reshapes perception and action, explored through working systems and exhibitions.",
+    "jp": "人の身体感覚や運動に介入し、それらを再設計することで新しい体験を生み出すことを目指して研究を行っている。関連領域は VR/AR・ロボティクス・ハプティクス・バイオメカニクス・運動学習・AI など多岐にわたる。拡張された身体が知覚や行為をいかに変えるのかという問いに、実装・展示を通じて取り組んでいる。"
+  },
+  "born": {
+    "year": 2000,
+    "place_en": "Fukuoka, Japan",
+    "place_jp": "福岡"
+  },
+  "education": [
+    {
+      "period": "2025.04 – present",
+      "degree_en": "Doctoral course, Advanced Interdisciplinary Studies",
+      "institution_en": "The University of Tokyo",
+      "degree_jp": "東京大学大学院 先端学際工学専攻 博士課程",
+      "tag": "Doctorate"
+    },
+    {
+      "period": "2023.04 – 2025.03",
+      "degree_en": "M.S. Information Physics & Computing",
+      "institution_en": "The University of Tokyo",
+      "degree_jp": "東京大学大学院 情報理工学系研究科 修士課程",
+      "tag": "Master"
+    },
+    {
+      "period": "2019.04 – 2023.03",
+      "degree_en": "B.S. Precision Engineering",
+      "institution_en": "The University of Tokyo",
+      "degree_jp": "東京大学 工学部 精密工学科",
+      "tag": "Bachelor"
+    },
+    {
+      "period": "2016.04 – 2019.03",
+      "degree_en": "Kurume Fusetsu High School",
+      "institution_en": "",
+      "degree_jp": "久留米附設高等学校",
+      "tag": "High School"
+    }
+  ],
+  "fellowships": [
+    {
+      "period": "2027.04 – 2029.03",
+      "name_en": "JSPS Research Fellowship for Young Scientists (DC2)",
+      "name_jp": "日本学術振興会 特別研究員 (DC2)",
+      "institution_en": "Japan Society for the Promotion of Science"
+    },
+    {
+      "period": "2025.04 – 2027.03",
+      "name_en": "UTokyo GX Advanced Human Resource Development Program",
+      "name_jp": "グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム",
+      "institution_en": "The University of Tokyo"
+    }
+  ],
+  "skills": {
+    "advanced": ["Python", "C", "C#", "C++", "HTML/CSS", "Arduino", "3D CAD", "Unity"],
+    "intermediate": ["JavaScript", "MySQL", "ROS", "Machine Learning"],
+    "beginner": ["Blender", "Houdini"]
+  },
+  "languages": [
+    { "name": "Japanese", "name_jp": "日本語", "level": "Native" },
+    { "name": "English", "name_jp": "英語", "level": "Fluent" },
+    { "name": "Chinese", "name_jp": "中国語", "level": "Intermediate" },
+    { "name": "Spanish", "name_jp": "スペイン語", "level": "Basic" }
+  ],
+  "links": [
+    { "name": "Google Scholar", "url": "https://scholar.google.com/citations?hl=ja&user=YPA6TZ4AAAAJ" },
+    { "name": "GitHub", "url": "https://github.com/qp-hiro" },
+    { "name": "YouTube", "url": "https://www.youtube.com/channel/UCP0LKD8eFH5t-28rO6rThuA" },
+    { "name": "note", "url": "https://note.com/qp_blueberry" },
+    { "name": "Instagram", "url": "https://www.instagram.com/qpcam00/" }
+  ]
+}

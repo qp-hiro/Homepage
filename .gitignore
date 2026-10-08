@@ -43,3 +43,6 @@ tools/gallery_*.log
 !Gallery/**/*.jpeg
 !Gallery/**/*.png
 !Gallery/**/*.webp
+
+# Exception: auto-generated CV output
+!cv.pdf
