@@ -46,3 +46,9 @@ tools/gallery_*.log
 
 # Exception: auto-generated CV output
 !cv.pdf
+
+# Exception: hero background slideshow images
+!Hero/**/*.jpg
+!Hero/**/*.jpeg
+!Hero/**/*.png
+!Hero/**/*.webp

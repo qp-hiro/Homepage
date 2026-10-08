@@ -1,0 +1,46 @@
+name: Hero sync
+
+# Regenerate the <!-- HERO:AUTO --> block in index.html whenever an image
+# is added / removed in the Hero/ folder.
+on:
+  push:
+    paths:
+      - "Hero/**"
+      - "tools/build_hero.py"
+      - ".github/workflows/hero-sync.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: hero-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild hero block
+        run: python tools/build_hero.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "hero: regenerate index.html from Hero/"
+          git pull --rebase --autostash origin main
+          git push origin main

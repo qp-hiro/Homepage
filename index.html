@@ -122,12 +122,16 @@
          ════════════════════════════════════════════════════════════ -->
     <section class="hero">
 
-        <!-- ► EDIT: hero background slideshow images (rotate every 7s) -->
+        <!-- Hero background slideshow images (rotate every 7s).
+             Add / remove images in the Hero/ folder; build_hero.py regenerates
+             this block on push. -->
         <div class="hero-bg" aria-hidden="true">
-            <img src="https://lh3.googleusercontent.com/d/1HwHNMH3iIJZEBZByImbqWEr1rYc4lCPx" class="hero-bg__img is-active" alt="">
-            <img src="https://lh3.googleusercontent.com/d/1IHtE2kUWjXD9sMAgaawyQXPuxrGbZaVh" class="hero-bg__img" alt="">
-            <img src="https://lh3.googleusercontent.com/d/1Y96D81uLq707sGF1LZr2nEi8DwchITOq" class="hero-bg__img" alt="">
-            <img src="https://lh3.googleusercontent.com/d/1rxPZswYmU1gi2_4rwbsptQi_EyvAPC3T" class="hero-bg__img" alt="">
+            <!-- HERO:AUTO:BEGIN -->
+            <img src="Hero/01.jpg" class="hero-bg__img is-active" alt="" loading="eager">
+            <img src="Hero/02.jpg" class="hero-bg__img" alt="" loading="eager">
+            <img src="Hero/03.jpg" class="hero-bg__img" alt="" loading="eager">
+            <img src="Hero/04.jpg" class="hero-bg__img" alt="" loading="eager">
+            <!-- HERO:AUTO:END -->
             <div class="hero-bg__veil"></div>
             <div class="hero-bg__grain"></div>
         </div>
