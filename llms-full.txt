@@ -32,13 +32,14 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 
 ## Publications & Achievements / 研究業績
 
-### International conferences (peer-reviewed) / 国際学会（査読あり）
+<!-- PUBLICATIONS:AUTO:BEGIN -->
+### International conferences (peer-reviewed) / 国際学会
 
 1. **AdaptiveFly: Bio-Congruent Adaptation for Embodied 3D Locomotion** — Kong L., Dechaux A., Yoshida M., **Asahi H.**, Xu J., Gowrishankar G., Inami M. — Augmented Humans '26, 2026 (Oral)
-2. **A Design Framework for Virtual Space based on Spectral Relationships** — Wang H., **Asahi H.**, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M. — Augmented Humans '26, 2026 (Oral; Best Student Paper Honorable Mention)
+2. **A Design Framework for Virtual Space based on Spectral Relationships** — Wang H., **Asahi H.**, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M. — Augmented Humans '26, 2026 (Oral)
 3. **Semantic See-through Goggles: Wearing Linguistic Virtual Reality in (Artificial) Intelligence** — Muramoto G., Yasui Y., **Asahi H.**, Hirose M., Inami M. — IUI '26, 2026 (Oral)
-4. **Semantic See-through Goggles** — Muramoto G., Yasui Y., **Asahi H.** — SIGGRAPH Asia Art Gallery, 2024 (Demo) — DOI: https://dl.acm.org/doi/10.1145/3680529.3688959
-5. **ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing** — Yoshida T., Watanabe T., **Asahi H.**, Rin K., Kozuka H., Hirose M., Inami M. — SIGGRAPH Asia Emerging Technologies, 2023 (Demo) — DOI: https://dl.acm.org/doi/10.1145/3610541.3614587
+4. **Semantic See-through Goggles** — Muramoto G., Yasui Y., **Asahi H.** — SIGGRAPH Asia Art Gallery, 2024 (Demo) — DOI: https://dl.acm.org/doi/10.1145/3680529.3688959 — Video: https://www.youtube.com/watch?v=0Wy07jKqhEY
+5. **ForceField: Visualizing Intermaterial Interaction through Floor and Depth Sensing** — Yoshida T., Watanabe T., **Asahi H.**, Rin K., Kozuka H., Hirose M., Inami M. — SIGGRAPH Asia Emerging Technologies, 2023 (Demo) — DOI: https://dl.acm.org/doi/10.1145/3610541.3614587 — Video: https://www.youtube.com/watch?v=zNszz4TDAnI
 
 ### Preprints / プレプリント
 
@@ -47,16 +48,16 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 
 ### Domestic conferences (Japan) / 国内学会
 
-1. **非対称振動による牽引力錯覚を用いた投擲フォーム矯正支援に関する研究** — 齋藤海風, **旭博佑**, 齊藤寛人, 前川和純, 櫻田国治, 稲見昌彦 — 第31回 日本バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
-2. **腕部への非対称振動による牽引力提示を用いた変形感覚の生起に関する研究** — **旭博佑**, 廣瀬雅治, 高下修聡, 石田一真, 范嘉安, 稲見昌彦 — 第31回 日本バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
-3. **緊張性振動反射を用いた身体の切り替え時における姿勢の引き継ぎに関する研究** — 下村結, **旭博佑**, 高下修聡, 櫻田国治, 稲見昌彦 — 第31回 日本バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
-4. **操作対象切り替え時の運動の不連続性を補償するマルチタスク支援システム** — 高下修聡, **旭博佑**, 前川和純, 稲見昌彦 — 第31回 日本バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
-5. **Designing Transparent Control via Bio-Congruent Adaptation for Embodied 3D Locomotion** — Kong L., **Asahi H.**, et al. — WISS 2025 (Oral)
-6. **歩行時の上肢運動を用いた身体表象の変容技術に関する研究** — **旭博佑**, 齊藤寛人, 櫻田国治, 前川和純, 門内靖明, 稲見昌彦 — 第30回 日本バーチャルリアリティ学会大会, 2025 (口頭・ポスター)
+1. **非対称振動による牽引力錯覚を用いた投擲フォーム矯正支援に関する研究** — 齋藤海風, **旭博佑**, 齊藤寛人, 前川和純, 櫻田国治, 稲見昌彦 — 第31回 バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
+2. **腕部への非対称振動による牽引力提示を用いた変形感覚の生起に関する研究** — **旭博佑**, 廣瀬雅治, 高下修聡, 石田一真, 范嘉安, 稲見昌彦 — 第31回 バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
+3. **緊張性振動反射を用いた身体の切り替え時における姿勢の引き継ぎに関する研究** — 下村結, **旭博佑**, 高下修聡, 櫻田国治, 稲見昌彦 — 第31回 バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
+4. **操作対象切り替え時の運動の不連続性を補償するマルチタスク支援システム** — 高下修聡, **旭博佑**, 前川和純, 稲見昌彦 — 第31回 バーチャルリアリティ学会大会, 2026 (口頭・ポスター)
+5. **Designing Transparent Control via Bio-Congruent Adaptation for Embodied 3D Locomotion** — Kong L., **Asahi H.**, et al. — WISS, 2025 (口頭)
+6. **歩行時の上肢運動を用いた身体表象の変容技術に関する研究** — **旭博佑**, 齊藤寛人, 櫻田国治, 前川和純, 門内靖明, 稲見昌彦 — 第30回 バーチャルリアリティ学会大会, 2025 (口頭・ポスター)
 7. **身体運動周期を用いた没入型ロコモーションインターフェースの検討** — **旭博佑**, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦 — 第71回 EC研究発表会, 2024 (口頭・展示)
-8. **腹腔鏡下手術縫合手技における針把持姿勢と持針器軌道の最適化及び手技者との比較検証** — 内池智哉, **旭博佑**, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子 — 2024年度 精密工学会春季大会学術講演会, 2024
-9. **聖剣を継ぐ者 — 集中の証明** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 第28回 日本バーチャルリアリティ学会大会, 2023 (展示)
-10. **腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証** — **旭博佑**, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子 — 第32回 ライフサポート学会フロンティア講演会, 2023
+8. **腹腔鏡下手術縫合手技における針把持姿勢と持針器軌道の最適化及び手技者との比較検証** — 内池智哉, **旭博佑**, 渡邉達己, Jiahe Chen, 富井直輝, 北順二, 佐久間一郎, 小林英津子 — 2024年度 精密工学会春季大会学術講演会, 2024 (口頭)
+9. **聖剣を継ぐ者 — 集中の証明** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 第28回 バーチャルリアリティ学会大会, 2023 (展示)
+10. **腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証** — **旭博佑**, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子 — 第32回 ライフサポート学会フロンティア講演会, 2023 (口頭)
 
 ### Domestic workshops / 国内ワークショップ
 
@@ -65,14 +66,18 @@ Born in 2000 in Fukuoka, Japan; spent his childhood across Japan and China. His 
 
 ### Awards / 受賞
 
-1. **Best Student Paper Honorable Mention** (among 61 submissions) — Augmented Humans '26, 2026 — for "A Design Framework for Virtual Space based on Spectral Relationships"
-2. **第71回EC研究会 デモ奨励賞 第1位** (IPSJ SIG-EC #71 Demo Award, 1st place) — 情報処理学会, 2024 — for 「身体運動周期を用いた没入型ロコモーションインターフェース」 — https://entcomp.org/sig/?p=1087
-3. **IVRC 2023 — VoxelKei Award (VoxelKei賞)** — 2023 — for 「聖剣を継ぐ者 -集中の証明-」 — https://ivrc.net/2023/release3/
-4. **NTV Imaginarium — Jury Award (日テレ イマジナリウム 審査員奨励賞)** — 2023 — for 「聖剣を継ぐ者 -集中の証明-」 — https://www.ntv.co.jp/imaginarium/award/
+1. **Best Student Paper Honorable Mention (学生最優秀論文 佳作（61本中）)** — Wang H., **Asahi H.**, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M. — A Design Framework for Virtual Space based on Spectral Relationships — Augmented Humans '26, 2026
+2. **IPSJ EC #71 — Demo Award, 1st place (第71回EC研究会 デモ奨励賞 第1位)** — **旭博佑**, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦 — 身体運動周期を用いた没入型ロコモーションインターフェース — 情報処理学会 EC研究会, 2024 — Link: https://entcomp.org/sig/?p=1087
+3. **IVRC 2023 — VoxelKei Award (VoxelKei賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — IVRC 2023, 2023 — Link: https://ivrc.net/2023/release3/
+4. **NTV Imaginarium — Jury Award (日テレ イマジナリウム 審査員奨励賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — 日テレ イマジナリウム, 2023 — Link: https://www.ntv.co.jp/imaginarium/award/
 
 ### Other activities / その他
 
-- Exhibition: 聖剣を継ぐ者 — 集中の証明 — SCIENCE AGORA, 2023
+- **聖剣を継ぐ者 — 集中の証明** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — SCIENCE AGORA, 2023 (展示)
+- **UTokyo GX Advanced Human Resource Development Program (グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム)** — The University of Tokyo, 2025.04 – 2027.03 (フェロー)
+- **JSPS Research Fellowship for Young Scientists (DC2) (日本学術振興会 特別研究員 (DC2))** — Japan Society for the Promotion of Science, 2027.04 – 2029.03 (フェロー)
+
+<!-- PUBLICATIONS:AUTO:END -->
 
 ## Works / 作品
 

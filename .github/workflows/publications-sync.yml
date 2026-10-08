@@ -1,0 +1,49 @@
+name: Publications sync
+
+# Regenerate the Publications section whenever publications.json or the
+# build script changes, and nightly as a safety net.
+on:
+  push:
+    paths:
+      - "publications.json"
+      - "tools/build_publications.py"
+      - ".github/workflows/publications-sync.yml"
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: publications-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    # Avoid an infinite ping-pong when this workflow pushes its own commits
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build publications HTML + llms block
+        run: python tools/build_publications.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html llms-full.txt 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "publications: regenerate from publications.json"
+          git pull --rebase --autostash origin main
+          git push origin main
