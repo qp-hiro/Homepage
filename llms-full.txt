@@ -1,7 +1,7 @@
 # Hirosuke Asahi (旭 博佑) — Full Site Content for AI Readers
 
 > Machine-readable Markdown version of https://qp-hiro.github.io/Homepage/
-> Last updated: 2026-10-05. This file is kept in sync with the site; publications are also updated automatically.
+> Last updated: 2026-10-08. This file is kept in sync with the site; publications are also updated automatically.
 
 ## Profile / プロフィール
 
