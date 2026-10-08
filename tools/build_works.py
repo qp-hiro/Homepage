@@ -34,7 +34,10 @@ import sys
 import fitz  # PyMuPDF
 from PIL import Image
 
-DRIVE_DIR = r"H:\マイドライブ\Homepage\Files_for_works"
+# Drive source — env var takes precedence so GitHub Actions can point this
+# at a temp dir populated by drive_sync_works.py. The default Windows path
+# is the user's hand-curated folder on the local machine.
+DRIVE_DIR = os.environ.get("WORKS_DRIVE_DIR", r"H:\マイドライブ\Homepage\Files_for_works")
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_URL = "https://qp-hiro.github.io/Homepage"
 OVERRIDES_PATH = os.path.join(REPO_DIR, "works", "works-overrides.json")
