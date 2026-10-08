@@ -1,0 +1,69 @@
+name: Gallery sync
+
+# Runs every 15 minutes and whenever triggered manually.
+# Pulls new photos from the Drive Gallery folder, rebuilds the gallery,
+# and pushes if anything actually changed.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: gallery-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet \
+            Pillow \
+            google-api-python-client \
+            google-auth \
+            google-auth-oauthlib
+
+      - name: Write service account key
+        env:
+          DRIVE_SA_KEY: ${{ secrets.DRIVE_SA_KEY }}
+        run: |
+          printf '%s' "$DRIVE_SA_KEY" > /tmp/sa.json
+          chmod 600 /tmp/sa.json
+
+      - name: Download photos from Drive
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/sa.json
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+          GALLERY_DRIVE_DIR: /tmp/gallery-src
+        run: python tools/drive_sync.py
+
+      - name: Build gallery
+        env:
+          GALLERY_DRIVE_DIR: /tmp/gallery-src
+        run: python tools/build_gallery.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Gallery/ gallery.html tools/.gallery_cache.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "gallery: auto-sync from Drive"
+          # Rebase on any concurrent push, then push
+          git pull --rebase --autostash origin main
+          git push origin main
