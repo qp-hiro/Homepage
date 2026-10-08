@@ -17,6 +17,7 @@ import io
 import os
 import re
 import sys
+from urllib.parse import quote
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERO_DIR = os.path.join(REPO_DIR, "Hero")
@@ -48,12 +49,14 @@ def list_images():
 
 
 def render_block(files):
-    """Build the <img> tags that go between the HERO:AUTO markers."""
+    """Build the <img> tags that go between the HERO:AUTO markers.
+    Filenames are URL-encoded so Japanese / spaces work."""
     lines = []
     for i, fn in enumerate(files):
         active = " is-active" if i == 0 else ""
+        encoded = quote(fn)
         lines.append(
-            f'            <img src="Hero/{fn}" class="hero-bg__img{active}" alt="" loading="eager">'
+            f'            <img src="Hero/{encoded}" class="hero-bg__img{active}" alt="" loading="eager">'
         )
     return "\n".join(lines)
 

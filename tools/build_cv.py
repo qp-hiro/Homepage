@@ -19,10 +19,12 @@ import json
 import os
 import re
 import sys
+from urllib.parse import quote
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILE_PATH = os.path.join(REPO_DIR, "profile.json")
 PUBLICATIONS_PATH = os.path.join(REPO_DIR, "publications.json")
+PDFS_DIR = os.path.join(REPO_DIR, "publications_pdfs")
 CV_MD_PATH = os.path.join(REPO_DIR, "cv.md")
 CV_HTML_PATH = os.path.join(REPO_DIR, "cv.html")
 CV_PDF_PATH = os.path.join(REPO_DIR, "cv.pdf")
@@ -40,6 +42,41 @@ def write_text(path, text):
 
 def read_json(path):
     return json.loads(read_text(path))
+
+
+def find_pdf(files_dir):
+    """Pick the main PDF in publications_pdfs/<files_dir>/."""
+    if not files_dir:
+        return None
+    folder = os.path.join(PDFS_DIR, files_dir)
+    if not os.path.isdir(folder):
+        return None
+    pdfs = [fn for fn in os.listdir(folder)
+            if fn.lower().endswith(".pdf") and not fn.startswith(".")]
+    if not pdfs:
+        return None
+    return min(pdfs, key=lambda s: (len(s), s))
+
+
+def pdf_link_for(item):
+    """Return {text, url} for the auto-detected PDF, or None."""
+    pdf = find_pdf(item.get("files_dir"))
+    if not pdf:
+        return None
+    return {
+        "text": "PDF",
+        "url": f"publications_pdfs/{quote(item['files_dir'])}/{quote(pdf)}",
+    }
+
+
+def all_links(item):
+    """PDF (auto) + explicit links."""
+    out = []
+    pdf = pdf_link_for(item)
+    if pdf:
+        out.append(pdf)
+    out.extend(item.get("links") or [])
+    return out
 
 
 def strip_self_md(text):
@@ -144,9 +181,8 @@ def render_markdown(profile, pubs):
             venue_year = f"{venue_year} ({it['type_en']})"
         if venue_year:
             parts.append(venue_year)
-        if it.get("links"):
-            for l in it["links"]:
-                parts.append(f"[{l['text']}]({l['url']})")
+        for l in all_links(it):
+            parts.append(f"[{l['text']}]({l['url']})")
         return " — ".join(x for x in parts if x)
 
     sections = [
@@ -403,9 +439,8 @@ def render_html(profile, pubs):
             venue_year += f" <span class='pub-type'>({esc(it['type_en'])})</span>"
         if venue_year:
             bits.append(f" — <span class='venue'>{venue_year}</span>")
-        if it.get("links"):
-            for l in it["links"]:
-                bits.append(f" — <a href='{esc(l['url'])}'>{esc(l['text'])}</a>")
+        for l in all_links(it):
+            bits.append(f" — <a href='{esc(l['url'])}'>{esc(l['text'])}</a>")
         return "<li>" + "".join(bits) + "</li>"
 
     sections = [

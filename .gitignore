@@ -52,3 +52,6 @@ tools/gallery_*.log
 !Hero/**/*.jpeg
 !Hero/**/*.png
 !Hero/**/*.webp
+
+# Exception: publication paper PDFs
+!publications_pdfs/**/*.pdf

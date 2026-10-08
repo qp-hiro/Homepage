@@ -1,5 +1,5 @@
 {
-  "_comment": "Publications & Achievements source of truth. Edit this file to update the Publications section; build_publications.py regenerates the HTML on push. In authors/cite, wrap your own name in **…** to mark it as self.",
+  "_comment": "Publications & Achievements source of truth. Edit this file to update the Publications section; build_publications.py regenerates the HTML on push. In authors/cite, wrap your own name in **…** to mark it as self. files_dir is the folder name under publications_pdfs/ — the first .pdf in that folder is linked as PDF automatically.",
   "groups": [
     {
       "key": "international",
@@ -12,7 +12,8 @@
           "title": "AdaptiveFly: Bio-Congruent Adaptation for Embodied 3D Locomotion",
           "authors": "Kong L., Dechaux A., Yoshida M., **Asahi H.**, Xu J., Gowrishankar G., Inami M.",
           "venue": "Augmented Humans '26",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "AdaptiveFly Bio-Congruent Adaptation for Embodied 3D Locomotion"
         },
         {
           "type_en": "Oral",
@@ -20,7 +21,8 @@
           "title": "A Design Framework for Virtual Space based on Spectral Relationships",
           "authors": "Wang H., **Asahi H.**, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M.",
           "venue": "Augmented Humans '26",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "A Design Framework for Virtual Space based on Spectral Relationships"
         },
         {
           "type_en": "Oral",
@@ -28,7 +30,8 @@
           "title": "Semantic See-through Goggles: Wearing Linguistic Virtual Reality in (Artificial) Intelligence",
           "authors": "Muramoto G., Yasui Y., **Asahi H.**, Hirose M., Inami M.",
           "venue": "IUI '26",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "Semantic See-through Goggles Wearing Linguistic Virtual Reality in (Artificial) Intelligence"
         },
         {
           "type_en": "Demo",
@@ -37,8 +40,8 @@
           "authors": "Muramoto G., Yasui Y., **Asahi H.**",
           "venue": "SIGGRAPH Asia Art Gallery",
           "year": "2024",
+          "files_dir": "Semantic See-through Goggles Linguistic Virtual Reality in (Artificial) Intelligence",
           "links": [
-            { "text": "DOI", "url": "https://dl.acm.org/doi/10.1145/3680529.3688959" },
             { "text": "Video", "url": "https://www.youtube.com/watch?v=0Wy07jKqhEY" }
           ]
         },
@@ -49,8 +52,8 @@
           "authors": "Yoshida T., Watanabe T., **Asahi H.**, Rin K., Kozuka H., Hirose M., Inami M.",
           "venue": "SIGGRAPH Asia Emerging Technologies",
           "year": "2023",
+          "files_dir": "ForceField Visualizing Intermaterial Interaction through Floor and Depth Sensing",
           "links": [
-            { "text": "DOI", "url": "https://dl.acm.org/doi/10.1145/3610541.3614587" },
             { "text": "Video", "url": "https://www.youtube.com/watch?v=zNszz4TDAnI" }
           ]
         }
@@ -93,7 +96,8 @@
           "title": "非対称振動による牽引力錯覚を用いた投擲フォーム矯正支援に関する研究",
           "authors": "齋藤海風, **旭博佑**, 齊藤寛人, 前川和純, 櫻田国治, 稲見昌彦",
           "venue": "第31回 バーチャルリアリティ学会大会",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "非対称振動による牽引力錯覚を用いた投擲フォーム矯正支援に関する研究"
         },
         {
           "type_en": "Oral & Poster",
@@ -101,7 +105,8 @@
           "title": "腕部への非対称振動による牽引力提示を用いた変形感覚の生起に関する研究",
           "authors": "**旭博佑**, 廣瀬雅治, 高下修聡, 石田一真, 范嘉安, 稲見昌彦",
           "venue": "第31回 バーチャルリアリティ学会大会",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "腕部への非対称振動による牽引力提示を用いた変形感覚の生起に関する研究"
         },
         {
           "type_en": "Oral & Poster",
@@ -109,7 +114,8 @@
           "title": "緊張性振動反射を用いた身体の切り替え時における姿勢の引き継ぎに関する研究",
           "authors": "下村結, **旭博佑**, 高下修聡, 櫻田国治, 稲見昌彦",
           "venue": "第31回 バーチャルリアリティ学会大会",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "緊張性振動反射を用いた身体の切り替え時における姿勢の引き継ぎに関する研究"
         },
         {
           "type_en": "Oral & Poster",
@@ -117,7 +123,8 @@
           "title": "操作対象切り替え時の運動の不連続性を補償するマルチタスク支援システム",
           "authors": "高下修聡, **旭博佑**, 前川和純, 稲見昌彦",
           "venue": "第31回 バーチャルリアリティ学会大会",
-          "year": "2026"
+          "year": "2026",
+          "files_dir": "操作対象切り替え時の運動の不連続性を補償するマルチタスク支援システム"
         },
         {
           "type_en": "Oral",
@@ -125,7 +132,8 @@
           "title": "Designing Transparent Control via Bio-Congruent Adaptation for Embodied 3D Locomotion",
           "authors": "Kong L., **Asahi H.**, et al.",
           "venue": "WISS",
-          "year": "2025"
+          "year": "2025",
+          "files_dir": "Designing Transparent Control via Bio-Congruent Adaptation for Embodied 3D Locomotion"
         },
         {
           "type_en": "Oral & Poster",
@@ -133,7 +141,8 @@
           "title": "歩行時の上肢運動を用いた身体表象の変容技術に関する研究",
           "authors": "**旭博佑**, 齊藤寛人, 櫻田国治, 前川和純, 門内靖明, 稲見昌彦",
           "venue": "第30回 バーチャルリアリティ学会大会",
-          "year": "2025"
+          "year": "2025",
+          "files_dir": "歩行時の上肢運動を用いた身体表象の変容技術に関する研究"
         },
         {
           "type_en": "Oral & Demo",
@@ -141,7 +150,8 @@
           "title": "身体運動周期を用いた没入型ロコモーションインターフェースの検討",
           "authors": "**旭博佑**, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦",
           "venue": "第71回 EC研究発表会",
-          "year": "2024"
+          "year": "2024",
+          "files_dir": "身体運動周期を用いた没入型ロコモーションインターフェースの検討"
         },
         {
           "type_en": "Oral",
@@ -157,7 +167,11 @@
           "title": "聖剣を継ぐ者 — 集中の証明",
           "authors": "園山遼馬, **旭博佑**, 正田千宙, 小谷七海",
           "venue": "第28回 バーチャルリアリティ学会大会",
-          "year": "2023"
+          "year": "2023",
+          "files_dir": "聖剣を継ぐ者 — 集中の証明",
+          "links": [
+            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
+          ]
         },
         {
           "type_en": "Oral",
@@ -165,7 +179,8 @@
           "title": "腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証",
           "authors": "**旭博佑**, Jiahe Chen, Kenzo Yamamoto, 原一晃, 富井直輝, 中川桂一, 佐久間一郎, 小林英津子",
           "venue": "第32回 ライフサポート学会フロンティア講演会",
-          "year": "2023"
+          "year": "2023",
+          "files_dir": "腹腔鏡下縫合手技の解析に向けた針の把持姿勢計測システムの開発と検証"
         }
       ]
     },
@@ -228,7 +243,8 @@
           "venue": "IVRC 2023",
           "year": "2023",
           "links": [
-            { "text": "Link", "url": "https://ivrc.net/2023/release3/" }
+            { "text": "Link", "url": "https://ivrc.net/2023/release3/" },
+            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
           ]
         },
         {
@@ -240,7 +256,8 @@
           "venue": "日テレ イマジナリウム",
           "year": "2023",
           "links": [
-            { "text": "Link", "url": "https://www.ntv.co.jp/imaginarium/award/" }
+            { "text": "Link", "url": "https://www.ntv.co.jp/imaginarium/award/" },
+            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
           ]
         }
       ]
@@ -256,7 +273,10 @@
           "title": "聖剣を継ぐ者 — 集中の証明",
           "authors": "園山遼馬, **旭博佑**, 正田千宙, 小谷七海",
           "venue": "SCIENCE AGORA",
-          "year": "2023"
+          "year": "2023",
+          "links": [
+            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
+          ]
         },
         {
           "type_en": "Fellowship",

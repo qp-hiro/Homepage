@@ -24,11 +24,40 @@ import json
 import os
 import re
 import sys
+from urllib.parse import quote
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_PATH = os.path.join(REPO_DIR, "publications.json")
 INDEX_PATH = os.path.join(REPO_DIR, "index.html")
 LLMS_PATH = os.path.join(REPO_DIR, "llms-full.txt")
+PDFS_DIR = os.path.join(REPO_DIR, "publications_pdfs")
+
+
+def find_pdf(files_dir):
+    """Pick the 'main' PDF in publications_pdfs/<files_dir>/.
+    Heuristic: shortest filename wins; alphabetical breaks ties. Returns
+    the filename (not the full path) or None if nothing matches."""
+    if not files_dir:
+        return None
+    folder = os.path.join(PDFS_DIR, files_dir)
+    if not os.path.isdir(folder):
+        return None
+    pdfs = [
+        fn for fn in os.listdir(folder)
+        if fn.lower().endswith(".pdf") and not fn.startswith(".")
+    ]
+    if not pdfs:
+        return None
+    return min(pdfs, key=lambda s: (len(s), s))
+
+
+def pdf_link_for(item):
+    """Return {text, url} for a PDF link if the item has an attached PDF."""
+    pdf = find_pdf(item.get("files_dir"))
+    if not pdf:
+        return None
+    url = f"publications_pdfs/{quote(item['files_dir'])}/{quote(pdf)}"
+    return {"text": "PDF", "url": url}
 
 MARK_BEGIN = "PUBLICATIONS:AUTO:BEGIN"
 MARK_END = "PUBLICATIONS:AUTO:END"
@@ -63,7 +92,13 @@ def render_item_html(item):
     authors = item.get("authors") or ""
     venue = esc(item.get("venue", ""))
     year = esc(str(item.get("year", "")))
-    links = item.get("links") or []
+    # Links: auto-generated PDF link (if files_dir resolves) comes first,
+    # followed by any explicitly listed links (Video / arXiv / Link / …).
+    links = []
+    pdf = pdf_link_for(item)
+    if pdf:
+        links.append(pdf)
+    links.extend(item.get("links") or [])
 
     type_html = type_en
     if type_jp:
@@ -191,13 +226,18 @@ def _llms_item_line(it, idx=None, group_key=None):
     if venue_year:
         parts.append(venue_year)
 
-    if it.get("links"):
-        for l in it["links"]:
-            # For arXiv-style single-link preprints, drop the redundant "arXiv:" prefix
-            if group_key == "preprints" and l.get("text", "").lower() in ("arxiv", "preprint"):
-                parts.append(l["url"])
-            else:
-                parts.append(f"{l['text']}: {l['url']}")
+    # Links: PDF (auto) + explicit entries
+    all_links = []
+    pdf = pdf_link_for(it)
+    if pdf:
+        all_links.append(pdf)
+    all_links.extend(it.get("links") or [])
+    for l in all_links:
+        # For arXiv-style single-link preprints, drop the redundant "arXiv:" prefix
+        if group_key == "preprints" and l.get("text", "").lower() in ("arxiv", "preprint"):
+            parts.append(l["url"])
+        else:
+            parts.append(f"{l['text']}: {l['url']}")
     return " — ".join(x for x in parts if x)
 
 
