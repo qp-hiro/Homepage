@@ -243,8 +243,7 @@
           "venue": "IVRC 2023",
           "year": "2023",
           "links": [
-            { "text": "Link", "url": "https://ivrc.net/2023/release3/" },
-            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
+            { "text": "Link", "url": "https://ivrc.net/2023/release3/" }
           ]
         },
         {
@@ -256,8 +255,7 @@
           "venue": "日テレ イマジナリウム",
           "year": "2023",
           "links": [
-            { "text": "Link", "url": "https://www.ntv.co.jp/imaginarium/award/" },
-            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
+            { "text": "Link", "url": "https://www.ntv.co.jp/imaginarium/award/" }
           ]
         }
       ]
@@ -273,10 +271,7 @@
           "title": "聖剣を継ぐ者 — 集中の証明",
           "authors": "園山遼馬, **旭博佑**, 正田千宙, 小谷七海",
           "venue": "SCIENCE AGORA",
-          "year": "2023",
-          "links": [
-            { "text": "Video", "url": "https://youtu.be/n8j5po9vFQg" }
-          ]
+          "year": "2023"
         },
         {
           "type_en": "Fellowship",
