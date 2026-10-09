@@ -69,12 +69,12 @@ My research intervenes in human bodily sensation and movement — redesigning th
 
 1. **Best Student Paper Honorable Mention (学生最優秀論文 佳作（61本中）)** — Wang H., **Asahi H.**, Shao R., Sakurada K., Saito H., Xu J., Kondo K., Tokoro T., Inami M. — A Design Framework for Virtual Space based on Spectral Relationships — Augmented Humans '26, 2026 (Award)
 2. **IPSJ EC #71 — Demo Award, 1st place (第71回EC研究会 デモ奨励賞 第1位)** — **旭博佑**, 高下修聡, 齊藤寛人, 前川和純, 門内靖明, 稲見昌彦 — 身体運動周期を用いた没入型ロコモーションインターフェース — 情報処理学会 EC研究会, 2024 (Award) — [Link](https://entcomp.org/sig/?p=1087)
-3. **IVRC 2023 — VoxelKei Award (VoxelKei賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — IVRC 2023, 2023 (Award) — [Link](https://ivrc.net/2023/release3/) — [Video](https://youtu.be/n8j5po9vFQg)
-4. **NTV Imaginarium — Jury Award (日テレ イマジナリウム 審査員奨励賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — 日テレ イマジナリウム, 2023 (Award) — [Link](https://www.ntv.co.jp/imaginarium/award/) — [Video](https://youtu.be/n8j5po9vFQg)
+3. **IVRC 2023 — VoxelKei Award (VoxelKei賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — IVRC 2023, 2023 (Award) — [Link](https://ivrc.net/2023/release3/)
+4. **NTV Imaginarium — Jury Award (日テレ イマジナリウム 審査員奨励賞)** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — 聖剣を継ぐ者 -集中の証明- — 日テレ イマジナリウム, 2023 (Award) — [Link](https://www.ntv.co.jp/imaginarium/award/)
 
 ### Other Activities
 
-- **聖剣を継ぐ者 — 集中の証明** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — SCIENCE AGORA, 2023 (Exhibition) — [Video](https://youtu.be/n8j5po9vFQg)
+- **聖剣を継ぐ者 — 集中の証明** — 園山遼馬, **旭博佑**, 正田千宙, 小谷七海 — SCIENCE AGORA, 2023 (Exhibition)
 - **UTokyo GX Advanced Human Resource Development Program (グリーントランスフォーメーション (GX) を先導する高度人材育成プログラム)** — The University of Tokyo, 2025.04 – 2027.03 (Fellowship)
 - **JSPS Research Fellowship for Young Scientists (DC2) (日本学術振興会 特別研究員 (DC2))** — Japan Society for the Promotion of Science, 2027.04 – 2029.03 (Fellowship)
 
