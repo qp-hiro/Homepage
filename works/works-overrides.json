@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual knobs for tools/build_works.py. Everything else (title, subtitle, year, abstract, images) is auto-derived from the Drive folder H:\\マイドライブ\\Homepage\\Files_for_works. Keys per work: title, subtitle, subtitle_jp, desc_en, desc_jp, tags, year, youtube (video id), thumbnail (source filename in the Drive folder), abstract, hidden.",
+  "_comment": "Manual knobs for tools/build_works.py. Everything else (title, subtitle, year, abstract, images) is auto-derived from the Drive folder H:\\マイドライブ\\Homepage\\Files_for_works. Keys per work: title, subtitle, subtitle_jp, desc_en, desc_jp, tags, year, youtube (video id), thumbnail (source filename in the Drive folder), abstract, abstract_jp (optional Japanese translation), hidden.",
   "work1": {
     "subtitle": "Proof of Concentration",
     "subtitle_jp": "聖剣を継ぐ者 — 集中の証明。",
@@ -8,7 +8,8 @@
     "tags": "VR · Multimodal",
     "year": "2023",
     "youtube": "n8j5po9vFQg",
-    "thumbnail": "teaser_new.png"
+    "thumbnail": "teaser_new.png",
+    "abstract_jp": "集中力は、あらゆる活動においてポテンシャルを最大限に発揮するために重要である。しかし、集中力を高めるための従来の手法は、直接的かつ自然なフィードバックに欠けていることが多い。本研究では、集中状態を体験し、鍛えるための新しいVRシステムを提案する。力ずくでは引き抜けない「聖剣を引き抜く」体験の中で、プレイヤーは視覚・聴覚・触覚を通じてマルチモーダルな集中度フィードバックを受け取る。この体験を通じて、ユーザーは自らの集中状態と向き合い、意識的にコントロールする能力の獲得が期待される。"
   },
   "work2": {
     "subtitle": "Visualizing Intermaterial Interaction",
@@ -18,7 +19,8 @@
     "tags": "Sensing · Spatial",
     "year": "2023",
     "youtube": "zNszz4TDAnI",
-    "thumbnail": "SystemImage2.png"
+    "thumbnail": "SystemImage2.png",
+    "abstract_jp": "ForceField は、身体や物体に追加のデバイスを装着することなく、ルームスケール空間のあらゆる面における物体間の接触力を計測する手法である。深度センサで三次元形状を取得し、床センサで接地圧を取得したうえで、センサを取り付けていない面同士の接触力——例えば手が机を押す、あるいは人と人が押し合うような力——を、力と幾何の情報から再構成する。この非侵襲的な環境計測アプローチにより、ForceField はヘルスケア、スポーツ、エンターテインメントなどの領域で、物理性の高い空間インタラクションの可能性を拓く。"
   },
   "work3": {
     "abstract": "Semantic See-through Goggles are a kind of glasses, through which the view becomes once a line of text and is re-scenified. Participants wear original goggles equipped with a camera and HMD. First, the AI converts a single image from the camera into a single line of text. Next, the AI generates an image from that line of text, displayed on both eye displays. These processes occur in real time, allowing the user to perceive and act on the real physical world through this redrawn view. This experience confronts, bodily and literally, the kind of radical virtual reality latent in a society that mediates sensory information under language — an attempt to appropriate some of the energy of today's debate over artificial intelligence for a classical inquiry: \"intelligence can only see the world under meaning.\"",
@@ -29,7 +31,8 @@
     "tags": "VR · Generative AI",
     "year": "2024",
     "youtube": "0Wy07jKqhEY",
-    "thumbnail": "teaser.png"
+    "thumbnail": "teaser.png",
+    "abstract_jp": "Semantic See-through Goggles は、視界がいちど一文のテキストに変換され、再び風景として描き直されるゴーグルである。参加者はカメラと HMD を備えたオリジナルのゴーグルを装着する。まず AI がカメラの画像を一行のテキストへと変換し、次にそのテキストから AI が画像を生成して両眼ディスプレイに映し出す。これらの処理はリアルタイムで行われ、ユーザーはこの描き直された視界を通して現実世界を知覚し、行動する。この体験は、感覚情報が言語を介して媒介される社会に潜む、ある種の過激な仮想現実性と身体的・文字通りに向き合うものである。それは、人工知能をめぐる今日の議論のエネルギーを借りて、「知性は意味のもとでしか世界を見られない」という古典的な問いに迫る試みでもある。"
   },
   "work4": {
     "subtitle_jp": "腕の素材感を書き換えるウェアラブル触覚システム。",
@@ -37,7 +40,8 @@
     "desc_jp": "腕の素材感を書き換えるウェアラブル触覚システム",
     "tags": "Haptics · VR",
     "youtube": "UXGYeMxLnco",
-    "thumbnail": "main image.png"
+    "thumbnail": "main image.png",
+    "abstract_jp": "人の身体は単なる剛体ではない。身体の粘弾性的な性質は、動きを通して知覚される素材感に寄与しており、これは運動の概念化や、異なる素材的性質を持つアバターへの身体化において重要となり得る。本研究では、運動連動型の擬似牽引力を用いて、腕に粘弾性的な変形感覚を誘起するウェアラブル触覚システム「Arm Materializer」を提案する。本システムは、ユーザーの腕の動きと触覚フィードバックの間に閉ループを形成する。腕の動きが粘弾性変形のシミュレーションを駆動し、そのシミュレーション結果が二箇所の擬似牽引力として腕へ提示される。予備的なデモンストレーションから、本システムは腕の変形ダイナミクスや素材的な性質に関する知覚を変調し得ることが示唆された。デモでは、ユーザーは VR 空間と実空間の両方のインタラクションを通じて、これらの感覚を自ら探索できる。"
   },
   "work5": {
     "hidden": true,

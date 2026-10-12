@@ -292,6 +292,7 @@ def collect_work(folder, num, overrides, cache):
         "num": num,
         "hidden": hidden,
         "title": title,
+        "title_jp": ov.get("title_jp", ""),
         "subtitle": subtitle,
         "subtitle_jp": ov.get("subtitle_jp", ""),
         "desc_en": ov.get("desc_en") or subtitle,
@@ -300,6 +301,7 @@ def collect_work(folder, num, overrides, cache):
         "year": year,
         "youtube": ov.get("youtube", ""),
         "abstract": abstract,
+        "abstract_jp": ov.get("abstract_jp", ""),
         "images": [],
     }
     if hidden:
@@ -378,12 +380,17 @@ DETAIL_TEMPLATE = """<!DOCTYPE html>
 {subtitle_html}        </header>
 
         <section class="detail-body" data-reveal>
-{video_html}            <div class="detail-abstract">
-                <p class="detail-abstract__label">Abstract</p>
-                <p class="detail-abstract__text">
+{video_html}            <div class="detail-abstract" data-lang-container>
+                <p class="detail-abstract__label">
+                    <span>Abstract</span>
+                    <button class="lang-switch" type="button" aria-label="Switch language">
+                        <span data-lang="en">EN</span><span class="sep">/</span><span data-lang="jp">JP</span>
+                    </button>
+                </p>
+                <p class="detail-abstract__text" data-lang="en">
                     {abstract}
                 </p>
-            </div>
+{abstract_jp_html}            </div>
         </section>
 
         <section class="detail-gallery" data-reveal>
@@ -427,13 +434,20 @@ def gen_detail_page(w):
             'src="https://img.youtube.com/vi/%s/hqdefault.jpg" alt="%s" loading="lazy">\n'
             '                <span class="video-frame__play" aria-hidden="true">&#9654;</span>\n'
             '            </div>\n' % (w["youtube"], esc(w["title"]), w["youtube"], esc(w["title"])))
+    abstract_jp_html = ""
+    if w.get("abstract_jp"):
+        abstract_jp_html = (
+            '                <p class="detail-abstract__text detail-abstract__text--jp" data-lang="jp">\n'
+            '                    %s\n'
+            '                </p>\n' % esc(w["abstract_jp"]))
     gallery_html = "".join(
         '            <img data-lightbox src="img/work%d/%s" alt="%s">\n' % (w["num"], name, esc(w["title"]))
         for name in w["images"])
     return DETAIL_TEMPLATE.format(
         title=esc(w["title"]), num=w["num"], year=w["year"], tags_part=tags_part,
         subtitle_html=subtitle_html, video_html=video_html,
-        abstract=esc(w["abstract"]), gallery_html=gallery_html)
+        abstract=esc(w["abstract"]), abstract_jp_html=abstract_jp_html,
+        gallery_html=gallery_html)
 
 
 def gen_works_data(visible):

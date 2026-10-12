@@ -185,6 +185,48 @@
     els.forEach(el => io.observe(el));
 })();
 
+// ---------- Abstract language switch (EN ↔ JP) ----------
+// On a Works detail page: the abstract has both languages in the DOM and a
+// small `EN / JP` toggle. Choice persists in localStorage so visitors who
+// prefer Japanese don't have to switch on every page.
+(() => {
+    const containers = document.querySelectorAll('[data-lang-container]');
+    if (!containers.length) return;
+
+    const STORAGE_KEY = 'abstract-lang';
+    const defaultLang = (navigator.language || 'en').toLowerCase().startsWith('ja') ? 'jp' : 'en';
+    let lang = localStorage.getItem(STORAGE_KEY) || defaultLang;
+
+    const applyLang = () => {
+        containers.forEach(container => {
+            // If this container has no JP block, force EN
+            const hasJp = container.querySelector('[data-lang="jp"].detail-abstract__text');
+            const effective = hasJp ? lang : 'en';
+            container.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.classList.contains('lang-switch')) return;      // the button itself
+                if (el.parentElement && el.parentElement.classList.contains('lang-switch')) {
+                    el.classList.toggle('is-active', el.dataset.lang === effective);
+                    return;
+                }
+                el.hidden = el.dataset.lang !== effective;
+            });
+            container.querySelectorAll('.lang-switch').forEach(btn => {
+                btn.hidden = !hasJp;
+            });
+        });
+    };
+
+    document.querySelectorAll('.lang-switch').forEach(btn => {
+        btn.addEventListener('click', () => {
+            lang = (lang === 'en') ? 'jp' : 'en';
+            localStorage.setItem(STORAGE_KEY, lang);
+            applyLang();
+        });
+    });
+
+    applyLang();
+})();
+
 // ---------- Lite YouTube embed (click to play) ----------
 // The iframe is injected only on click. On file:// previews YouTube refuses to
 // embed entirely, so there we open the video on YouTube instead of erroring.
