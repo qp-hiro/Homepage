@@ -529,26 +529,95 @@
             return clusters.map(c => c.map(it => it.photo));
         }
 
-        /* Row counts per cluster so each cluster occupies contiguous rows
-           without an orphan. Patterns per size: 1→[1] 2→[2] 3→[3] 4→[2,2]
-           5→[3,2] 6→[3,3] 7+→alternate 3,2 then settle leftover. */
-        function planRowsForClusters(clusters) {
-            const rows = [];
+        /* Decompose n into chunks of 2 or 3 with no 1-leftover.
+           2→[2] 3→[3] 4→[2,2] 5→[3,2] 6→[3,3] 7→[3,2,2] 8→[3,3,2]
+           9→[3,3,3] 10→[3,3,2,2] … (if remainder would be 1, downgrade a
+           trailing 3 to 2+2 so no single-tile row remains). */
+        function splitInto23(n) {
+            if (n <= 0) return [];
+            if (n <= 3) return [n];
+            if (n === 4) return [2, 2];
+            if (n === 5) return [3, 2];
+            const parts = [];
+            let r = n;
+            while (r > 3) { parts.push(3); r -= 3; }
+            if (r === 1) {         // avoid orphan: last 3 → 2 + 2
+                parts.pop();
+                parts.push(2, 2);
+            } else if (r > 0) {
+                parts.push(r);
+            }
+            return parts;
+        }
+
+        /* Plan the whole category layout from the clusters:
+           — split each ≥2-size cluster into row-sized chunks of 2 or 3
+             (keeps each row's photos from one cluster)
+           — collect 1-size clusters as "orphans" and pair them into
+             mixed-cluster 2-tile rows (so no single-tile rows appear)
+           — interleave chunks round-robin across clusters so you don't see
+             10 Egypt photos in a row — same-cluster chunks get spaced out
+           — if one orphan is left over, append it to a 2-chunk making a
+             3-tile mixed row (last resort, matches "間をつめる")
+           Returns {ordered: Photo[], rowCounts: number[]}. */
+        function planLayout(clusters) {
+            const perCluster = [];       // Array<Array<Chunk>> — chunks grouped by cluster
+            const orphans = [];
             for (const cluster of clusters) {
-                let remaining = cluster.length;
-                let turn = 0;
-                while (remaining > 0) {
-                    let size;
-                    if (remaining <= 3)       size = remaining;
-                    else if (remaining === 4) size = 2;
-                    else if (remaining === 5) size = 3;
-                    else                      size = (turn % 2 === 0) ? 3 : 2;
-                    rows.push(size);
-                    remaining -= size;
-                    turn++;
+                if (cluster.length === 1) { orphans.push(cluster[0]); continue; }
+                const sizes = splitInto23(cluster.length);
+                const chunks = [];
+                let i = 0;
+                for (const size of sizes) {
+                    chunks.push(cluster.slice(i, i + size));
+                    i += size;
+                }
+                // Mild within-cluster variation (different chunk may lead each visit)
+                for (let i = chunks.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [chunks[i], chunks[j]] = [chunks[j], chunks[i]];
+                }
+                perCluster.push(chunks);
+            }
+
+            // Pair orphans into 2-tile mixed-cluster rows
+            for (let i = orphans.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [orphans[i], orphans[j]] = [orphans[j], orphans[i]];
+            }
+            const orphanChunks = [];
+            while (orphans.length >= 2) {
+                orphanChunks.push([orphans.shift(), orphans.shift()]);
+            }
+            if (orphanChunks.length) perCluster.push(orphanChunks);
+            const leftover = orphans.length ? orphans[0] : null;
+
+            // Shuffle the ORDER in which clusters contribute chunks
+            for (let i = perCluster.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [perCluster[i], perCluster[j]] = [perCluster[j], perCluster[i]];
+            }
+
+            // Round-robin interleave so same-cluster chunks don't stack
+            const finalChunks = [];
+            while (perCluster.some(cc => cc.length > 0)) {
+                for (const cc of perCluster) {
+                    if (cc.length > 0) finalChunks.push(cc.shift());
                 }
             }
-            return rows;
+
+            // Lone leftover orphan → merge into an existing 2-chunk (makes a
+            // mixed 3-tile row). Avoids a dangling 1-tile row.
+            if (leftover) {
+                const two = finalChunks.find(c => c.length === 2);
+                if (two) two.push(leftover);
+                else finalChunks.push([leftover]);
+            }
+
+            return {
+                ordered:   finalChunks.flat(),
+                rowCounts: finalChunks.map(c => c.length),
+            };
         }
 
         /* Lightbox */
@@ -625,8 +694,11 @@
             const gridW = grid.getBoundingClientRect().width;
             if (gridW <= 0) return;
 
-            // Cap how dramatic a single-tile "feature" row can be — otherwise a
-            // lone landscape ends up gridW tall which overwhelms the layout.
+            // Only cap height when a row happens to have 1 tile — a lone
+            // landscape would otherwise stretch to the full container width.
+            // For 2–3 tile rows the natural rowH always equals the gap-free
+            // width per aspect, so capping would create a right-edge void
+            // (the user's "空白" complaint). We keep the cap off for them.
             const maxRowH = Math.max(380, gridW / 1.8);
 
             // Gather aspect ratios (prefer the manifest's width/height, fall
@@ -662,8 +734,9 @@
                 const sumAspect = row.reduce((a, it) => a + it.aspect, 0);
                 let rowH = availW / sumAspect;
 
-                // Cap for 1-tile feature rows so they don't dominate the page
-                if (rowH > maxRowH) rowH = maxRowH;
+                // Only apply the cap to true 1-tile rows (planLayout avoids
+                // these when possible; this is a safety net).
+                if (row.length === 1 && rowH > maxRowH) rowH = maxRowH;
 
                 let x = 0;
                 row.forEach((it) => {
@@ -709,12 +782,11 @@
                 <div class="gallery-active__grid"></div>
             `;
             const grid = activeEl.querySelector('.gallery-active__grid');
-            // Cluster photos by session (country folder, or filename proximity),
-            // shuffle only the CLUSTER order so each visit varies but shots
-            // from the same place stay in the same row.
-            const clusters = shuffle(clusterPhotos(c.photos));
-            grid.dataset.rowCounts = planRowsForClusters(clusters).join(',');
-            const ordered = clusters.flat();
+            // Cluster photos → split each cluster into 2–3 tile chunks →
+            // interleave across clusters so same-place rows don't stack up.
+            // See planLayout above for the detail.
+            const { ordered, rowCounts } = planLayout(clusterPhotos(c.photos));
+            grid.dataset.rowCounts = rowCounts.join(',');
             ordered.forEach((p) => {
                 const file = typeof p === 'string' ? p : p.file;
                 const w = typeof p === 'object' ? p.w : 0;
