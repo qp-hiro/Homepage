@@ -2574,6 +2574,57 @@ em, i { font-style: normal; }
     color: var(--text-soft);
 }
 
+/* Prev / next arrow buttons on the lightbox.
+   Hidden when the lightbox is showing a single-image set. */
+.lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(44px, 6vw, 68px);
+    height: clamp(44px, 6vw, 68px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1;
+    font-family: var(--serif);
+    color: rgba(247, 243, 234, 0.72);
+    background: rgba(28, 26, 23, 0.35);
+    border: 1px solid rgba(247, 243, 234, 0.18);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+    z-index: 10;
+    padding: 0 0 4px;  /* nudge chevron glyph vertically */
+}
+
+.lightbox__nav:hover {
+    background: rgba(28, 26, 23, 0.65);
+    color: #faf6ec;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox__nav--prev { left: clamp(16px, 3vw, 36px); }
+.lightbox__nav--next { right: clamp(16px, 3vw, 36px); }
+
+.lightbox__counter {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: rgba(247, 243, 234, 0.6);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 540px) {
+    .lightbox__nav { background: rgba(28, 26, 23, 0.55); }
+    .lightbox__close { top: 16px; right: 16px; font-size: 11px; }
+    .lightbox__counter { bottom: 16px; font-size: 11px; }
+}
+
 /* =========================================================
    Responsive
    ========================================================= */

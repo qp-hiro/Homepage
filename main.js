@@ -86,20 +86,79 @@
     });
 })();
 
-// ---------- Detail page: lightbox ----------
+// ---------- Detail page: lightbox with arrow navigation ----------
+// Used on works/workN-details.html. Every image with [data-lightbox]
+// becomes a thumbnail; clicking one opens the lightbox at that image
+// and ArrowLeft / ArrowRight (or the on-screen chevrons) walk through
+// the full set with wrap-around.
 (() => {
     const lb = document.querySelector('.lightbox');
     if (!lb) return;
     const lbImg = lb.querySelector('img');
-    document.querySelectorAll('[data-lightbox]').forEach(img => {
-        img.addEventListener('click', () => {
-            lbImg.src = img.src;
-            lb.classList.add('is-open');
-        });
+    const thumbs = Array.from(document.querySelectorAll('[data-lightbox]'));
+    if (!thumbs.length) return;
+
+    // Lazily add the prev / next / counter chrome if the page's lightbox
+    // markup predates the arrow version
+    let lbPrev = lb.querySelector('.lightbox__nav--prev');
+    let lbNext = lb.querySelector('.lightbox__nav--next');
+    let lbCount = lb.querySelector('.lightbox__counter');
+    if (!lbPrev) {
+        lbPrev = document.createElement('button');
+        lbPrev.type = 'button';
+        lbPrev.className = 'lightbox__nav lightbox__nav--prev';
+        lbPrev.setAttribute('aria-label', 'Previous photo');
+        lbPrev.textContent = '‹';
+        lb.appendChild(lbPrev);
+    }
+    if (!lbNext) {
+        lbNext = document.createElement('button');
+        lbNext.type = 'button';
+        lbNext.className = 'lightbox__nav lightbox__nav--next';
+        lbNext.setAttribute('aria-label', 'Next photo');
+        lbNext.textContent = '›';
+        lb.appendChild(lbNext);
+    }
+    if (!lbCount) {
+        lbCount = document.createElement('span');
+        lbCount.className = 'lightbox__counter';
+        lbCount.setAttribute('aria-hidden', 'true');
+        lb.appendChild(lbCount);
+    }
+
+    const photos = thumbs.map(t => ({
+        src: t.getAttribute('src'),
+        alt: t.getAttribute('alt') || '',
+    }));
+    let idx = 0;
+
+    const show = () => {
+        const p = photos[idx];
+        lbImg.src = p.src;
+        lbImg.alt = p.alt;
+        lbCount.textContent = `${idx + 1} / ${photos.length}`;
+        const multi = photos.length > 1;
+        lbPrev.hidden = !multi;
+        lbNext.hidden = !multi;
+        lbCount.hidden = !multi;
+    };
+    const nav = (delta) => {
+        idx = (idx + delta + photos.length) % photos.length;
+        show();
+    };
+
+    thumbs.forEach((t, i) => {
+        t.addEventListener('click', () => { idx = i; show(); lb.classList.add('is-open'); });
     });
+    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); nav(-1); });
+    lbNext.addEventListener('click', (e) => { e.stopPropagation(); nav( 1); });
+    lbImg.addEventListener('click', (e) => e.stopPropagation());
     lb.addEventListener('click', () => lb.classList.remove('is-open'));
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') lb.classList.remove('is-open');
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape')          lb.classList.remove('is-open');
+        else if (e.key === 'ArrowRight') nav( 1);
+        else if (e.key === 'ArrowLeft')  nav(-1);
     });
 })();
 
