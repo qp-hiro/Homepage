@@ -98,25 +98,33 @@ def main():
     print(f"found {len(categories)} categories in Drive root")
 
     total_dl = 0
-    for cat in sorted(categories, key=lambda c: c["name"]):
-        cat_name = cat["name"]
-        cat_dir = os.path.join(TARGET_DIR, cat_name)
-        os.makedirs(cat_dir, exist_ok=True)
 
+    def sync_images_from(folder_meta, dest_dir, label):
+        """Download every image directly in folder_meta into dest_dir."""
+        nonlocal total_dl
+        os.makedirs(dest_dir, exist_ok=True)
         images = [
-            f for f in list_children(service, cat["id"])
+            f for f in list_children(service, folder_meta["id"])
             if (f.get("mimeType") or "").startswith(IMG_MIME_PREFIX)
         ]
         for img in images:
-            dest = os.path.join(cat_dir, img["name"])
-            # Skip if we already have a byte-identical copy. We trust size here;
-            # anything that changed will download again. (Drive md5Checksum is
-            # the authoritative check if we wanted to be stricter.)
+            dest = os.path.join(dest_dir, img["name"])
             if os.path.exists(dest) and str(os.path.getsize(dest)) == (img.get("size") or ""):
                 continue
             download_file(service, img, dest)
             total_dl += 1
-            print(f"downloaded: {cat_name}/{img['name']}")
+            print(f"downloaded: {label}/{img['name']}")
+
+    for cat in sorted(categories, key=lambda c: c["name"]):
+        cat_name = cat["name"]
+        cat_dir = os.path.join(TARGET_DIR, cat_name)
+        # Direct images in the category folder
+        sync_images_from(cat, cat_dir, cat_name)
+        # One level of nested sub-folders (used as clusters: People/<Country>)
+        sub_folders = list_children(service, cat["id"], folders_only=True)
+        for sub in sub_folders:
+            sub_dir = os.path.join(cat_dir, sub["name"])
+            sync_images_from(sub, sub_dir, f"{cat_name}/{sub['name']}")
 
     print(f"OK: {total_dl} files downloaded into {TARGET_DIR}")
 

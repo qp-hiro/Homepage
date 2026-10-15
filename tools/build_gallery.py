@@ -64,10 +64,11 @@ MARK_END = "GALLERY:AUTO:END"
 # does not require code changes.
 CATEGORY_ORDER = [
     "Life",
+    "People",
+    # Legacy singular/plural variants kept as safety nets.
     "Portrait", "Portraits",
     "Scenery",
     "Animal", "Animals",
-    "Travel", "Travels",
 ]
 
 DEFAULT_JP = {
@@ -75,6 +76,7 @@ DEFAULT_JP = {
     "Animals":      "動物",
     "Portrait":     "肖像",
     "Portraits":    "肖像",
+    "People":       "人物",
     "Scenery":      "風景",
     "Landscape":    "風景",
     "Landscapes":   "風景",
@@ -209,6 +211,26 @@ def collect_categories(cache):
         print("ERROR: Drive source not found: " + DRIVE_DIR)
         sys.exit(1)
 
+    def collect_images(src_folder):
+        """Yield (src_abs_path, cluster_name) for every image under src_folder.
+        One level of subfolders is recursed — the subfolder name becomes the
+        cluster (e.g. Gallery/People/エジプト/*.jpg → cluster='エジプト').
+        Direct images in src_folder get cluster=''. Deeper nesting is
+        intentionally not supported — keeps the data model simple."""
+        for entry in sorted(os.listdir(src_folder)):
+            if entry.startswith("."):
+                continue
+            path = os.path.join(src_folder, entry)
+            if os.path.isdir(path):
+                for sub in sorted(os.listdir(path)):
+                    if sub.startswith("."):
+                        continue
+                    sub_path = os.path.join(path, sub)
+                    if os.path.isfile(sub_path) and os.path.splitext(sub)[1].lower() in IMG_EXTS:
+                        yield sub_path, entry
+            elif os.path.isfile(path) and os.path.splitext(entry)[1].lower() in IMG_EXTS:
+                yield path, ""
+
     for name in sorted(os.listdir(DRIVE_DIR)):
         if name.startswith("."):
             continue
@@ -216,11 +238,7 @@ def collect_categories(cache):
         if not os.path.isdir(src_folder):
             continue
 
-        srcs = sorted(
-            os.path.join(src_folder, fn)
-            for fn in os.listdir(src_folder)
-            if not fn.startswith(".") and os.path.splitext(fn)[1].lower() in IMG_EXTS
-        )
+        srcs = list(collect_images(src_folder))
         if not srcs:
             continue
 
@@ -228,20 +246,46 @@ def collect_categories(cache):
         os.makedirs(out_folder, exist_ok=True)
 
         produced = []
-        for src in srcs:
-            result = build_image(src, out_folder, slugify(os.path.basename(src)), cache)
+        kept_rel = set()
+        for src, cluster_name in srcs:
+            if cluster_name:
+                sub_out = os.path.join(out_folder, cluster_name)
+                os.makedirs(sub_out, exist_ok=True)
+                result = build_image(src, sub_out, slugify(os.path.basename(src)), cache)
+                rel_prefix = cluster_name + "/"
+            else:
+                result = build_image(src, out_folder, slugify(os.path.basename(src)), cache)
+                rel_prefix = ""
             if result:
                 out_name, w, h = result
-                produced.append({"file": out_name, "w": w, "h": h})
+                photo = {"file": rel_prefix + out_name, "w": w, "h": h}
+                if cluster_name:
+                    photo["cluster"] = cluster_name
+                produced.append(photo)
+                kept_rel.add(photo["file"])
 
-        # Prune stale outputs
-        existing = {fn for fn in os.listdir(out_folder) if not fn.startswith(".")}
-        kept = {p["file"] for p in produced}
-        for stale in existing - kept:
-            try:
-                os.remove(os.path.join(out_folder, stale))
-            except OSError:
-                pass
+        # Prune stale outputs (direct files + one level of subdirs)
+        for entry in os.listdir(out_folder):
+            if entry.startswith("."):
+                continue
+            full = os.path.join(out_folder, entry)
+            if os.path.isdir(full):
+                for inner in list(os.listdir(full)):
+                    if inner.startswith("."):
+                        continue
+                    rel = entry + "/" + inner
+                    if rel not in kept_rel:
+                        try: os.remove(os.path.join(full, inner))
+                        except OSError: pass
+                try:
+                    if not os.listdir(full):
+                        os.rmdir(full)
+                except OSError:
+                    pass
+            else:
+                if entry not in kept_rel:
+                    try: os.remove(full)
+                    except OSError: pass
 
         if not produced:
             continue

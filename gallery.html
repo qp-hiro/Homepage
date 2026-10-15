@@ -122,9 +122,7 @@
         const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c =>
             ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
-        /* Fisher–Yates shuffle (returns a new array; original untouched).
-           Called on every category render so each page refresh / category
-           visit presents a fresh order. */
+        /* Fisher–Yates shuffle (returns a new array; original untouched). */
         function shuffle(arr) {
             const a = arr.slice();
             for (let i = a.length - 1; i > 0; i--) {
@@ -132,6 +130,74 @@
                 [a[i], a[j]] = [a[j], a[i]];
             }
             return a;
+        }
+
+        /* Cluster photos by "same session".
+           Preferred signal: an explicit `cluster` field on the photo
+           (set by build_gallery.py from Drive subfolder names, e.g. the
+           country under People/<Country>/*.jpg).
+           Fallback: filename numeric prefix — most cameras number
+           consecutive shots so nearby numbers = same session. */
+        function clusterPhotos(photos) {
+            const hasExplicit = photos.some(p => typeof p === 'object' && p.cluster);
+            if (hasExplicit) {
+                const groups = new Map();
+                for (const p of photos) {
+                    const key = (p && p.cluster) || '';
+                    if (!groups.has(key)) groups.set(key, []);
+                    groups.get(key).push(p);
+                }
+                return Array.from(groups.values());
+            }
+            const GAP = 1000;
+            const items = photos.map((p, idx) => {
+                const file = (typeof p === 'string') ? p : p.file;
+                const m = file.match(/([^0-9]*)(\d+)/);
+                return {
+                    photo: p,
+                    prefix: m ? m[1].toLowerCase() : '',
+                    num: m ? parseInt(m[2], 10) : idx,
+                };
+            });
+            items.sort((a, b) =>
+                a.prefix === b.prefix ? a.num - b.num : a.prefix.localeCompare(b.prefix)
+            );
+            const clusters = [];
+            let current = [];
+            for (const it of items) {
+                if (!current.length) { current.push(it); continue; }
+                const prev = current[current.length - 1];
+                if (it.prefix === prev.prefix && (it.num - prev.num) < GAP) {
+                    current.push(it);
+                } else {
+                    clusters.push(current);
+                    current = [it];
+                }
+            }
+            if (current.length) clusters.push(current);
+            return clusters.map(c => c.map(it => it.photo));
+        }
+
+        /* Row counts per cluster so each cluster occupies contiguous rows
+           without an orphan. Patterns per size: 1→[1] 2→[2] 3→[3] 4→[2,2]
+           5→[3,2] 6→[3,3] 7+→alternate 3,2 then settle leftover. */
+        function planRowsForClusters(clusters) {
+            const rows = [];
+            for (const cluster of clusters) {
+                let remaining = cluster.length;
+                let turn = 0;
+                while (remaining > 0) {
+                    let size;
+                    if (remaining <= 3)       size = remaining;
+                    else if (remaining === 4) size = 2;
+                    else if (remaining === 5) size = 3;
+                    else                      size = (turn % 2 === 0) ? 3 : 2;
+                    rows.push(size);
+                    remaining -= size;
+                    turn++;
+                }
+            }
+            return rows;
         }
 
         /* Lightbox */
@@ -221,7 +287,15 @@
                 return { el: tile, aspect: w / h };
             });
 
-            const rowCounts = planRowCounts(items.length);
+            // renderActive stashes the cluster-derived row plan on the grid
+            // (as data-row-counts); layoutJustified prefers it and falls back
+            // to the old 3,2,… alternation only when the attribute is missing.
+            let rowCounts;
+            if (grid.dataset.rowCounts) {
+                rowCounts = grid.dataset.rowCounts.split(',').map(Number);
+            } else {
+                rowCounts = planRowCounts(items.length);
+            }
             let y = 0;
             let cursor = 0;
 
@@ -284,12 +358,18 @@
                 <div class="gallery-active__grid"></div>
             `;
             const grid = activeEl.querySelector('.gallery-active__grid');
-            // Shuffle on every render so each visit / refresh shows a fresh order
-            shuffle(c.photos).forEach((p) => {
+            // Cluster photos by session (country folder, or filename proximity),
+            // shuffle only the CLUSTER order so each visit varies but shots
+            // from the same place stay in the same row.
+            const clusters = shuffle(clusterPhotos(c.photos));
+            grid.dataset.rowCounts = planRowsForClusters(clusters).join(',');
+            const ordered = clusters.flat();
+            ordered.forEach((p) => {
                 const file = typeof p === 'string' ? p : p.file;
                 const w = typeof p === 'object' ? p.w : 0;
                 const h = typeof p === 'object' ? p.h : 0;
-                const src = `Gallery/${encodeURIComponent(c.slug)}/${encodeURIComponent(file)}`;
+                // file may contain slashes (nested cluster subfolders) — encode each segment
+                const src = `Gallery/${encodeURIComponent(c.slug)}/` + file.split('/').map(encodeURIComponent).join('/');
                 const alt = `${c.name} — ${file}`;
                 const tile = document.createElement('button');
                 tile.type = 'button';
