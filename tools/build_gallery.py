@@ -165,14 +165,28 @@ def trim_white_border(im, threshold=245, min_crop_px=4):
     return im.crop(bbox)
 
 
+def _dominant_hex(im):
+    """Return a short 'avg-color' hex string. Simple arithmetic mean of
+    a 48×48 thumbnail — fast, decent enough as a tonal signature for
+    sorting photos into color-coherent rows."""
+    tiny = im.resize((48, 48)).convert("RGB")
+    pixels = list(tiny.getdata())
+    n = max(1, len(pixels))
+    r = sum(p[0] for p in pixels) // n
+    g = sum(p[1] for p in pixels) // n
+    b = sum(p[2] for p in pixels) // n
+    return "#%02x%02x%02x" % (r, g, b)
+
+
 def build_image(src, out_dir, slug, cache):
     """Convert one source image into an optimized web JPEG.
-    Returns (out_name, width, height) or None on failure."""
+    Returns (out_name, width, height, color_hex) or None on failure."""
     key = src
     digest = sha1_of(src)
     cached = cache.get(key)
-    if cached and cached.get("sha1") == digest and os.path.exists(os.path.join(out_dir, cached.get("out", ""))):
-        return cached["out"], cached.get("w", 0), cached.get("h", 0)
+    if (cached and cached.get("sha1") == digest and cached.get("color")
+            and os.path.exists(os.path.join(out_dir, cached.get("out", "")))):
+        return cached["out"], cached.get("w", 0), cached.get("h", 0), cached["color"]
     try:
         im = Image.open(src)
         # Honour EXIF rotation (portrait phones often need this)
@@ -193,14 +207,15 @@ def build_image(src, out_dir, slug, cache):
             new_h = round(im.height * scale)
             im = im.resize((new_w, new_h), Image.LANCZOS)
         w, h = im.width, im.height
+        color = _dominant_hex(im)
         out_name = slug + ".jpg"
         im.convert("RGB").save(os.path.join(out_dir, out_name),
                                format="JPEG", quality=JPEG_QUALITY, optimize=True)
     except Exception as e:
         print("WARN: image conversion failed for %s: %s" % (src, e))
         return None
-    cache[key] = {"sha1": digest, "out": out_name, "w": w, "h": h}
-    return out_name, w, h
+    cache[key] = {"sha1": digest, "out": out_name, "w": w, "h": h, "color": color}
+    return out_name, w, h, color
 
 
 def collect_categories(cache):
@@ -257,8 +272,8 @@ def collect_categories(cache):
                 result = build_image(src, out_folder, slugify(os.path.basename(src)), cache)
                 rel_prefix = ""
             if result:
-                out_name, w, h = result
-                photo = {"file": rel_prefix + out_name, "w": w, "h": h}
+                out_name, w, h, color = result
+                photo = {"file": rel_prefix + out_name, "w": w, "h": h, "color": color}
                 if cluster_name:
                     photo["cluster"] = cluster_name
                 produced.append(photo)
