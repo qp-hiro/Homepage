@@ -926,5 +926,96 @@
     "w": 1440,
     "h": 1800,
     "color": "#486375"
+  },
+  "/tmp/gallery-src/Animal/BIrd/P1085756-2.jpg": {
+    "sha1": "18a1a81ec0f37f04e73f96a529ad43d428155c8e",
+    "out": "p1085756-2.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#333634"
+  },
+  "/tmp/gallery-src/Animal/BIrd/P1086427-2.jpg": {
+    "sha1": "8bd23713215defb03ae4fd311029216f230f78cd",
+    "out": "p1086427-2.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#293546"
+  },
+  "/tmp/gallery-src/Animal/mamal/IMGP2550-2.jpg": {
+    "sha1": "6b0890b7b4d2bf68bd22201e3b8558be11ac601e",
+    "out": "imgp2550-2.jpg",
+    "w": 1440,
+    "h": 1800,
+    "color": "#8c8a8f"
+  },
+  "/tmp/gallery-src/Animal/mamal/IMGP2650-2-2.jpg": {
+    "sha1": "04eb42620f2deb7099f38495a5278b248cf97b27",
+    "out": "imgp2650-2-2.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#7c7c7b"
+  },
+  "/tmp/gallery-src/Animal/mamal/P1086473.jpg": {
+    "sha1": "ba18f3cdaefc0d3f882be5273305d59cee9991aa",
+    "out": "p1086473.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#121718"
+  },
+  "/tmp/gallery-src/Animal/mamal/P1098905-3.jpg": {
+    "sha1": "2e580721c56975f70a42709223e2eae1c48993a5",
+    "out": "p1098905-3.jpg",
+    "w": 1440,
+    "h": 1800,
+    "color": "#6e7879"
+  },
+  "/tmp/gallery-src/Animal/mamal/P1098963-2.jpg": {
+    "sha1": "8dc6df25dba2b44664ff6aca6b8fc589a9e79ff6",
+    "out": "p1098963-2.jpg",
+    "w": 1440,
+    "h": 1800,
+    "color": "#5c4028"
+  },
+  "/tmp/gallery-src/Animal/mamal/P1100018-2.jpg": {
+    "sha1": "f6f68afec8557c352df647565b359d90ee971669",
+    "out": "p1100018-2.jpg",
+    "w": 1678,
+    "h": 1260,
+    "color": "#374604"
+  },
+  "/tmp/gallery-src/Animal/mamal/P1100535.jpg": {
+    "sha1": "74786b85c497fa6e18f4cadf3bd115ae3b77e70e",
+    "out": "p1100535.jpg",
+    "w": 1486,
+    "h": 1116,
+    "color": "#5b5439"
+  },
+  "/tmp/gallery-src/Animal/reptiles/P1085107.jpg": {
+    "sha1": "09a03d39464acd677b0ba6dbf8fe040636240322",
+    "out": "p1085107.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#1f1f1f"
+  },
+  "/tmp/gallery-src/Animal/reptiles/P1086330-2.jpg": {
+    "sha1": "73b121afbba3b931e8b569217f1c79945559fbf0",
+    "out": "p1086330-2.jpg",
+    "w": 1440,
+    "h": 1800,
+    "color": "#797a7a"
+  },
+  "/tmp/gallery-src/Animal/reptiles/カエル-2.jpg": {
+    "sha1": "177a7f8e7f9ac0636ae1e4751487f874863c1d86",
+    "out": "2.jpg",
+    "w": 1800,
+    "h": 1351,
+    "color": "#1d1d1d"
+  },
+  "/tmp/gallery-src/Scenery/カナダ/P1085575.jpg": {
+    "sha1": "6624cb43697e0a2ffc98492545c76ea9867b11e1",
+    "out": "p1085575.jpg",
+    "w": 1800,
+    "h": 1350,
+    "color": "#626b68"
   }
 }

@@ -262,6 +262,13 @@
           "cluster": "エジプト"
         },
         {
+          "file": "カナダ/p1085575.jpg",
+          "w": 1800,
+          "h": 1350,
+          "color": "#626b68",
+          "cluster": "カナダ"
+        },
+        {
           "file": "カナダ/p1086445.jpg",
           "w": 1800,
           "h": 1351,
@@ -311,67 +318,18 @@
       "name_jp": "動物",
       "photos": [
         {
-          "file": "Land/imgp2550-2.jpg",
-          "w": 1440,
-          "h": 1800,
-          "color": "#8c8a8f",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/imgp2650-2-2.jpg",
-          "w": 1800,
-          "h": 1351,
-          "color": "#7c7c7b",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1085107.jpg",
-          "w": 1800,
-          "h": 1351,
-          "color": "#1f1f1f",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1085756-2.jpg",
+          "file": "BIrd/p1085756-2.jpg",
           "w": 1800,
           "h": 1351,
           "color": "#333634",
-          "cluster": "Land"
+          "cluster": "BIrd"
         },
         {
-          "file": "Land/p1086330-2.jpg",
-          "w": 1440,
-          "h": 1800,
-          "color": "#797a7a",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1098905-3.jpg",
-          "w": 1440,
-          "h": 1800,
-          "color": "#6e7879",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1098963-2.jpg",
-          "w": 1440,
-          "h": 1800,
-          "color": "#5c4028",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1100018-2.jpg",
-          "w": 1678,
-          "h": 1260,
-          "color": "#374604",
-          "cluster": "Land"
-        },
-        {
-          "file": "Land/p1100535.jpg",
-          "w": 1486,
-          "h": 1116,
-          "color": "#5b5439",
-          "cluster": "Land"
+          "file": "BIrd/p1086427-2.jpg",
+          "w": 1800,
+          "h": 1351,
+          "color": "#293546",
+          "cluster": "BIrd"
         },
         {
           "file": "Plant/p1099496.jpg",
@@ -428,6 +386,76 @@
           "h": 1352,
           "color": "#3069b4",
           "cluster": "Sea"
+        },
+        {
+          "file": "mamal/imgp2550-2.jpg",
+          "w": 1440,
+          "h": 1800,
+          "color": "#8c8a8f",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/imgp2650-2-2.jpg",
+          "w": 1800,
+          "h": 1351,
+          "color": "#7c7c7b",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/p1086473.jpg",
+          "w": 1800,
+          "h": 1351,
+          "color": "#121718",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/p1098905-3.jpg",
+          "w": 1440,
+          "h": 1800,
+          "color": "#6e7879",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/p1098963-2.jpg",
+          "w": 1440,
+          "h": 1800,
+          "color": "#5c4028",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/p1100018-2.jpg",
+          "w": 1678,
+          "h": 1260,
+          "color": "#374604",
+          "cluster": "mamal"
+        },
+        {
+          "file": "mamal/p1100535.jpg",
+          "w": 1486,
+          "h": 1116,
+          "color": "#5b5439",
+          "cluster": "mamal"
+        },
+        {
+          "file": "reptiles/p1085107.jpg",
+          "w": 1800,
+          "h": 1351,
+          "color": "#1f1f1f",
+          "cluster": "reptiles"
+        },
+        {
+          "file": "reptiles/p1086330-2.jpg",
+          "w": 1440,
+          "h": 1800,
+          "color": "#797a7a",
+          "cluster": "reptiles"
+        },
+        {
+          "file": "reptiles/2.jpg",
+          "w": 1800,
+          "h": 1351,
+          "color": "#1d1d1d",
+          "cluster": "reptiles"
         }
       ]
     }
